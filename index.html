@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#1a0f0a">
+    <meta name="description" content="Магия Вкуса — авторские десерты, шоколад ручной работы, сухофрукты, чай и кофе, подарочные наборы от Лиды.">
     <title>Магия Вкуса — Авторские десерты от Лиды</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,6 +48,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 90px;
             font-size: 16px;
             -webkit-text-size-adjust: 100%;
         }
@@ -60,6 +62,10 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
         }
 
         ::selection {
@@ -657,6 +663,291 @@
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(10deg); }
         }
+
+        /* ============ BRAND SHOWCASE (фото «Магия вкуса») ============ */
+        .brand-showcase {
+            position: relative;
+            padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 5vw, 3rem);
+            background:
+                radial-gradient(ellipse 65% 55% at 50% 45%, rgba(212, 175, 122, 0.10), transparent 70%),
+                linear-gradient(180deg, var(--chocolate) 0%, #251309 50%, var(--chocolate) 100%);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .brand-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: min(760px, 92vw);
+            aspect-ratio: 1;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle,
+                rgba(212, 175, 122, 0.25) 0%,
+                rgba(139, 38, 53, 0.12) 42%,
+                transparent 70%);
+            filter: blur(45px);
+            pointer-events: none;
+            animation: brandGlow 7s ease-in-out infinite;
+        }
+
+        @keyframes brandGlow {
+            0%, 100% { opacity: 0.65; transform: translate(-50%, -50%) scale(1); }
+            50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.07); }
+        }
+
+        .brand-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: min(820px, 98vw);
+            aspect-ratio: 1;
+            transform: translate(-50%, -50%);
+            border: 1px dashed rgba(212, 175, 122, 0.22);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: brandRing 70s linear infinite;
+        }
+
+        .brand-ring::before {
+            content: '';
+            position: absolute;
+            inset: 16px;
+            border: 1px solid rgba(212, 175, 122, 0.10);
+            border-radius: 50%;
+        }
+
+        .brand-ring::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            width: 9px;
+            height: 9px;
+            margin-left: -4.5px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 14px 2px rgba(212, 175, 122, 0.8);
+        }
+
+        @keyframes brandRing {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .brand-sparkles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .brand-sparkles i {
+            position: absolute;
+            left: var(--x);
+            top: var(--y);
+            width: var(--s);
+            height: var(--s);
+            background: radial-gradient(circle, #ffedc9 0%, var(--gold) 45%, transparent 72%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: brandTwinkle 4.5s ease-in-out infinite;
+            animation-delay: var(--d);
+        }
+
+        @keyframes brandTwinkle {
+            0%, 100% { opacity: 0; transform: scale(0.3); }
+            50%      { opacity: 1; transform: scale(1); filter: brightness(1.5); }
+        }
+
+        .brand-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .brand-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: clamp(2rem, 5vw, 3rem);
+        }
+
+        .brand-line {
+            width: clamp(40px, 8vw, 90px);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold));
+        }
+
+        .brand-line:last-child {
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .brand-label-text {
+            font-size: clamp(0.65rem, 2vw, 0.8rem);
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .brand-frame-reveal {
+            display: inline-block;
+        }
+
+        .brand-frame-wrap {
+            position: relative;
+            display: inline-block;
+            transform-style: preserve-3d;
+            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .brand-corner {
+            position: absolute;
+            width: clamp(24px, 5vw, 36px);
+            height: clamp(24px, 5vw, 36px);
+            border: 1px solid var(--gold);
+            z-index: 3;
+            transform: translateZ(40px);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .brand-corner.tl { top: -12px;    left: -12px;  border-right: 0; border-bottom: 0; }
+        .brand-corner.tr { top: -12px;    right: -12px; border-left: 0;  border-bottom: 0; }
+        .brand-corner.bl { bottom: -12px; left: -12px;  border-right: 0; border-top: 0; }
+        .brand-corner.br { bottom: -12px; right: -12px; border-left: 0;  border-top: 0; }
+
+        .brand-frame-wrap:hover .brand-corner {
+            width: clamp(34px, 6vw, 48px);
+            height: clamp(34px, 6vw, 48px);
+        }
+
+        .brand-frame {
+            position: relative;
+            margin: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 122, 0.4);
+            box-shadow:
+                0 30px 70px rgba(0, 0, 0, 0.55),
+                0 0 90px rgba(212, 175, 122, 0.14);
+        }
+
+        .brand-frame img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .brand-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.35);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .brand-shine {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(115deg,
+                transparent 32%,
+                rgba(255, 236, 200, 0.16) 46%,
+                rgba(255, 255, 255, 0.28) 50%,
+                rgba(255, 236, 200, 0.16) 54%,
+                transparent 68%);
+            transform: translateX(-120%);
+            pointer-events: none;
+            animation: brandShine 5.5s ease-in-out infinite;
+        }
+
+        @keyframes brandShine {
+            0%, 55%   { transform: translateX(-120%); }
+            75%, 100% { transform: translateX(120%); }
+        }
+
+        .brand-caption {
+            margin: clamp(2rem, 5vw, 3rem) auto 0;
+            max-width: 540px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+            font-style: italic;
+            line-height: 1.7;
+            color: rgba(245, 230, 211, 0.85);
+        }
+
+        .brand-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: clamp(1.5rem, 4vw, 2.5rem);
+            padding: 1rem 2.4rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .brand-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+        }
+
+        .brand-cta-label,
+        .brand-cta-arrow {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-cta:hover {
+            color: var(--chocolate);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(212, 175, 122, 0.25);
+        }
+
+        .brand-cta:hover::before {
+            transform: scaleX(1);
+        }
+
+        .brand-cta-arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .brand-cta:hover .brand-cta-arrow {
+            transform: translateX(5px);
+        }
+
+        .reveal-brand {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-brand.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .brand-label.reveal-brand        { transition-delay: 0.05s; }
+        .brand-frame-reveal.reveal-brand { transition-delay: 0.2s; }
+        .brand-caption.reveal-brand      { transition-delay: 0.4s; }
+        .brand-cta.reveal-brand          { transition-delay: 0.55s; }
 
         /* ============ PHILOSOPHY SECTION ============ */
         .philosophy {
@@ -1632,6 +1923,11 @@
             opacity: 1;
         }
 
+        .footer-column .footer-plain {
+            color: rgba(245, 230, 211, 0.7);
+            font-size: 0.9rem;
+        }
+
         .footer-bottom {
             max-width: 1400px;
             margin: 0 auto;
@@ -1742,651 +2038,489 @@
             transform: translateX(0);
         }
 
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal-scale.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.15s; }
-        .reveal-delay-2 { transition-delay: 0.3s; }
-        .reveal-delay-3 { transition-delay: 0.45s; }
-        .reveal-delay-4 { transition-delay: 0.6s; }
-
-        /* ============ RESPONSIVE BREAKPOINTS ============ */
-
-        /* Large screens (1440px+) */
-        @media (min-width: 1440px) {
-            html { font-size: 17px; }
-            
-            .philosophy-container {
-                gap: 8rem;
-            }
-            
-            .philosophy-image {
-                max-height: 800px;
-            }
-        }
-
-        /* Desktop (1024px - 1439px) */
-        @media (max-width: 1439px) and (min-width: 1025px) {
-            .collection-grid {
-                gap: 1.5rem;
-            }
-        }
-
-        /* Tablets (768px - 1024px) */
+        /* ============ ADAPTIVE ============ */
         @media (max-width: 1024px) {
-            nav,
-            nav.scrolled {
-                padding: 1rem 2rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .nav-cta {
-                display: none;
-            }
-            
-            .burger {
-                display: flex;
-            }
-            
             .philosophy-container {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
-            
+
             .philosophy-image {
-                max-width: 600px;
+                max-width: 520px;
                 margin: 0 auto;
-                aspect-ratio: 4/5;
+                width: 100%;
             }
-            
-            .philosophy-image-accent {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .collection-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .dessert-card:nth-child(1),
-            .dessert-card:nth-child(2),
-            .dessert-card:nth-child(3),
-            .dessert-card:nth-child(4),
-            .dessert-card:nth-child(5) {
-                grid-column: span 1;
-                aspect-ratio: 4/5;
-            }
-            
+
             .process-steps {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
+                row-gap: 3rem;
             }
-            
+
             .process-steps::before {
                 display: none;
             }
-            
+
             .testimonials-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
+
             .footer-container {
                 grid-template-columns: 1fr 1fr;
-                gap: 3rem;
             }
         }
 
-        /* Small tablets & large phones (576px - 768px) */
-        @media (max-width: 768px) {
-            .hero {
-                min-height: 550px;
+        @media (max-width: 900px) {
+            nav {
+                padding: 1.2rem 1.5rem;
             }
-            
-            .hero-scroll {
+
+            nav.scrolled {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links,
+            .nav-cta {
                 display: none;
             }
-            
-            .hero-decoration {
-                display: none;
+
+            .burger {
+                display: flex;
             }
-            
-            .philosophy-stats {
+
+            .dessert-card:nth-child(1),
+            .dessert-card:nth-child(2) {
+                grid-column: span 12;
+            }
+
+            .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 1.5rem;
             }
-            
-            .collection-grid {
+        }
+
+        @media (max-width: 680px) {
+            .testimonials-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .dessert-card:nth-child(1),
-            .dessert-card:nth-child(2),
+
             .dessert-card:nth-child(3),
             .dessert-card:nth-child(4),
             .dessert-card:nth-child(5) {
-                grid-column: span 1;
+                grid-column: span 12;
                 aspect-ratio: 4/3;
             }
-            
-            .process-steps {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .cta-btn {
-                justify-content: center;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .footer-brand p {
-                max-width: 100%;
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .social-links {
-                justify-content: center;
-            }
-        }
 
-        /* Mobile (320px - 575px) */
-        @media (max-width: 575px) {
-            html { font-size: 15px; }
-            
-            nav,
-            nav.scrolled {
-                padding: 1rem 1.2rem;
-            }
-            
-            .logo {
-                font-size: 1.1rem;
-            }
-            
-            .hero {
-                min-height: 500px;
-            }
-            
-            .hero-actions {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-            }
-            
-            .btn-primary,
-            .btn-ghost {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .philosophy-stats {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .philosophy-image-accent {
-                width: 100px;
-                height: 100px;
-                bottom: -15px;
-                left: -10px;
-            }
-            
-            .philosophy-image-tag {
-                right: -10px;
-                top: 15px;
-                padding: 0.8rem 1.2rem;
-                font-size: 0.85rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2px;
-            }
-            
-            .back-to-top {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                width: 45px;
-                height: 45px;
-            }
-            
-            .mobile-menu {
-                padding: 3rem 2rem;
-            }
-            
-            .mobile-menu-links a {
-                font-size: 1.6rem;
-            }
-        }
-
-        /* Very small screens (320px - 374px) */
-        @media (max-width: 374px) {
-            html { font-size: 14px; }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Landscape orientation on mobile */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .hero {
-                min-height: 100vh;
-            }
-            
-            .hero-content {
-                padding-top: 6rem;
-            }
-            
             .hero-scroll {
                 display: none;
             }
         }
 
-        /* High DPI screens */
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            .hero-image,
-            .dessert-image,
-            .philosophy-image-main,
+        @media (max-width: 560px) {
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .philosophy-image-accent {
-                image-rendering: -webkit-optimize-contrast;
+                left: -10px;
+                bottom: -20px;
+            }
+
+            .philosophy-image-tag {
+                right: 0;
             }
         }
 
-        /* Reduced motion preference */
+        /* Уважение к настройкам пользователя */
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+            .brand-glow, .brand-ring, .brand-shine, .brand-sparkles i,
+            .hero-image, .hero-decoration-1, .hero-decoration-2,
+            .marquee-track, .loader-logo, .loader-bar::after,
+            .philosophy-image-accent {
+                animation: none !important;
             }
-            
-            .marquee-track {
-                animation: none;
-            }
-            
-            .hero-image {
-                animation: none;
-                transform: scale(1.05);
-            }
-        }
 
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --cream: #1a1410;
-                --cream-dark: #2c2018;
-                --vanilla: #231a14;
-                --chocolate: #faf4ec;
-                --chocolate-soft: #e8dcc8;
-            }
-            
-            body {
-                color: var(--chocolate);
-            }
-            
-            .philosophy,
-            .process,
-            .testimonials,
-            .gallery {
-                background: var(--cream);
-            }
-            
-            .testimonial,
-            .footer-column a,
-            .footer-brand p {
-                color: rgba(245, 230, 211, 0.8);
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            nav,
-            .scroll-progress,
-            .back-to-top,
-            .loader,
-            .mobile-menu,
-            .mobile-menu-overlay {
-                display: none !important;
-            }
-            
-            .hero {
-                min-height: auto;
-                padding: 2rem;
-            }
-            
-            .hero-image,
-            .hero-overlay {
-                display: none;
-            }
-            
-            .hero-content {
-                color: black;
-            }
-            
-            .reveal {
+            .reveal, .reveal-left, .reveal-right, .reveal-brand {
                 opacity: 1 !important;
                 transform: none !important;
+                transition: none !important;
             }
         }
     </style>
 </head>
 <body>
-    <!-- LOADING SCREEN -->
+
+    <!-- ============ LOADER ============ -->
     <div class="loader" id="loader">
-        <div class="loader-logo">Magia Vkusa</div>
+        <div class="loader-logo">Магия Вкуса</div>
         <div class="loader-bar"></div>
     </div>
 
-    <!-- SCROLL PROGRESS -->
+    <!-- ============ SCROLL PROGRESS ============ -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- NAVIGATION -->
-    <nav id="navbar">
-        <a href="#" class="logo">Magia <span>Vkusa</span></a>
+    <!-- ============ NAVIGATION ============ -->
+    <nav id="nav">
+        <a href="#home" class="logo">Магия <span>Вкуса</span></a>
         <ul class="nav-links">
-            <li><a href="#philosophy" class="nav-link">Философия</a></li>
-            <li><a href="#collection" class="nav-link">Коллекция</a></li>
-            <li><a href="#process" class="nav-link">Процесс</a></li>
-            <li><a href="#testimonials" class="nav-link">Отзывы</a></li>
-            <li><a href="#gallery" class="nav-link">Галерея</a></li>
+            <li><a href="#home" class="active" data-section="home">Главная</a></li>
+            <li><a href="#philosophy" data-section="philosophy">Философия</a></li>
+            <li><a href="#collection" data-section="collection">Коллекция</a></li>
+            <li><a href="#process" data-section="process">Процесс</a></li>
+            <li><a href="#testimonials" data-section="testimonials">Отзывы</a></li>
         </ul>
-        <a href="#cta" class="nav-cta">Заказать</a>
-        <div class="burger" id="burger">
+        <a href="#contacts" class="nav-cta">Заказать</a>
+        <div class="burger" id="burger" aria-label="Меню">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
 
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <!-- ============ MOBILE MENU ============ -->
     <div class="mobile-menu" id="mobileMenu">
         <ul class="mobile-menu-links">
+            <li><a href="#home">Главная</a></li>
             <li><a href="#philosophy">Философия</a></li>
             <li><a href="#collection">Коллекция</a></li>
             <li><a href="#process">Процесс</a></li>
             <li><a href="#testimonials">Отзывы</a></li>
-            <li><a href="#gallery">Галерея</a></li>
-            <li><a href="#cta">Заказать</a></li>
+            <li><a href="#contacts">Контакты</a></li>
         </ul>
         <div class="mobile-menu-social">
-            <a href="https://www.instagram.com/magiavkusalida" target="_blank">ig</a>
-            <a href="https://t.me/magiavkusalida" target="_blank">tg</a>
-            <a href="tel:+79991234567">tel</a>
+            <a href="#" aria-label="Telegram">tg</a>
+            <a href="#" aria-label="VK">vk</a>
+            <a href="#" aria-label="Instagram">ig</a>
         </div>
     </div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
-    <!-- HERO -->
-    <section class="hero">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
         <div class="hero-image"></div>
         <div class="hero-overlay"></div>
+
         <div class="hero-decoration hero-decoration-1"></div>
         <div class="hero-decoration hero-decoration-2"></div>
+
         <div class="hero-content">
-            <div class="hero-tag">Авторские десерты с 2020 года</div>
+            <div class="hero-tag">Десерты ручной работы</div>
             <h1>
-                Магия<br>
-                <span class="italic">Вкуса</span>
-                <span class="script">by Lida</span>
+                Магия <span class="italic">вкуса</span>
+                <span class="script">авторские сладости от Лиды</span>
             </h1>
-            <p class="hero-description">Каждый десерт — маленькая история, рассказанная языком вкуса. Бельгийский шоколад, сезонные ягоды, ваниль из Мадагаскара. И, конечно, щепотка магии.</p>
+            <p class="hero-description">
+                Шоколад ручной работы, отборные сухофрукты, орехи и пряности —
+                каждая конфета создаётся вручную с любовью и вниманием к деталям.
+                Подарите себе и близким маленькое чудо.
+            </p>
             <div class="hero-actions">
                 <a href="#collection" class="btn-primary">
-                    <span>Открыть коллекцию</span>
+                    <span>Смотреть коллекцию</span>
                     <span>→</span>
                 </a>
-                <a href="#philosophy" class="btn-ghost">Узнать больше</a>
+                <a href="#contacts" class="btn-ghost">Сделать заказ</a>
             </div>
         </div>
-        <div class="hero-scroll">scroll</div>
+
+        <a href="#brand" class="hero-scroll">Листайте вниз</a>
     </section>
 
-    <!-- PHILOSOPHY -->
+    <!-- ============ BRAND SHOWCASE (фото «Магия вкуса») ============ -->
+    <section class="brand-showcase" id="brand">
+        <div class="brand-glow" aria-hidden="true"></div>
+        <div class="brand-ring" aria-hidden="true"></div>
+
+        <div class="brand-sparkles" aria-hidden="true">
+            <i style="--x:6%;  --y:22%; --d:0s;   --s:6px"></i>
+            <i style="--x:14%; --y:68%; --d:1.4s; --s:4px"></i>
+            <i style="--x:22%; --y:12%; --d:.7s;  --s:3px"></i>
+            <i style="--x:32%; --y:88%; --d:2.1s; --s:5px"></i>
+            <i style="--x:48%; --y:6%;  --d:1.1s; --s:4px"></i>
+            <i style="--x:63%; --y:92%; --d:.4s;  --s:6px"></i>
+            <i style="--x:74%; --y:16%; --d:1.8s; --s:3px"></i>
+            <i style="--x:82%; --y:58%; --d:.9s;  --s:5px"></i>
+            <i style="--x:90%; --y:32%; --d:2.5s; --s:4px"></i>
+            <i style="--x:55%; --y:78%; --d:1.6s; --s:3px"></i>
+        </div>
+
+        <div class="brand-inner">
+            <div class="brand-label reveal-brand">
+                <span class="brand-line"></span>
+                <span class="brand-label-text">Авторские сладости ручной работы</span>
+                <span class="brand-line"></span>
+            </div>
+
+            <div class="brand-frame-reveal reveal-brand">
+                <div class="brand-frame-wrap" id="brandTilt">
+                    <span class="brand-corner tl"></span>
+                    <span class="brand-corner tr"></span>
+                    <span class="brand-corner bl"></span>
+                    <span class="brand-corner br"></span>
+                    <figure class="brand-frame">
+                        <img src="magiya-vkusa.jpg"
+                             alt="Магия Вкуса — сладости, сухофрукты, чай и кофе, подарочные наборы, шоколад ручной работы"
+                             loading="lazy"
+                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1578985420001-5e015b8a6d17?w=900&q=90';">
+                        <span class="brand-shine" aria-hidden="true"></span>
+                    </figure>
+                </div>
+            </div>
+
+            <p class="brand-caption reveal-brand">
+                Каждая конфета — маленькое произведение искусства:
+                отборные орехи, солнечные сухофрукты и шоколад,
+                собранные вручную с любовью
+            </p>
+
+            <a href="#collection" class="brand-cta reveal-brand">
+                <span class="brand-cta-label">Смотреть коллекцию</span>
+                <span class="brand-cta-arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============ PHILOSOPHY ============ -->
     <section class="philosophy" id="philosophy">
         <div class="philosophy-container">
             <div class="reveal-left">
-                <div class="philosophy-label">— Философия</div>
-                <h2>Искусство, в котором <em>каждый кусочек</em> рассказывает историю</h2>
-                <p class="philosophy-text">Я не просто пеку торты — я создаю моменты. Момент, когда вы откусываете первый кусочек, и время на мгновение останавливается. Когда закрываете глаза от удовольствия. Когда понимаете: это было создано именно для вас.</p>
-                <p class="philosophy-text">Только натуральные ингредиенты. Только ручная работа. Только ваш праздник — в каждом слое.</p>
-                
+                <div class="philosophy-label">Философия</div>
+                <h2>Сладости, созданные<br>с <em>любовью</em></h2>
+                <p class="philosophy-text">
+                    Я верю, что десерт — это не просто еда. Это эмоция, воспоминание,
+                    момент счастья, который можно подарить. Каждый кусочек шоколада
+                    в моих наборах отбирается вручную, а сочетания орехов, сухофруктов
+                    и какао рождаются из вдохновения и экспериментов.
+                </p>
+                <p class="philosophy-text">
+                    Я не использую искусственные добавки — только натуральные
+                    ингредиенты, честные рецепты и немного магии. Именно поэтому
+                    мои сладости такими запоминаются.
+                </p>
                 <div class="philosophy-signature">
-                    <div class="signature-line"></div>
-                    <div class="signature-name">Lida</div>
-                </div>
-
-                <div class="philosophy-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Созданных тортов</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">5</div>
-                        <div class="stat-label">Лет опыта</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Натуральное</div>
-                    </div>
+                    <span class="signature-line"></span>
+                    <span class="signature-name">Лида</span>
                 </div>
             </div>
 
             <div class="philosophy-image reveal-right">
                 <div class="philosophy-image-main"></div>
                 <div class="philosophy-image-accent"></div>
-                <div class="philosophy-image-tag">"С любовью,<br>Лида"</div>
+                <div class="philosophy-image-tag">Сделано вручную ♡</div>
+            </div>
+        </div>
+
+        <div class="philosophy-stats reveal">
+            <div class="stat-item">
+                <div class="stat-number" data-count="5">0</div>
+                <div class="stat-label">лет творчества</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="300">0</div>
+                <div class="stat-label">счастливых заказов</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-count="100">0</div>
+                <div class="stat-label">процентов ручной работы</div>
             </div>
         </div>
     </section>
 
-    <!-- COLLECTION -->
+    <!-- ============ COLLECTION ============ -->
     <section class="collection" id="collection">
-        <div class="collection-header">
-            <div class="collection-label reveal">Signature Collection</div>
-            <h2 class="reveal reveal-delay-1">Наши <em>самые любимые</em> десерты</h2>
-            <p class="collection-subtitle reveal reveal-delay-2">Авторские рецепты, которые стали визитной карточкой. Каждый из них — результат множества экспериментов и сотен счастливых отзывов.</p>
+        <div class="collection-header reveal">
+            <div class="collection-label">Коллекция</div>
+            <h2>Фирменные <em>десерты</em></h2>
+            <p class="collection-subtitle">
+                Авторские сладости из натуральных ингредиентов —
+                от классики до неожиданных сочетаний
+            </p>
         </div>
 
         <div class="collection-grid">
-            <div class="dessert-card reveal-scale">
+            <article class="dessert-card reveal">
                 <div class="dessert-image"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
-                    <div class="dessert-category">Свадебная коллекция</div>
-                    <h3 class="dessert-name">Белый <em>Шёлк</em></h3>
-                    <p class="dessert-desc">Ванильный бисквит, мусс с белым шоколадом, малиновый конфи, хрустящий слой фисташки</p>
+                    <div class="dessert-category">Шоколад</div>
+                    <h3 class="dessert-name">Трюфельное <em>ассорти</em></h3>
+                    <p class="dessert-desc">Нежные трюфели с ореховой пастой, ягодными нотами и какао высшего сорта.</p>
                     <div class="dessert-meta">
-                        <div class="dessert-price">от 3 500 ₽/кг</div>
+                        <div class="dessert-price">1 200 ₽</div>
                         <div class="dessert-arrow">→</div>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="dessert-card reveal-scale reveal-delay-1">
+            <article class="dessert-card reveal">
                 <div class="dessert-image"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
-                    <div class="dessert-category">Муссовые торты</div>
-                    <h3 class="dessert-name">Тёмный <em>Бархат</em></h3>
-                    <p class="dessert-desc">70% бельгийский шоколад, солёная карамель, хрустящий орех пралине, зеркальная глазурь</p>
+                    <div class="dessert-category">Торты</div>
+                    <h3 class="dessert-name">Клубничный <em>дамаск</em></h3>
+                    <p class="dessert-desc">Воздушные коржи, свежая клубника и крем на белом шоколаде.</p>
                     <div class="dessert-meta">
-                        <div class="dessert-price">от 2 800 ₽/кг</div>
+                        <div class="dessert-price">2 400 ₽</div>
                         <div class="dessert-arrow">→</div>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="dessert-card reveal-scale">
+            <article class="dessert-card reveal">
                 <div class="dessert-image"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
-                    <div class="dessert-category">Ягодные</div>
-                    <h3 class="dessert-name">Лесная <em>Сказка</em></h3>
-                    <p class="dessert-desc">Микс лесных ягод, ванильный крем, нежный бисквит</p>
+                    <div class="dessert-category">Карамель</div>
+                    <h3 class="dessert-name">Солёная <em>карамель</em></h3>
+                    <p class="dessert-desc">Батончики из тягучей карамели с морской солью в молочном шоколаде.</p>
                     <div class="dessert-meta">
-                        <div class="dessert-price">от 2 500 ₽/кг</div>
+                        <div class="dessert-price">850 ₽</div>
                         <div class="dessert-arrow">→</div>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="dessert-card reveal-scale reveal-delay-1">
+            <article class="dessert-card reveal">
                 <div class="dessert-image"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
-                    <div class="dessert-category">Капкейки</div>
-                    <h3 class="dessert-name">Розовый <em>Закат</em></h3>
-                    <p class="dessert-desc">Ванильные капкейки с розовым кремом и ягодами</p>
+                    <div class="dessert-category">Печенье</div>
+                    <h3 class="dessert-name">Макаронс <em>микс</em></h3>
+                    <p class="dessert-desc">Нежные миндальные пирожные с ароматными ганаши: фисташка, малина, ваниль.</p>
                     <div class="dessert-meta">
-                        <div class="dessert-price">от 250 ₽/шт</div>
+                        <div class="dessert-price">900 ₽</div>
                         <div class="dessert-arrow">→</div>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="dessert-card reveal-scale reveal-delay-2">
+            <article class="dessert-card reveal">
                 <div class="dessert-image"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
-                    <div class="dessert-category">Макаронс</div>
-                    <h3 class="dessert-name">Парижский <em>Сад</em></h3>
-                    <p class="dessert-desc">Набор из 12 вкусов, ручная работа</p>
+                    <div class="dessert-category">Подарки</div>
+                    <h3 class="dessert-name">Подарочный <em>набор</em></h3>
+                    <p class="dessert-desc">Ассорти из конфет, сухофруктов в шоколаде и орехов в элегантной упаковке.</p>
                     <div class="dessert-meta">
-                        <div class="dessert-price">от 1 800 ₽</div>
+                        <div class="dessert-price">1 800 ₽</div>
                         <div class="dessert-arrow">→</div>
                     </div>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
-    <!-- PROCESS -->
+    <!-- ============ PROCESS ============ -->
     <section class="process" id="process">
         <div class="process-container">
-            <div class="process-header">
-                <div class="process-label reveal">— Как мы работаем</div>
-                <h2 class="reveal reveal-delay-1">От идеи до <em>вашего стола</em></h2>
+            <div class="process-header reveal">
+                <div class="process-label">Как это работает</div>
+                <h2>От идеи до <em>чуда</em></h2>
             </div>
 
             <div class="process-steps">
                 <div class="process-step reveal">
                     <div class="step-number">I</div>
-                    <h3>Знакомство</h3>
-                    <p>Напишите мне в Instagram или Telegram. Расскажите о событии, дате и ваших мечтах.</p>
+                    <h3>Заявка</h3>
+                    <p>Напишите мне в мессенджер или соцсети — обсудим повод, предпочтения и бюджет.</p>
                 </div>
-                <div class="process-step reveal reveal-delay-1">
+                <div class="process-step reveal">
                     <div class="step-number">II</div>
-                    <h3>Концепция</h3>
-                    <p>Вместе подберём вкус, дизайн, размер. Создам для вас мудборд и эскиз.</p>
+                    <h3>Вкусы</h3>
+                    <p>Подберём начинку и оформление: классика, ягоды, орехи или смелые сочетания.</p>
                 </div>
-                <div class="process-step reveal reveal-delay-2">
+                <div class="process-step reveal">
                     <div class="step-number">III</div>
-                    <h3>Магия</h3>
-                    <p>Готовлю с любовью, из лучших ингредиентов. Каждая деталь продумана.</p>
+                    <h3>Создание</h3>
+                    <p>Готовлю ваш заказ вручную из свежих ингредиентов — с вниманием к каждой детали.</p>
                 </div>
-                <div class="process-step reveal reveal-delay-3">
+                <div class="process-step reveal">
                     <div class="step-number">IV</div>
                     <h3>Доставка</h3>
-                    <p>Привезу в идеальном состоянии точно к вашему празднику. Счастье гарантировано.</p>
+                    <p>Бережно упакую и доставлю в назначенное время — сладости приедут идеальными.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MARQUEE -->
-    <div class="marquee">
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
         <div class="marquee-track">
-            <div class="marquee-item">Шоколад <span>✦</span> Ваниль <span>✦</span> Ягоды <span>✦</span> Карамель <span>✦</span> Фисташка <span>✦</span> Маракуйя <span>✦</span> Манго <span>✦</span></div>
-            <div class="marquee-item">Шоколад <span>✦</span> Ваниль <span>✦</span> Ягоды <span>✦</span> Карамель <span>✦</span> Фисташка <span>✦</span> Маракуйя <span>✦</span> Манго <span>✦</span></div>
+            <div class="marquee-item">Шоколад ручной работы <span>✦</span></div>
+            <div class="marquee-item">Подарочные наборы <span>✦</span></div>
+            <div class="marquee-item">Сухофрукты и орехи <span>✦</span></div>
+            <div class="marquee-item">Чай и кофе <span>✦</span></div>
+            <div class="marquee-item">Авторские десерты <span>✦</span></div>
+            <div class="marquee-item">Шоколад ручной работы <span>✦</span></div>
+            <div class="marquee-item">Подарочные наборы <span>✦</span></div>
+            <div class="marquee-item">Сухофрукты и орехи <span>✦</span></div>
+            <div class="marquee-item">Чай и кофе <span>✦</span></div>
+            <div class="marquee-item">Авторские десерты <span>✦</span></div>
         </div>
     </div>
 
-    <!-- TESTIMONIALS -->
+    <!-- ============ TESTIMONIALS ============ -->
     <section class="testimonials" id="testimonials">
         <div class="testimonials-container">
-            <div class="testimonials-header">
-                <div class="testimonials-label reveal">— Отзывы клиентов</div>
-                <h2 class="reveal reveal-delay-1">Слова, которые <em>греют сердце</em></h2>
+            <div class="testimonials-header reveal">
+                <div class="testimonials-label">Отзывы</div>
+                <h2>Слова <em>благодарности</em></h2>
             </div>
 
             <div class="testimonials-grid">
                 <div class="testimonial reveal">
-                    <div class="testimonial-quote">"</div>
-                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
-                    <p class="testimonial-text">Лида, спасибо за потрясающий свадебный торт! Гости были в восторге, а мы просто плакали от счастья. Никогда не пробовали ничего вкуснее.</p>
+                    <div class="testimonial-quote">“</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        Заказывала набор на день рождения мамы — это было восторг!
+                        Конфеты не только невероятно красивые, но и очень вкусные.
+                        Мама была в восторге, а я получила комплименты от всех гостей.
+                    </p>
                     <div class="testimonial-author">
                         <div class="author-avatar">А</div>
                         <div>
-                            <div class="author-name">Анна и Дмитрий</div>
-                            <div class="author-role">Свадьба · Июнь 2025</div>
+                            <div class="author-name">Анна</div>
+                            <div class="author-role">подарочный набор</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="testimonial reveal reveal-delay-1">
-                    <div class="testimonial-quote">"</div>
-                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
-                    <p class="testimonial-text">Заказывала торт на пятилетие дочки. Ребёнок был счастлив! Красивый, вкусный, с фигурками единорога — всё как мы мечтали.</p>
+                <div class="testimonial reveal">
+                    <div class="testimonial-quote">“</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        Торт на юбилей свадьбы родителей превзошёл все ожидания.
+                        Нежный, не приторный, с настоящей клубникой. Видно, что
+                        человек делает с душой. Теперь только к Лиде!
+                    </p>
                     <div class="testimonial-author">
                         <div class="author-avatar">М</div>
                         <div>
-                            <div class="author-name">Мария К.</div>
-                            <div class="author-role">Детский праздник</div>
+                            <div class="author-name">Мария</div>
+                            <div class="author-role">торт на заказ</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="testimonial reveal reveal-delay-2">
-                    <div class="testimonial-quote">"</div>
-                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
-                    <p class="testimonial-text">Муссовый торт с малиной — это что-то нереальное! Такой нежной текстуры я ещё не пробовала. Лида — настоящий волшебник вкуса.</p>
+                <div class="testimonial reveal">
+                    <div class="testimonial-quote">“</div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        Шоколад ручной работы — это нечто! Пробовал многое,
+                        но такое качество и оригинальные сочетания вкусов
+                        встречаю впервые. Сухофрукты в шоколаде — отдельная любовь.
+                    </p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">Е</div>
+                        <div class="author-avatar">Д</div>
                         <div>
-                            <div class="author-name">Елена С.</div>
-                            <div class="author-role">Постоянный клиент</div>
+                            <div class="author-name">Дмитрий</div>
+                            <div class="author-role">шоколад и сухофрукты</div>
                         </div>
                     </div>
                 </div>
@@ -2394,316 +2528,275 @@
         </div>
     </section>
 
-    <!-- GALLERY -->
+    <!-- ============ GALLERY ============ -->
     <section class="gallery" id="gallery">
-        <div class="gallery-header">
-            <div class="gallery-label reveal">— Больше в Instagram</div>
-            <h2 class="reveal reveal-delay-1">Сладкая <em>лента</em> моментов</h2>
-            <p class="gallery-handle reveal reveal-delay-2">Следите за новыми работами: <a href="https://www.instagram.com/magiavkusalida" target="_blank">@magiavkusalida</a></p>
+        <div class="gallery-header reveal">
+            <div class="gallery-label">Instagram</div>
+            <h2>Следите за <em>новинками</em></h2>
+            <p class="gallery-handle">
+                Больше сладостей в нашем профиле
+                <a href="#" target="_blank" rel="noopener">@magiya.vkusa</a>
+            </p>
         </div>
 
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=500&q=85" alt="Торт" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1578985420001-5e015b8a6d17?w=500&q=85" alt="Десерт" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1558326567-98ae2405596b?w=500&q=85" alt="Макаронс" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1563729784474-d77dbbba0782?w=500&q=85" alt="Капкейки" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1535141192574-5d7888081f73?w=500&q=85" alt="Торт с ягодами" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500&q=85" alt="Десерт" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=500&q=85" alt="Выпечка" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=500&q=85" alt="Шоколадный торт" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1586985289906-406988974504?w=500&q=85" alt="Муссовый торт" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?w=500&q=85" alt="Десерт" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1557979265-4b8a3c34d20c?w=500&q=85" alt="Макаронс" loading="lazy"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=500&q=85" alt="Капкейки" loading="lazy"></div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=500&q=80" alt="Шоколадный торт с ягодами" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=500&q=80" alt="Шоколадный десерт" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500&q=80" alt="Печенье ручной работы" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=500&q=80" alt="Десерт с шоколадом" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=500&q=80" alt="Шоколадные конфеты" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=500&q=80" alt="Конфеты пралине" loading="lazy">
+            </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta" id="cta">
-        <div class="cta-container">
-            <div class="cta-label reveal">— Начнём создавать</div>
-            <h2 class="reveal reveal-delay-1">Торт вашей <em>мечты</em> уже ждёт</h2>
-            <p class="cta-text reveal reveal-delay-2">Расскажите о вашем событии — и я создам десерт, который сделает его незабываемым. Отвечаю в течение часа.</p>
-            <div class="cta-buttons reveal reveal-delay-3">
-                <a href="https://www.instagram.com/magiavkusalida" target="_blank" class="cta-btn">
-                    <span>Instagram</span>
+    <!-- ============ CTA ============ -->
+    <section class="cta">
+        <div class="cta-container reveal">
+            <div class="cta-label">Заказ</div>
+            <h2>Создадим ваш<br><em>идеальный десерт?</em></h2>
+            <p class="cta-text">
+                Расскажите о поводе и пожеланиях — предложу вкус,
+                оформление и создам сладость, которую запомнят.
+            </p>
+            <div class="cta-buttons">
+                <a href="tel:+70000000000" class="cta-btn">
+                    <span>Позвонить</span>
                     <span>→</span>
                 </a>
-                <a href="https://t.me/magiavkusalida" target="_blank" class="cta-btn secondary">
-                    <span>Telegram</span>
-                    <span>✈</span>
-                </a>
+                <a href="#" class="cta-btn secondary">Написать в мессенджер</a>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
+    <!-- ============ FOOTER ============ -->
+    <footer id="contacts">
         <div class="footer-container">
             <div class="footer-brand">
-                <a href="#" class="logo">Magia <span>Vkusa</span></a>
-                <p>Авторские десерты, созданные с любовью. Каждый торт — это маленькая история вкуса, рассказанная специально для вас.</p>
+                <a href="#home" class="logo">Магия <span>Вкуса</span></a>
+                <p>
+                    Авторские десерты и шоколад ручной работы.
+                    Сладости, сухофрукты, чай и кофе, подарочные
+                    наборы — сделано с любовью в каждом кусочке.
+                </p>
             </div>
+
             <div class="footer-column">
                 <h4>Навигация</h4>
                 <ul>
+                    <li><a href="#home">Главная</a></li>
                     <li><a href="#philosophy">Философия</a></li>
                     <li><a href="#collection">Коллекция</a></li>
                     <li><a href="#process">Процесс</a></li>
                     <li><a href="#testimonials">Отзывы</a></li>
-                    <li><a href="#gallery">Галерея</a></li>
                 </ul>
             </div>
+
+            <div class="footer-column">
+                <h4>Каталог</h4>
+                <ul>
+                    <li><a href="#collection">Шоколад</a></li>
+                    <li><a href="#collection">Торты</a></li>
+                    <li><a href="#collection">Подарочные наборы</a></li>
+                    <li><a href="#collection">Сухофрукты и орехи</a></li>
+                </ul>
+            </div>
+
             <div class="footer-column">
                 <h4>Контакты</h4>
                 <ul>
-                    <li><a href="https://www.instagram.com/magiavkusalida" target="_blank">Instagram</a></li>
-                    <li><a href="https://t.me/magiavkusalida" target="_blank">Telegram</a></li>
-                    <li><a href="mailto:hello@magiavkusa.ru">Email</a></li>
-                    <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Услуги</h4>
-                <ul>
-                    <li><a href="#">Свадебные торты</a></li>
-                    <li><a href="#">Детские праздники</a></li>
-                    <li><a href="#">Корпоративные</a></li>
-                    <li><a href="#">Сладкие столы</a></li>
+                    <li><a href="tel:+70000000000">+7 (000) 000-00-00</a></li>
+                    <li><a href="mailto:hello@magiya-vkusa.ru">hello@magiya-vkusa.ru</a></li>
+                    <li><span class="footer-plain">Ежедневно 9:00 — 21:00</span></li>
                 </ul>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <p>© 2025 Магия Вкуса · by Lida. Создано с любовью.</p>
+            <p>© 2025 Магия Вкуса · Авторские десерты от Лиды</p>
             <div class="social-links">
-                <a href="https://www.instagram.com/magiavkusalida" target="_blank" aria-label="Instagram">ig</a>
-                <a href="https://t.me/magiavkusalida" target="_blank" aria-label="Telegram">tg</a>
-                <a href="#" target="_blank" aria-label="VKontakte">vk</a>
+                <a href="#" aria-label="Telegram">tg</a>
+                <a href="#" aria-label="VK">vk</a>
+                <a href="#" aria-label="Instagram">ig</a>
             </div>
         </div>
     </footer>
 
-    <!-- BACK TO TOP -->
-    <button class="back-to-top" id="backToTop" aria-label="Наверх">↑</button>
+    <!-- ============ BACK TO TOP ============ -->
+    <div class="back-to-top" id="backToTop" aria-label="Наверх">↑</div>
 
+    <!-- ============ SCRIPTS ============ -->
     <script>
-        // Loading screen
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 800);
-        });
+    (function () {
+        'use strict';
 
-        // Scroll progress
-        const scrollProgress = document.getElementById('scrollProgress');
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            scrollProgress.style.width = scrolled + '%';
+        /* ---------- Loader ---------- */
+        var loader = document.getElementById('loader');
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                if (loader) loader.classList.add('hidden');
+            }, 500);
         });
+        // Страховка: если load уже случился или завис — скрыть через 2.5 с
+        setTimeout(function () {
+            if (loader) loader.classList.add('hidden');
+        }, 2500);
 
-        // Navbar scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        /* ---------- Scroll: progress, nav, back-to-top, active link ---------- */
+        var progress = document.getElementById('scrollProgress');
+        var nav = document.getElementById('nav');
+        var backToTop = document.getElementById('backToTop');
+        var navLinks = document.querySelectorAll('.nav-links a[data-section]');
+        var sections = ['home', 'philosophy', 'collection', 'process', 'testimonials'];
+
+        function onScroll() {
+            var doc = document.documentElement;
+            var scrollTop = window.pageYOffset || doc.scrollTop;
+            var max = doc.scrollHeight - doc.clientHeight;
+
+            if (progress) {
+                progress.style.width = (max > 0 ? (scrollTop / max) * 100 : 0) + '%';
             }
-        });
 
-        // Mobile menu
-        const burger = document.getElementById('burger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileOverlay = document.getElementById('mobileOverlay');
+            if (nav) nav.classList.toggle('scrolled', scrollTop > 60);
+            if (backToTop) backToTop.classList.toggle('visible', scrollTop > 600);
 
-        function toggleMenu() {
-            burger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        }
-
-        burger.addEventListener('click', toggleMenu);
-        mobileOverlay.addEventListener('click', toggleMenu);
-
-        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (mobileMenu.classList.contains('active')) {
-                    toggleMenu();
-                }
+            // Подсветка активного пункта меню
+            var current = 'home';
+            sections.forEach(function (id) {
+                var el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 140) current = id;
             });
-        });
-
-        // Reveal on scroll
-        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -80px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        revealElements.forEach(el => observer.observe(el));
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '#') return;
-                
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    const offset = navbar.offsetHeight + 20;
-                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Active nav link on scroll
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Parallax hero
-        const heroImage = document.querySelector('.hero-image');
-        if (heroImage) {
-            window.addEventListener('scroll', () => {
-                const scrolled = window.scrollY;
-                if (scrolled < window.innerHeight) {
-                    heroImage.style.transform = `scale(1.05) translateY(${scrolled * 0.4}px)`;
-                }
+            navLinks.forEach(function (a) {
+                a.classList.toggle('active', a.getAttribute('data-section') === current);
             });
         }
 
-        // Back to top
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
 
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        /* ---------- Back to top ---------- */
+        if (backToTop) {
+            backToTop.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        });
-
-        // Counter animation
-        const counters = document.querySelectorAll('.stat-number');
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = entry.target;
-                    const text = target.textContent;
-                    const hasPlus = text.includes('+');
-                    const hasPercent = text.includes('%');
-                    const num = parseInt(text);
-                    
-                    if (!isNaN(num)) {
-                        let current = 0;
-                        const increment = num / 60;
-                        const suffix = hasPlus ? '+' : (hasPercent ? '%' : '');
-                        
-                        const updateCounter = () => {
-                            current += increment;
-                            if (current < num) {
-                                target.textContent = Math.ceil(current) + suffix;
-                                requestAnimationFrame(updateCounter);
-                            } else {
-                                target.textContent = num + suffix;
-                            }
-                        };
-                        
-                        updateCounter();
-                        counterObserver.unobserve(target);
-                    }
-                }
-            });
-        }, { threshold: 0.5 });
-
-        counters.forEach(counter => counterObserver.observe(counter));
-
-        // Touch swipe for mobile menu
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            
-            if (diff > swipeThreshold && !mobileMenu.classList.contains('active')) {
-                // Swipe left - don't open menu
-            } else if (diff < -swipeThreshold && mobileMenu.classList.contains('active')) {
-                // Swipe right - close menu
-                toggleMenu();
-            }
         }
 
-        // Lazy loading images
-        if ('loading' in HTMLImageElement.prototype) {
-            const images = document.querySelectorAll('img[loading="lazy"]');
-            images.forEach(img => {
-                img.src = img.src;
+        /* ---------- Mobile menu ---------- */
+        var burger = document.getElementById('burger');
+        var mobileMenu = document.getElementById('mobileMenu');
+        var overlay = document.getElementById('mobileMenuOverlay');
+
+        function setMenu(open) {
+            if (burger) burger.classList.toggle('active', open);
+            if (mobileMenu) mobileMenu.classList.toggle('active', open);
+            if (overlay) overlay.classList.toggle('active', open);
+            document.body.classList.toggle('no-scroll', open);
+        }
+
+        if (burger) {
+            burger.addEventListener('click', function () {
+                setMenu(!mobileMenu.classList.contains('active'));
             });
-        } else {
-            // Fallback for browsers that don't support lazy loading
-            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src || img.src;
-                        imageObserver.unobserve(img);
+        }
+        if (overlay) overlay.addEventListener('click', function () { setMenu(false); });
+        document.querySelectorAll('.mobile-menu-links a').forEach(function (a) {
+            a.addEventListener('click', function () { setMenu(false); });
+        });
+
+        /* ---------- Reveal-анимации (общие) ---------- */
+        var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        io.unobserve(e.target);
                     }
                 });
-            });
-
-            lazyImages.forEach(img => imageObserver.observe(img));
+            }, { threshold: 0.15 });
+            revealEls.forEach(function (el) { io.observe(el); });
+        } else {
+            revealEls.forEach(function (el) { el.classList.add('visible'); });
         }
+
+        /* ---------- Счётчики в блоке статистики ---------- */
+        var counters = document.querySelectorAll('.stat-number[data-count]');
+        function animateCounter(el) {
+            var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+            var duration = 1600;
+            var start = null;
+            function step(ts) {
+                if (!start) start = ts;
+                var p = Math.min((ts - start) / duration, 1);
+                var eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(target * eased) + (p === 1 ? '+' : '');
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+        if ('IntersectionObserver' in window && counters.length) {
+            var cio = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) {
+                        animateCounter(e.target);
+                        cio.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(function (el) { cio.observe(el); });
+        } else {
+            counters.forEach(function (el) {
+                el.textContent = el.getAttribute('data-count') + '+';
+            });
+        }
+
+        /* ---------- Витрина «Магия вкуса»: появление + 3D-наклон ---------- */
+        var brandSection = document.querySelector('.brand-showcase');
+        if (brandSection) {
+            var brandReveal = brandSection.querySelectorAll('.reveal-brand');
+            if ('IntersectionObserver' in window) {
+                var bio = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) {
+                            e.target.classList.add('visible');
+                            bio.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.15 });
+                brandReveal.forEach(function (el) { bio.observe(el); });
+            } else {
+                brandReveal.forEach(function (el) { el.classList.add('visible'); });
+            }
+
+            var tilt = document.getElementById('brandTilt');
+            var finePointer = window.matchMedia('(pointer: fine)').matches;
+            if (tilt && finePointer) {
+                tilt.addEventListener('mousemove', function (e) {
+                    var r = tilt.getBoundingClientRect();
+                    var x = (e.clientX - r.left) / r.width - 0.5;
+                    var y = (e.clientY - r.top) / r.height - 0.5;
+                    tilt.style.transform =
+                        'perspective(900px) rotateY(' + (x * 10).toFixed(2) + 'deg)' +
+                        ' rotateX(' + (-y * 8).toFixed(2) + 'deg)';
+                });
+                tilt.addEventListener('mouseleave', function () {
+                    tilt.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg)';
+                });
+            }
+        }
+    })();
     </script>
 </body>
 </html>
