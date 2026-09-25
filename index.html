@@ -91,6 +91,18 @@
             background: none;
         }
 
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         /* ============ LOADING SCREEN ============ */
         .loader {
             position: fixed;
@@ -412,14 +424,15 @@
             transform: translateY(-3px);
         }
 
-        /* ============ HERO ============ */
+        /* ============ HERO — фон = фото «Магия вкуса» ============ */
         .hero {
             height: 100vh;
             height: 100dvh;
-            min-height: 600px;
+            min-height: 640px;
             position: relative;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
+            justify-content: center;
             overflow: hidden;
             background: var(--chocolate);
         }
@@ -427,102 +440,80 @@
         .hero-image {
             position: absolute;
             inset: 0;
-            background: url('https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=1920&q=90') center/cover;
-            filter: brightness(0.5) saturate(1.2);
-            transform: scale(1.05);
-            animation: heroZoom 25s ease-in-out infinite alternate;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
-        @keyframes heroZoom {
-            from { transform: scale(1.05); }
-            to { transform: scale(1.15); }
-        }
-
+        /* Затемнение только сверху и снизу — название на фото остаётся ярким */
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: 
-                linear-gradient(180deg, 
-                    rgba(26, 15, 10, 0.4) 0%, 
-                    rgba(26, 15, 10, 0.3) 30%,
-                    rgba(26, 15, 10, 0.6) 60%, 
-                    rgba(26, 15, 10, 0.95) 100%),
-                radial-gradient(ellipse at 30% 50%, rgba(139, 38, 53, 0.15) 0%, transparent 60%);
+            background:
+                linear-gradient(180deg,
+                    rgba(26, 15, 10, 0.55) 0%,
+                    rgba(26, 15, 10, 0.15) 28%,
+                    rgba(26, 15, 10, 0.08) 55%,
+                    rgba(26, 15, 10, 0.55) 80%,
+                    rgba(26, 15, 10, 0.92) 100%);
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
+            width: 100%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 clamp(1.5rem, 5vw, 3rem);
-            width: 100%;
+            padding: 0 clamp(1.5rem, 5vw, 3rem) clamp(3.5rem, 9vh, 6rem);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
             color: white;
         }
 
         .hero-tag {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 1rem;
             font-size: clamp(0.7rem, 2vw, 0.85rem);
             letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             opacity: 0;
             animation: fadeUp 1s ease 0.3s forwards;
         }
 
-        .hero-tag::before {
+        .hero-tag::before,
+        .hero-tag::after {
             content: '';
             width: clamp(30px, 5vw, 50px);
             height: 1px;
             background: var(--gold);
         }
 
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 10vw, 8rem);
-            font-weight: 300;
-            line-height: 0.95;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeUp 1.2s ease 0.5s forwards;
-        }
-
-        .hero h1 .italic {
-            font-style: italic;
-            color: var(--gold);
-            font-weight: 400;
-        }
-
-        .hero h1 .script {
-            font-family: 'Italiana', serif;
-            color: var(--pink-soft);
-            display: block;
-            font-size: clamp(1.2rem, 4vw, 0.5em);
-            margin-top: 0.5em;
-            letter-spacing: 0.1em;
-            font-weight: 400;
-        }
-
         .hero-description {
-            max-width: 550px;
+            max-width: 620px;
             font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.92);
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
             opacity: 0;
-            animation: fadeUp 1.2s ease 0.8s forwards;
+            animation: fadeUp 1.2s ease 0.6s forwards;
         }
 
         .hero-actions {
             display: flex;
             gap: clamp(1rem, 3vw, 1.5rem);
             align-items: center;
+            justify-content: center;
             flex-wrap: wrap;
             opacity: 0;
-            animation: fadeUp 1.2s ease 1.1s forwards;
+            animation: fadeUp 1.2s ease 0.9s forwards;
         }
 
         .btn-primary {
@@ -585,6 +576,7 @@
             padding-bottom: 5px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.4);
             transition: all var(--transition-base);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         .btn-ghost:hover {
@@ -595,7 +587,7 @@
 
         .hero-scroll {
             position: absolute;
-            bottom: 3rem;
+            bottom: 2.2rem;
             left: 50%;
             transform: translateX(-50%);
             color: white;
@@ -608,6 +600,7 @@
             align-items: center;
             gap: 1rem;
             transition: opacity var(--transition-base);
+            z-index: 2;
         }
 
         .hero-scroll:hover {
@@ -617,7 +610,7 @@
         .hero-scroll::after {
             content: '';
             width: 1px;
-            height: 60px;
+            height: 50px;
             background: linear-gradient(to bottom, white, transparent);
             animation: scrollLine 2s ease-in-out infinite;
         }
@@ -631,323 +624,6 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Hero decorative elements */
-        .hero-decoration {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.15;
-        }
-
-        .hero-decoration-1 {
-            top: 20%;
-            right: 10%;
-            width: 200px;
-            height: 200px;
-            border: 1px solid var(--gold);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .hero-decoration-2 {
-            bottom: 25%;
-            left: 5%;
-            width: 100px;
-            height: 100px;
-            border: 1px solid var(--pink-soft);
-            border-radius: 50%;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-        }
-
-        /* ============ BRAND SHOWCASE (фото «Магия вкуса») ============ */
-        .brand-showcase {
-            position: relative;
-            padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 5vw, 3rem);
-            background:
-                radial-gradient(ellipse 65% 55% at 50% 45%, rgba(212, 175, 122, 0.10), transparent 70%),
-                linear-gradient(180deg, var(--chocolate) 0%, #251309 50%, var(--chocolate) 100%);
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .brand-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: min(760px, 92vw);
-            aspect-ratio: 1;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle,
-                rgba(212, 175, 122, 0.25) 0%,
-                rgba(139, 38, 53, 0.12) 42%,
-                transparent 70%);
-            filter: blur(45px);
-            pointer-events: none;
-            animation: brandGlow 7s ease-in-out infinite;
-        }
-
-        @keyframes brandGlow {
-            0%, 100% { opacity: 0.65; transform: translate(-50%, -50%) scale(1); }
-            50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.07); }
-        }
-
-        .brand-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: min(820px, 98vw);
-            aspect-ratio: 1;
-            transform: translate(-50%, -50%);
-            border: 1px dashed rgba(212, 175, 122, 0.22);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: brandRing 70s linear infinite;
-        }
-
-        .brand-ring::before {
-            content: '';
-            position: absolute;
-            inset: 16px;
-            border: 1px solid rgba(212, 175, 122, 0.10);
-            border-radius: 50%;
-        }
-
-        .brand-ring::after {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: 50%;
-            width: 9px;
-            height: 9px;
-            margin-left: -4.5px;
-            background: var(--gold);
-            border-radius: 50%;
-            box-shadow: 0 0 14px 2px rgba(212, 175, 122, 0.8);
-        }
-
-        @keyframes brandRing {
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .brand-sparkles {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .brand-sparkles i {
-            position: absolute;
-            left: var(--x);
-            top: var(--y);
-            width: var(--s);
-            height: var(--s);
-            background: radial-gradient(circle, #ffedc9 0%, var(--gold) 45%, transparent 72%);
-            border-radius: 50%;
-            opacity: 0;
-            animation: brandTwinkle 4.5s ease-in-out infinite;
-            animation-delay: var(--d);
-        }
-
-        @keyframes brandTwinkle {
-            0%, 100% { opacity: 0; transform: scale(0.3); }
-            50%      { opacity: 1; transform: scale(1); filter: brightness(1.5); }
-        }
-
-        .brand-inner {
-            position: relative;
-            z-index: 2;
-            max-width: 780px;
-            margin: 0 auto;
-        }
-
-        .brand-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.2rem;
-            margin-bottom: clamp(2rem, 5vw, 3rem);
-        }
-
-        .brand-line {
-            width: clamp(40px, 8vw, 90px);
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold));
-        }
-
-        .brand-line:last-child {
-            background: linear-gradient(90deg, var(--gold), transparent);
-        }
-
-        .brand-label-text {
-            font-size: clamp(0.65rem, 2vw, 0.8rem);
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: var(--gold);
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        .brand-frame-reveal {
-            display: inline-block;
-        }
-
-        .brand-frame-wrap {
-            position: relative;
-            display: inline-block;
-            transform-style: preserve-3d;
-            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
-        }
-
-        .brand-corner {
-            position: absolute;
-            width: clamp(24px, 5vw, 36px);
-            height: clamp(24px, 5vw, 36px);
-            border: 1px solid var(--gold);
-            z-index: 3;
-            transform: translateZ(40px);
-            transition: width 0.5s ease, height 0.5s ease;
-        }
-
-        .brand-corner.tl { top: -12px;    left: -12px;  border-right: 0; border-bottom: 0; }
-        .brand-corner.tr { top: -12px;    right: -12px; border-left: 0;  border-bottom: 0; }
-        .brand-corner.bl { bottom: -12px; left: -12px;  border-right: 0; border-top: 0; }
-        .brand-corner.br { bottom: -12px; right: -12px; border-left: 0;  border-top: 0; }
-
-        .brand-frame-wrap:hover .brand-corner {
-            width: clamp(34px, 6vw, 48px);
-            height: clamp(34px, 6vw, 48px);
-        }
-
-        .brand-frame {
-            position: relative;
-            margin: 0;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid rgba(212, 175, 122, 0.4);
-            box-shadow:
-                0 30px 70px rgba(0, 0, 0, 0.55),
-                0 0 90px rgba(212, 175, 122, 0.14);
-        }
-
-        .brand-frame img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        .brand-frame::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.35);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .brand-shine {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            background: linear-gradient(115deg,
-                transparent 32%,
-                rgba(255, 236, 200, 0.16) 46%,
-                rgba(255, 255, 255, 0.28) 50%,
-                rgba(255, 236, 200, 0.16) 54%,
-                transparent 68%);
-            transform: translateX(-120%);
-            pointer-events: none;
-            animation: brandShine 5.5s ease-in-out infinite;
-        }
-
-        @keyframes brandShine {
-            0%, 55%   { transform: translateX(-120%); }
-            75%, 100% { transform: translateX(120%); }
-        }
-
-        .brand-caption {
-            margin: clamp(2rem, 5vw, 3rem) auto 0;
-            max-width: 540px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.05rem, 2.5vw, 1.35rem);
-            font-style: italic;
-            line-height: 1.7;
-            color: rgba(245, 230, 211, 0.85);
-        }
-
-        .brand-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-top: clamp(1.5rem, 4vw, 2.5rem);
-            padding: 1rem 2.4rem;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            font-size: 0.75rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-            transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .brand-cta::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 0;
-        }
-
-        .brand-cta-label,
-        .brand-cta-arrow {
-            position: relative;
-            z-index: 1;
-        }
-
-        .brand-cta:hover {
-            color: var(--chocolate);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(212, 175, 122, 0.25);
-        }
-
-        .brand-cta:hover::before {
-            transform: scaleX(1);
-        }
-
-        .brand-cta-arrow {
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        .brand-cta:hover .brand-cta-arrow {
-            transform: translateX(5px);
-        }
-
-        .reveal-brand {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal-brand.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .brand-label.reveal-brand        { transition-delay: 0.05s; }
-        .brand-frame-reveal.reveal-brand { transition-delay: 0.2s; }
-        .brand-caption.reveal-brand      { transition-delay: 0.4s; }
-        .brand-cta.reveal-brand          { transition-delay: 0.55s; }
 
         /* ============ PHILOSOPHY SECTION ============ */
         .philosophy {
@@ -1086,6 +762,11 @@
 
         .philosophy-image-tag:hover {
             transform: rotate(0deg) scale(1.05);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
         }
 
         .philosophy-stats {
@@ -2112,6 +1793,10 @@
             .hero-scroll {
                 display: none;
             }
+
+            .hero {
+                min-height: 560px;
+            }
         }
 
         @media (max-width: 560px) {
@@ -2137,19 +1822,24 @@
             }
         }
 
-        /* Уважение к настройкам пользователя */
         @media (prefers-reduced-motion: reduce) {
-            .brand-glow, .brand-ring, .brand-shine, .brand-sparkles i,
-            .hero-image, .hero-decoration-1, .hero-decoration-2,
-            .marquee-track, .loader-logo, .loader-bar::after,
-            .philosophy-image-accent {
+            .hero-scroll::after,
+            .loader-logo,
+            .loader-bar::after,
+            .philosophy-image-accent,
+            .marquee-track {
                 animation: none !important;
             }
 
-            .reveal, .reveal-left, .reveal-right, .reveal-brand {
+            .reveal, .reveal-left, .reveal-right {
                 opacity: 1 !important;
                 transform: none !important;
                 transition: none !important;
+            }
+
+            .hero-tag, .hero-description, .hero-actions {
+                opacity: 1 !important;
+                animation: none !important;
             }
         }
     </style>
@@ -2201,25 +1891,26 @@
     </div>
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
-    <!-- ============ HERO ============ -->
+    <!-- ============ HERO — фон: фото «Магия вкуса» ============ -->
     <section class="hero" id="home">
-        <div class="hero-image"></div>
+        <img class="hero-image"
+             src="magiya-vkusa.jpg"
+             alt="Магия Вкуса — сладости, сухофрукты, чай и кофе, подарочные наборы, шоколад ручной работы"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=1920&q=90';">
         <div class="hero-overlay"></div>
 
-        <div class="hero-decoration hero-decoration-1"></div>
-        <div class="hero-decoration hero-decoration-2"></div>
-
         <div class="hero-content">
-            <div class="hero-tag">Десерты ручной работы</div>
-            <h1>
-                Магия <span class="italic">вкуса</span>
-                <span class="script">авторские сладости от Лиды</span>
-            </h1>
+            <!-- Заголовок скрыт визуально: название уже есть на фото,
+                 но остаётся для поисковиков и скринридеров -->
+            <h1 class="visually-hidden">Магия Вкуса — авторские десерты и шоколад ручной работы от Лиды</h1>
+
+            <div class="hero-tag">Авторские сладости от Лиды</div>
+
             <p class="hero-description">
-                Шоколад ручной работы, отборные сухофрукты, орехи и пряности —
-                каждая конфета создаётся вручную с любовью и вниманием к деталям.
-                Подарите себе и близким маленькое чудо.
+                Конфеты, сухофрукты в шоколаде, чай, кофе и подарочные наборы —
+                каждая сладость создаётся вручную, с любовью и вниманием к деталям.
             </p>
+
             <div class="hero-actions">
                 <a href="#collection" class="btn-primary">
                     <span>Смотреть коллекцию</span>
@@ -2229,61 +1920,7 @@
             </div>
         </div>
 
-        <a href="#brand" class="hero-scroll">Листайте вниз</a>
-    </section>
-
-    <!-- ============ BRAND SHOWCASE (фото «Магия вкуса») ============ -->
-    <section class="brand-showcase" id="brand">
-        <div class="brand-glow" aria-hidden="true"></div>
-        <div class="brand-ring" aria-hidden="true"></div>
-
-        <div class="brand-sparkles" aria-hidden="true">
-            <i style="--x:6%;  --y:22%; --d:0s;   --s:6px"></i>
-            <i style="--x:14%; --y:68%; --d:1.4s; --s:4px"></i>
-            <i style="--x:22%; --y:12%; --d:.7s;  --s:3px"></i>
-            <i style="--x:32%; --y:88%; --d:2.1s; --s:5px"></i>
-            <i style="--x:48%; --y:6%;  --d:1.1s; --s:4px"></i>
-            <i style="--x:63%; --y:92%; --d:.4s;  --s:6px"></i>
-            <i style="--x:74%; --y:16%; --d:1.8s; --s:3px"></i>
-            <i style="--x:82%; --y:58%; --d:.9s;  --s:5px"></i>
-            <i style="--x:90%; --y:32%; --d:2.5s; --s:4px"></i>
-            <i style="--x:55%; --y:78%; --d:1.6s; --s:3px"></i>
-        </div>
-
-        <div class="brand-inner">
-            <div class="brand-label reveal-brand">
-                <span class="brand-line"></span>
-                <span class="brand-label-text">Авторские сладости ручной работы</span>
-                <span class="brand-line"></span>
-            </div>
-
-            <div class="brand-frame-reveal reveal-brand">
-                <div class="brand-frame-wrap" id="brandTilt">
-                    <span class="brand-corner tl"></span>
-                    <span class="brand-corner tr"></span>
-                    <span class="brand-corner bl"></span>
-                    <span class="brand-corner br"></span>
-                    <figure class="brand-frame">
-                        <img src="magiya-vkusa.jpg"
-                             alt="Магия Вкуса — сладости, сухофрукты, чай и кофе, подарочные наборы, шоколад ручной работы"
-                             loading="lazy"
-                             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1578985420001-5e015b8a6d17?w=900&q=90';">
-                        <span class="brand-shine" aria-hidden="true"></span>
-                    </figure>
-                </div>
-            </div>
-
-            <p class="brand-caption reveal-brand">
-                Каждая конфета — маленькое произведение искусства:
-                отборные орехи, солнечные сухофрукты и шоколад,
-                собранные вручную с любовью
-            </p>
-
-            <a href="#collection" class="brand-cta reveal-brand">
-                <span class="brand-cta-label">Смотреть коллекцию</span>
-                <span class="brand-cta-arrow">→</span>
-            </a>
-        </div>
+        <a href="#philosophy" class="hero-scroll">Листайте вниз</a>
     </section>
 
     <!-- ============ PHILOSOPHY ============ -->
@@ -2478,7 +2115,7 @@
                     <div class="testimonial-quote">“</div>
                     <div class="testimonial-stars">★★★★★</div>
                     <p class="testimonial-text">
-                        Заказывала набор на день рождения мамы — это было восторг!
+                        Заказывала набор на день рождения мамы — это был восторг!
                         Конфеты не только невероятно красивые, но и очень вкусные.
                         Мама была в восторге, а я получила комплименты от всех гостей.
                     </p>
@@ -2648,7 +2285,6 @@
                 if (loader) loader.classList.add('hidden');
             }, 500);
         });
-        // Страховка: если load уже случился или завис — скрыть через 2.5 с
         setTimeout(function () {
             if (loader) loader.classList.add('hidden');
         }, 2500);
@@ -2672,7 +2308,6 @@
             if (nav) nav.classList.toggle('scrolled', scrollTop > 60);
             if (backToTop) backToTop.classList.toggle('visible', scrollTop > 600);
 
-            // Подсветка активного пункта меню
             var current = 'home';
             sections.forEach(function (id) {
                 var el = document.getElementById(id);
@@ -2715,7 +2350,7 @@
             a.addEventListener('click', function () { setMenu(false); });
         });
 
-        /* ---------- Reveal-анимации (общие) ---------- */
+        /* ---------- Reveal-анимации ---------- */
         var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
         if ('IntersectionObserver' in window) {
             var io = new IntersectionObserver(function (entries) {
@@ -2760,41 +2395,6 @@
             counters.forEach(function (el) {
                 el.textContent = el.getAttribute('data-count') + '+';
             });
-        }
-
-        /* ---------- Витрина «Магия вкуса»: появление + 3D-наклон ---------- */
-        var brandSection = document.querySelector('.brand-showcase');
-        if (brandSection) {
-            var brandReveal = brandSection.querySelectorAll('.reveal-brand');
-            if ('IntersectionObserver' in window) {
-                var bio = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (e) {
-                        if (e.isIntersecting) {
-                            e.target.classList.add('visible');
-                            bio.unobserve(e.target);
-                        }
-                    });
-                }, { threshold: 0.15 });
-                brandReveal.forEach(function (el) { bio.observe(el); });
-            } else {
-                brandReveal.forEach(function (el) { el.classList.add('visible'); });
-            }
-
-            var tilt = document.getElementById('brandTilt');
-            var finePointer = window.matchMedia('(pointer: fine)').matches;
-            if (tilt && finePointer) {
-                tilt.addEventListener('mousemove', function (e) {
-                    var r = tilt.getBoundingClientRect();
-                    var x = (e.clientX - r.left) / r.width - 0.5;
-                    var y = (e.clientY - r.top) / r.height - 0.5;
-                    tilt.style.transform =
-                        'perspective(900px) rotateY(' + (x * 10).toFixed(2) + 'deg)' +
-                        ' rotateX(' + (-y * 8).toFixed(2) + 'deg)';
-                });
-                tilt.addEventListener('mouseleave', function () {
-                    tilt.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg)';
-                });
-            }
         }
     })();
     </script>
