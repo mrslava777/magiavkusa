@@ -424,38 +424,54 @@
             transform: translateY(-3px);
         }
 
-        /* ============ HERO — фото «Магия вкуса» как ФОН ============ */
+        /* ============================================================
+           HERO — только фото «Магия вкуса», на весь экран, без обрезки
+           ============================================================ */
         .hero {
             position: relative;
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
+            height: 100vh;
+            height: 100dvh;
             overflow: hidden;
-            /* Тёмная подложка + золотое свечение: сочетается с фоном фото */
-            background:
-                radial-gradient(ellipse 60% 50% at 50% 40%, rgba(212, 175, 122, 0.14) 0%, transparent 65%),
-                var(--chocolate);
+            background: var(--chocolate);
         }
 
-        /* Фоновое фото: заливает весь экран */
+        /* Слой 1: размытая копия фото — заполняет края экрана,
+           создаёт эффект «фото растеклось на всю страницу» */
+        .hero-bg-blur {
+            position: absolute;
+            inset: -50px;
+            width: calc(100% + 100px);
+            height: calc(100% + 100px);
+            object-fit: cover;
+            filter: blur(34px) brightness(0.55) saturate(1.2);
+            transform: scale(1.06);
+            animation: blurDrift 30s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+
+        @keyframes blurDrift {
+            from { transform: scale(1.06) translateX(0); }
+            to   { transform: scale(1.12) translateX(-1.5%); }
+        }
+
+        /* Слой 2: чёткое фото — показывается ЦЕЛИКОМ, без обрезки */
         .hero-bg {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center center;
-            animation: heroZoom 32s ease-in-out infinite alternate;
-            will-change: transform;
+            opacity: 0;
+            animation: heroAppear 1.6s ease 0.2s forwards;
         }
 
-        @keyframes heroZoom {
-            from { transform: scale(1); }
-            to   { transform: scale(1.08); }
+        @keyframes heroAppear {
+            from { opacity: 0; transform: scale(0.985); }
+            to   { opacity: 1; transform: scale(1); }
         }
 
-        /* Мерцающие частицы поверх фото */
+        /* Мерцающие золотые частицы */
         .hero-sparkles {
             position: absolute;
             inset: 0;
@@ -478,14 +494,11 @@
 
         @keyframes heroTwinkle {
             0%, 100% { opacity: 0; transform: scale(0.3); }
-            50%      { opacity: 0.9; transform: scale(1); filter: brightness(1.4); }
+            50%      { opacity: 0.85; transform: scale(1); filter: brightness(1.4); }
         }
 
-        /*
-          Затемнение: сверху — для меню, снизу — плотное,
-          чтобы текст сайта читался поверх фото.
-          Центр остаётся прозрачным: надпись «МАГИЯ ВКУСА» видна ярко.
-        */
+        /* Виньетка: лёгкое затемнение сверху (для меню)
+           и мягкое растворение краёв — центр остаётся ярким */
         .hero-overlay {
             position: absolute;
             inset: 0;
@@ -493,186 +506,42 @@
             pointer-events: none;
             background:
                 linear-gradient(180deg,
-                    rgba(26, 15, 10, 0.55) 0%,
-                    rgba(26, 15, 10, 0.18) 24%,
-                    rgba(26, 15, 10, 0)    42%,
-                    rgba(26, 15, 10, 0.45) 68%,
-                    rgba(26, 15, 10, 0.92) 88%,
-                    rgba(26, 15, 10, 0.98) 100%),
-                radial-gradient(ellipse 120% 100% at 50% 42%,
+                    rgba(26, 15, 10, 0.5) 0%,
+                    rgba(26, 15, 10, 0.1) 18%,
+                    rgba(26, 15, 10, 0)   32%,
+                    rgba(26, 15, 10, 0)   74%,
+                    rgba(26, 15, 10, 0.28) 100%),
+                radial-gradient(ellipse 125% 105% at 50% 45%,
                     transparent 55%,
-                    rgba(12, 6, 3, 0.5) 100%);
+                    rgba(12, 6, 3, 0.55) 100%);
         }
 
-        /* Текст сайта — прижат к низу экрана */
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            margin-top: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 0 1.5rem clamp(2.5rem, 7vh, 4.5rem);
-        }
-
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            font-size: clamp(0.7rem, 2vw, 0.85rem);
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1.4rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-            opacity: 0;
-            animation: fadeUp 1s ease 0.3s forwards;
-        }
-
-        .hero-tag::before,
-        .hero-tag::after {
-            content: '';
-            width: clamp(30px, 5vw, 50px);
-            height: 1px;
-            background: var(--gold);
-        }
-
-        /* «Стеклянная» панель: описание всегда контрастное */
-        .hero-description {
-            max-width: 660px;
-            margin-bottom: clamp(1.5rem, 3vh, 2.2rem);
-            padding: clamp(1.1rem, 3vh, 1.5rem) clamp(1.4rem, 4vw, 2.4rem);
-            background: rgba(22, 12, 7, 0.55);
-            border: 1px solid rgba(212, 175, 122, 0.28);
-            border-radius: 16px;
-            backdrop-filter: blur(14px) saturate(140%);
-            -webkit-backdrop-filter: blur(14px) saturate(140%);
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
-            font-size: clamp(0.95rem, 2.4vw, 1.1rem);
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.97);
-            opacity: 0;
-            animation: fadeUp 1.2s ease 0.6s forwards;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: clamp(1rem, 3vw, 1.5rem);
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeUp 1.2s ease 0.9s forwards;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: clamp(1rem, 3vw, 1.3rem) clamp(1.8rem, 4vw, 2.5rem);
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--chocolate);
-            font-size: clamp(0.75rem, 2vw, 0.85rem);
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(212, 175, 122, 0.3);
-        }
-
-        .btn-primary::before {
-            content: '';
+        /* Подсказка «листайте вниз» — только линия, без слов */
+        .hero-scroll-cue {
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--berry) 0%, var(--berry-deep) 100%);
-            transition: left var(--transition-base);
-            z-index: 0;
-        }
-
-        .btn-primary > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .btn-primary:hover {
-            color: var(--cream);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(212, 175, 122, 0.4);
-        }
-
-        .btn-primary:hover::before {
-            left: 0;
-        }
-
-        .btn-primary span {
-            transition: transform var(--transition-base);
-        }
-
-        .btn-primary:hover span {
-            transform: translateX(5px);
-        }
-
-        .btn-ghost {
-            color: white;
-            font-size: clamp(0.75rem, 2vw, 0.85rem);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            padding-bottom: 5px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-            transition: all var(--transition-base);
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-        }
-
-        .btn-ghost:hover {
-            color: var(--gold);
-            border-color: var(--gold);
-            letter-spacing: 0.25em;
-        }
-
-        .hero-scroll {
-            position: absolute;
-            right: clamp(1.2rem, 3vw, 2.6rem);
-            bottom: 2.2rem;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 3;
-            color: white;
-            font-size: 0.7rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            writing-mode: vertical-rl;
-            opacity: 0.6;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            width: 1px;
+            height: 56px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            opacity: 0.55;
+            animation: cueLine 2.2s ease-in-out infinite, cueFade 1.2s ease 1.6s forwards;
             transition: opacity var(--transition-base);
         }
 
-        .hero-scroll:hover {
+        .hero-scroll-cue:hover {
             opacity: 1;
         }
 
-        .hero-scroll::after {
-            content: '';
-            width: 1px;
-            height: 50px;
-            background: linear-gradient(to bottom, white, transparent);
-            animation: scrollLine 2s ease-in-out infinite;
+        @keyframes cueLine {
+            0%, 100% { transform: translateX(-50%) scaleY(0.35); transform-origin: top; }
+            50%      { transform: translateX(-50%) scaleY(1);    transform-origin: top; }
         }
 
-        @keyframes scrollLine {
-            0%, 100% { transform: scaleY(0.3); transform-origin: top; }
-            50% { transform: scaleY(1); transform-origin: top; }
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes cueFade {
+            to { opacity: 0.55; }
         }
 
         /* ============ PHILOSOPHY SECTION ============ */
@@ -1826,22 +1695,14 @@
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-        }
 
-        /*
-          Мобильные и узкие экраны:
-          фон показываем ЦЕЛИКОМ (contain), иначе надпись
-          «МАГИЯ ВКУСА» обрезалась бы по бокам.
-          Тёмная подложка hero совпадает с фоном фото — швов не видно.
-        */
-        @media (max-width: 768px) {
-            .hero-bg {
-                object-fit: contain;
-                object-position: center 42%;
-                animation: none;
+            .hero-bg-blur {
+                filter: blur(26px) brightness(0.55) saturate(1.2);
             }
         }
 
+        /* На телефонах фото чуть меньше по высоте,
+           чтобы ничего не мешало его обзору */
         @media (max-width: 680px) {
             .testimonials-grid {
                 grid-template-columns: 1fr;
@@ -1854,8 +1715,12 @@
                 aspect-ratio: 4/3;
             }
 
-            .hero-scroll {
+            .hero-scroll-cue {
                 display: none;
+            }
+
+            .hero-bg-blur {
+                filter: blur(20px) brightness(0.55) saturate(1.2);
             }
         }
 
@@ -1883,8 +1748,9 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+            .hero-bg-blur,
             .hero-bg,
-            .hero-scroll::after,
+            .hero-scroll-cue,
             .hero-sparkles i,
             .loader-logo,
             .loader-bar::after,
@@ -1893,15 +1759,18 @@
                 animation: none !important;
             }
 
+            .hero-bg {
+                opacity: 1 !important;
+            }
+
+            .hero-scroll-cue {
+                opacity: 0.55;
+            }
+
             .reveal, .reveal-left, .reveal-right {
                 opacity: 1 !important;
                 transform: none !important;
                 transition: none !important;
-            }
-
-            .hero-tag, .hero-description, .hero-actions {
-                opacity: 1 !important;
-                animation: none !important;
             }
         }
     </style>
@@ -1953,13 +1822,25 @@
     </div>
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
-    <!-- ============ HERO — фото «Магия вкуса» как ФОН ============ -->
+    <!-- ============ HERO — только фото, на весь экран, без обрезки ============ -->
     <section class="hero" id="home">
+        <!-- Размытая копия фото: заполняет края экрана -->
+        <img class="hero-bg-blur"
+             src="magiya-vkusa.jpg"
+             alt=""
+             aria-hidden="true"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=1920&q=90';">
+
+        <!-- Чёткое фото: целиком, по центру -->
         <img class="hero-bg"
              src="magiya-vkusa.jpg"
              alt=""
              aria-hidden="true"
              onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=1920&q=90';">
+
+        <!-- Невидимый заголовок для Google и скринридеров.
+             Если не нужен — просто удалите эту строку -->
+        <h1 class="visually-hidden">Магия Вкуса — авторские десерты и шоколад ручной работы от Лиды</h1>
 
         <div class="hero-sparkles" aria-hidden="true">
             <i style="--x:8%;  --y:24%; --d:0s;   --s:5px"></i>
@@ -1974,26 +1855,7 @@
 
         <div class="hero-overlay" aria-hidden="true"></div>
 
-        <div class="hero-content">
-            <h1 class="visually-hidden">Магия Вкуса — авторские десерты и шоколад ручной работы от Лиды</h1>
-
-            <div class="hero-tag">Авторские сладости от Лиды</div>
-
-            <p class="hero-description">
-                Конфеты, сухофрукты в шоколаде, чай, кофе и подарочные наборы —
-                каждая сладость создаётся вручную, с любовью и вниманием к деталям.
-            </p>
-
-            <div class="hero-actions">
-                <a href="#collection" class="btn-primary">
-                    <span>Смотреть коллекцию</span>
-                    <span>→</span>
-                </a>
-                <a href="#contacts" class="btn-ghost">Сделать заказ</a>
-            </div>
-        </div>
-
-        <a href="#philosophy" class="hero-scroll">Листайте вниз</a>
+        <a href="#philosophy" class="hero-scroll-cue" aria-label="Листайте вниз"></a>
     </section>
 
     <!-- ============ PHILOSOPHY ============ -->
