@@ -1,498 +1,2709 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#fff8ef">
-<title>Магия Вкуса — сладкие букеты в Лиде</title>
-<meta name="description" content="Букеты из шоколада, которые не вянут. Боксы из сухофруктов, сладости на любой вкус. г. Лида, ул. Южный городок 21А. Тел: +375 33 689 52 44">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍫</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Manrope:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#fff8ef;--bg2:#fdeed6;--ink:#3a2318;--ink2:#8a6b55;--choco:#4b2e1e;
-  --caramel:#d9863f;--berry:#d8504b;--viber:#7360f2;
-  --grad:linear-gradient(135deg,#d9863f,#ef7d8e 55%,#d8504b);
-  --r:22px;--shadow:0 16px 38px -18px rgba(75,46,30,.28);
-  --sab:env(safe-area-inset-bottom,0px);--sat:env(safe-area-inset-top,0px);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px;overflow-x:clip;-webkit-text-size-adjust:100%}
-body{font-family:'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--ink);
-  line-height:1.6;overflow-x:clip;-webkit-tap-highlight-color:transparent;
-  padding-bottom:calc(70px + var(--sab))}
-img{max-width:100%}a{color:inherit;text-decoration:none}ul{list-style:none}
-h1,h2,h3{font-family:'Comfortaa',cursive;overflow-wrap:break-word}
-.container{width:min(1140px,92%);margin-inline:auto}
-.tg{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-section{padding:64px 0}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#1a0f0a">
+    <title>Магия Вкуса — Авторские десерты от Лиды</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --chocolate: #1a0f0a;
+            --chocolate-soft: #2c1810;
+            --chocolate-light: #3d2817;
+            --caramel: #c9986a;
+            --caramel-light: #e8c9a3;
+            --caramel-dark: #a07850;
+            --berry: #8b2635;
+            --berry-deep: #5c1a24;
+            --berry-light: #a83244;
+            --cream: #faf4ec;
+            --cream-dark: #f0e6d6;
+            --vanilla: #f5e6d3;
+            --gold: #d4af7a;
+            --gold-light: #e8c9a3;
+            --gold-dark: #b89560;
+            --rose: #d4a5a5;
+            --pink-soft: #e8b4bc;
+            --pink-dark: #c99ca5;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(26, 15, 10, 0.08);
+            --shadow-md: 0 8px 24px rgba(26, 15, 10, 0.12);
+            --shadow-lg: 0 20px 60px rgba(26, 15, 10, 0.18);
+            --shadow-xl: 0 40px 80px rgba(26, 15, 10, 0.25);
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slower: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-/* кнопки */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  font-weight:700;font-size:15px;min-height:52px;padding:14px 26px;
-  border-radius:999px;border:none;cursor:pointer;transition:.25s;text-align:center}
-.btn-p{background:var(--grad);color:#fff;box-shadow:0 12px 24px -10px rgba(216,80,75,.55)}
-.btn-g{background:#fff;border:2px solid rgba(75,46,30,.13)}
-.btn-s{min-height:46px;padding:10px 20px;font-size:14px}
-.btn-p:active{transform:scale(.97)}.btn-g:active{transform:scale(.97)}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* шапка */
-.hdr{position:fixed;top:0;left:0;right:0;z-index:100;padding:calc(12px + var(--sat)) 0;transition:.3s}
-.hdr.on{background:rgba(255,248,239,.9);backdrop-filter:blur(12px);box-shadow:0 8px 26px -16px rgba(75,46,30,.35)}
-.hdr-in{display:flex;align-items:center;gap:14px}
-.logo{display:flex;align-items:center;gap:10px;font-family:'Comfortaa';font-weight:700;font-size:16px;line-height:1.15}
-.logo-b{width:42px;height:42px;border-radius:14px;background:var(--grad);display:grid;place-items:center;font-size:21px;flex-shrink:0}
-.logo small{display:block;font-family:'Manrope';font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
-.burger{margin-left:auto;width:48px;height:48px;border-radius:14px;background:#fff;
-  border:1px solid rgba(75,46,30,.12);cursor:pointer;position:relative;z-index:120;flex-shrink:0}
-.burger span{position:absolute;left:13px;right:13px;height:2.5px;background:var(--ink);border-radius:2px;transition:.3s}
-.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:23px}.burger span:nth-child(3){top:30px}
-.burger.x span:nth-child(1){top:23px;transform:rotate(45deg)}
-.burger.x span:nth-child(2){opacity:0}
-.burger.x span:nth-child(3){top:23px;transform:rotate(-45deg)}
-.nav{position:fixed;top:0;right:0;bottom:0;width:min(320px,86vw);background:var(--bg);
-  z-index:110;display:flex;flex-direction:column;padding:calc(90px + var(--sat)) 28px 26px;
-  transform:translateX(105%);transition:.35s;box-shadow:-16px 0 50px rgba(75,46,30,.2);overflow-y:auto}
-.nav.open{transform:none}
-.nav a{font-size:17px;font-weight:600;padding:13px 0;border-bottom:1px dashed rgba(75,46,30,.13)}
-.nav .nc{margin-top:auto;border:none!important;padding:8px 0!important;font-size:15px;color:var(--ink2)}
-body.lock{overflow:hidden}
-.hdr-call{display:none}
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
 
-/* hero */
-.hero{padding:calc(120px + var(--sat)) 0 56px;text-align:center}
-.badge{display:inline-flex;gap:7px;align-items:center;background:#fff;border:1px solid rgba(75,46,30,.1);
-  padding:8px 16px;border-radius:999px;font-size:13px;font-weight:700;color:var(--ink2)}
-.hero h1{font-size:clamp(31px,8.4vw,44px);line-height:1.14;margin:16px 0 12px}
-.hero p{color:var(--ink2);font-size:15.5px;max-width:480px;margin-inline:auto}
-.acts{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;justify-content:center}
-.acts .btn{flex:1;min-width:145px}
-.stats{display:flex;gap:26px;margin-top:30px;justify-content:center;flex-wrap:wrap}
-.stat b{font-family:'Comfortaa';font-size:24px;display:block;line-height:1.1}
-.stat span{font-size:12px;color:var(--ink2)}
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--chocolate);
+            background: var(--cream);
+            overflow-x: hidden;
+            font-weight: 300;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-/* букет — резиновый (в em) */
-.hvis{position:relative;margin-top:34px;display:flex;justify-content:center;min-height:300px}
-.blob{position:absolute;width:min(320px,88%);aspect-ratio:1;border-radius:47% 53% 55% 45%/50% 44% 56% 50%;
-  background:linear-gradient(140deg,#ffe9c9,#ffd9df)}
-.bq{position:relative;width:36em;height:40em;font-size:clamp(6.4px,2.55vw,10px);z-index:2}
-.stk{position:absolute;bottom:11em;left:50%;width:.8em;height:var(--h);
-  background:linear-gradient(#8a5a3b,#6b4226);border-radius:4px;transform-origin:bottom;
-  transform:translateX(-50%) rotate(var(--r))}
-.stk i{position:absolute;top:-1.7em;left:50%;font-style:normal;font-size:3.3em;
-  transform:translateX(-50%) rotate(calc(-1*var(--r)))}
-.cone{position:absolute;bottom:1.6em;left:50%;transform:translateX(-50%);width:23em;height:21em;
-  clip-path:polygon(50% 100%,0 0,100% 0);background:linear-gradient(150deg,#e0a468,#b06e35 60%,#8f5427)}
-.cone::after{content:'';position:absolute;inset:0;
-  background:repeating-linear-gradient(115deg,rgba(255,255,255,.09) 0 14px,transparent 14px 28px)}
-.bow{position:absolute;bottom:21.8em;left:50%;transform:translateX(-50%);font-size:3.3em;z-index:3}
-.bsh{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:26em;height:2.6em;
-  border-radius:50%;background:radial-gradient(closest-side,rgba(75,46,30,.25),transparent)}
+        ::selection {
+            background: var(--berry);
+            color: var(--cream);
+        }
 
-/* бегущая строка */
-.mq{background:var(--choco);color:#ffe9cf;overflow:hidden;padding:11px 0}
-.mq-t{display:flex;width:max-content;animation:mq 26s linear infinite;
-  font-family:'Caveat';font-size:23px;white-space:nowrap}
-.mq-t span{padding-right:38px}
-@keyframes mq{to{transform:translateX(-50%)}}
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
-/* заголовки секций */
-.shead{max-width:560px;margin-bottom:36px}
-.shead .ey{font-family:'Caveat';font-size:27px;color:var(--caramel)}
-.shead h2{font-size:clamp(24px,6vw,34px);line-height:1.18;margin-top:4px}
-.shead p{margin-top:10px;color:var(--ink2);font-size:15px}
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-/* сетки — сами подстраиваются */
-.grid{display:grid;gap:16px}
-.g-cards{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
-.g-steps{grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}
-.g-prod{grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr))}
-.g-inst{grid-template-columns:repeat(2,1fr)}
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
 
-/* карточки преимуществ и шаги */
-.card{background:#fff;border-radius:var(--r);padding:26px 22px;border:1px solid rgba(75,46,30,.07)}
-.card .ic{width:54px;height:54px;border-radius:17px;background:linear-gradient(150deg,#fff1dd,#ffdfd2);
-  display:grid;place-items:center;font-size:26px;margin-bottom:14px}
-.card h3{font-size:17px;margin-bottom:7px}
-.card p{font-size:13.8px;color:var(--ink2)}
-.num{font-family:'Comfortaa';font-weight:700;width:42px;height:42px;border-radius:13px;
-  background:var(--grad);color:#fff;display:grid;place-items:center;margin-bottom:13px}
+        /* ============ LOADING SCREEN ============ */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: var(--chocolate);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
 
-/* о нас */
-.about{background:linear-gradient(180deg,var(--bg),var(--bg2))}
-.chk li{display:flex;gap:12px;padding:9px 0;font-weight:600;font-size:15px}
-.chk i{width:26px;height:26px;border-radius:50%;background:var(--grad);color:#fff;
-  display:grid;place-items:center;font-size:13px;font-style:normal;flex-shrink:0;margin-top:2px}
-.about .btn{margin-top:22px}
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
 
-/* каталог */
-.cat{background:linear-gradient(180deg,var(--bg2),var(--bg))}
-.prod{background:#fff;border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;
-  border:1px solid rgba(75,46,30,.06);box-shadow:0 14px 34px -22px rgba(75,46,30,.3)}
-.pv{height:160px;display:grid;place-items:center;font-size:58px;position:relative}
-.pv .tag{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.94);padding:5px 12px;
-  border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--berry)}
-.p1{background:linear-gradient(140deg,#ffd9b9,#ffb4a2)}.p2{background:linear-gradient(140deg,#ffe6b8,#e8c07d)}
-.p3{background:linear-gradient(140deg,#ffd6de,#f4a9bd)}.p4{background:linear-gradient(140deg,#cfe9ff,#a8c8f0)}
-.p5{background:linear-gradient(140deg,#e3d7ff,#c3aef2)}.p6{background:linear-gradient(140deg,#ffd8c2,#f0a58f)}
-.pb{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
-.pb h3{font-size:18px}
-.pb p{font-size:13.8px;color:var(--ink2);flex:1}
-.pf{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;flex-wrap:wrap}
-.price{font-family:'Comfortaa';font-weight:700;font-size:18px;color:var(--choco)}
-.price small{display:block;font-size:11px;font-family:'Manrope';font-weight:600;color:var(--ink2)}
-.pnote{text-align:center;margin-top:24px;font-size:12.5px;color:var(--ink2)}
+        .loader-logo {
+            font-family: 'Italiana', serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
 
-/* отзывы */
-.rev{background:linear-gradient(180deg,var(--bg),var(--bg2))}
-.review{background:#fff;border-radius:var(--r);padding:22px;border:1px solid rgba(75,46,30,.07);
-  display:flex;flex-direction:column;gap:11px}
-.st{color:#f5a623;letter-spacing:2px}
-.review p{font-size:13.8px;color:var(--ink2);flex:1}
-.ra{display:flex;gap:11px;align-items:center}
-.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;
-  font-weight:800;font-family:'Comfortaa';flex-shrink:0}
-.a1{background:linear-gradient(140deg,#ef7d8e,#d8504b)}.a2{background:linear-gradient(140deg,#f0ac62,#d9863f)}
-.a3{background:linear-gradient(140deg,#8fbf9f,#4f9d69)}.a4{background:linear-gradient(140deg,#9b8cf0,#7360f2)}
-.ra b{font-size:14.5px;display:block}.ra span{font-size:12px;color:var(--ink2)}
+        .loader-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(212, 175, 122, 0.2);
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
 
-/* instagram */
-.inst{background:var(--choco);color:#ffe9cf}
-.inst .shead h2{color:#fff}
-.inst .shead .ey{color:#f0ac62}
-.tile{aspect-ratio:1;border-radius:16px;display:grid;place-items:center;font-size:36px}
-.t1{background:linear-gradient(140deg,#e0a468,#b06e35)}.t2{background:linear-gradient(140deg,#ef9d9d,#d8504b)}
-.t3{background:linear-gradient(140deg,#e8c07d,#c98f3f)}.t4{background:linear-gradient(140deg,#a8c8f0,#7d9fd8)}
-.t5{background:linear-gradient(140deg,#f4a9bd,#e07d9b)}.t6{background:linear-gradient(140deg,#c3aef2,#9a7fe0)}
-.inst .btn{margin-top:20px}
+        .loader-bar::after {
+            content: '';
+            position: absolute;
+            left: -50%;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            animation: loaderSlide 1.5s ease-in-out infinite;
+        }
 
-/* контакты */
-.cc,.fc{background:#fff;border-radius:var(--r);padding:26px;border:1px solid rgba(75,46,30,.07);box-shadow:var(--shadow)}
-.ci{display:flex;gap:13px;padding:14px 0;border-bottom:1px dashed rgba(75,46,30,.15);align-items:flex-start}
-.ci:last-child{border:none}
-.ci .ic{width:44px;height:44px;border-radius:13px;background:linear-gradient(150deg,#fff1dd,#ffdfd2);
-  display:grid;place-items:center;font-size:20px;flex-shrink:0}
-.ci b{display:block;font-size:15px}
-.ci span,.ci a{color:var(--ink2);font-size:14px;word-break:break-word}
-.fc h3{font-size:20px;margin-bottom:6px}
-.fc>p{color:var(--ink2);font-size:14px;margin-bottom:18px}
-.fl{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-label{font-weight:700;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2)}
-input,select,textarea{font-family:'Manrope';font-size:16px;padding:13px 16px;border-radius:15px;
-  border:2px solid rgba(75,46,30,.13);background:#fff;outline:none;width:100%;min-height:50px;color:var(--ink)}
-input:focus,select:focus,textarea:focus{border-color:var(--caramel);box-shadow:0 0 0 4px rgba(217,134,63,.14)}
-textarea{min-height:96px;resize:vertical}
-.fc .btn{width:100%;margin-top:6px}
-.ok{display:none;background:#e8f7ec;border:1px solid #bfe8cb;color:#2c7a3f;padding:14px 18px;
-  border-radius:15px;font-weight:600;margin-top:14px;font-size:14px}
-.ok.show{display:block}
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
 
-/* футер */
-.ftr{background:var(--choco);color:#e8cfae;padding:44px 0 26px}
-.fi{display:flex;flex-direction:column;gap:20px;align-items:center;text-align:center}
-.ftr .logo{color:#fff}.ftr .logo small{color:rgba(232,207,174,.7)}
-.fn{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-weight:600}
-.fb{border-top:1px solid rgba(255,233,207,.15);margin-top:26px;padding-top:20px;
-  font-size:12.5px;color:rgba(232,207,174,.75);text-align:center}
+        @keyframes loaderSlide {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
 
-/* нижняя панель (телефон) */
-.mbar{position:fixed;left:0;right:0;bottom:0;z-index:95;display:flex;gap:10px;
-  padding:10px 14px calc(10px + var(--sab));background:rgba(255,248,239,.95);
-  backdrop-filter:blur(12px);box-shadow:0 -8px 26px -12px rgba(75,46,30,.4);
-  border-top:1px solid rgba(75,46,30,.08)}
-.mbar .btn{flex:1;min-height:50px;font-size:14.5px}
+        /* ============ SCROLL PROGRESS ============ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--berry), var(--gold));
+            z-index: 9999;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px rgba(212, 175, 122, 0.5);
+        }
 
-/* появление при скролле */
-.rv{opacity:0;transform:translateY(26px);transition:.6s cubic-bezier(.16,1,.3,1)}
-.rv.in{opacity:1;transform:none}
+        /* ============ NAVIGATION ============ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all var(--transition-slow);
+            mix-blend-mode: difference;
+        }
 
-/* ============ ПЛАНШЕТ И ДЕСКТОП (дополнения) ============ */
-@media(min-width:768px){
-  body{padding-bottom:0}
-  section{padding:88px 0}
-  .mbar{display:none}
-  .burger{display:none}
-  .hdr-call{display:inline-flex;margin-left:auto}
-  .nav{position:static;transform:none;width:auto;background:none;flex-direction:row;
-    padding:0;gap:22px;box-shadow:none;overflow:visible}
-  .nav a{font-size:14.5px;padding:4px 0;border:none}
-  .nav .nc{display:none}
-  .hero{padding-top:150px;text-align:left;padding-bottom:72px}
-  .hero-in{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
-  .hero p{margin:0}
-  .acts,.stats{justify-content:flex-start}
-  .acts .btn{flex:0 0 auto}
-  .hvis{margin-top:0;order:2;min-height:420px}
-  .blob{width:min(420px,95%)}
-  .mq-t{font-size:27px}
-  .g-inst{grid-template-columns:repeat(6,1fr)}
-  .ci2{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
-  .fi{flex-direction:row;justify-content:space-between;text-align:left}
-  .fb{display:flex;justify-content:space-between;text-align:left}
-  .btn-p:hover{transform:translateY(-3px)}
-  .btn-g:hover{border-color:var(--caramel);color:var(--caramel)}
-  .prod:hover,.card:hover,.review:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-  .prod,.card,.review{transition:.3s}
-  .tile:hover{transform:scale(1.06)}
-  .tile{transition:.3s}
-}
-@media(max-width:374px){
-  .bq{font-size:6px}
-  .acts .btn{min-width:100%}
-}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .rv{opacity:1;transform:none}
-}
-</style>
+        nav.scrolled {
+            padding: 1rem 3rem;
+            mix-blend-mode: normal;
+            background: rgba(26, 15, 10, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(212, 175, 122, 0.15);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .logo {
+            font-family: 'Italiana', serif;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: white;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: transform var(--transition-base);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color var(--transition-base);
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            transform: translateX(-50%) scale(0);
+            transition: transform var(--transition-base);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::before {
+            transform: translateX(-50%) scale(1.5);
+        }
+
+        .nav-links a.active::before {
+            transform: translateX(-50%) scale(1.5);
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.8rem;
+            border: 1px solid white;
+            color: white;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all var(--transition-base);
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            transition: left var(--transition-base);
+            z-index: -1;
+        }
+
+        .nav-cta:hover {
+            color: var(--chocolate);
+            border-color: var(--gold);
+        }
+
+        .nav-cta:hover::before {
+            left: 0;
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .burger span {
+            width: 28px;
+            height: 2px;
+            background: white;
+            transition: all var(--transition-base);
+            transform-origin: center;
+        }
+
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--chocolate);
+            z-index: 999;
+            transition: right var(--transition-slower);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 3rem;
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu-links a {
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            display: block;
+            padding: 0.5rem 0;
+            transition: all var(--transition-base);
+            position: relative;
+            padding-left: 0;
+        }
+
+        .mobile-menu-links a::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width var(--transition-base);
+        }
+
+        .mobile-menu-links a:hover {
+            color: var(--gold);
+            padding-left: 20px;
+        }
+
+        .mobile-menu-links a:hover::before {
+            width: 15px;
+        }
+
+        .mobile-menu-social {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .mobile-menu-social a {
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(212, 175, 122, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            transition: all var(--transition-base);
+            font-size: 0.9rem;
+        }
+
+        .mobile-menu-social a:hover {
+            background: var(--gold);
+            color: var(--chocolate);
+            transform: translateY(-3px);
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            height: 100vh;
+            height: 100dvh;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--chocolate);
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=1920&q=90') center/cover;
+            filter: brightness(0.5) saturate(1.2);
+            transform: scale(1.05);
+            animation: heroZoom 25s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.15); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(180deg, 
+                    rgba(26, 15, 10, 0.4) 0%, 
+                    rgba(26, 15, 10, 0.3) 30%,
+                    rgba(26, 15, 10, 0.6) 60%, 
+                    rgba(26, 15, 10, 0.95) 100%),
+                radial-gradient(ellipse at 30% 50%, rgba(139, 38, 53, 0.15) 0%, transparent 60%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 5vw, 3rem);
+            width: 100%;
+            color: white;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: clamp(30px, 5vw, 50px);
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 300;
+            line-height: 0.95;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 1.2s ease 0.5s forwards;
+        }
+
+        .hero h1 .italic {
+            font-style: italic;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        .hero h1 .script {
+            font-family: 'Italiana', serif;
+            color: var(--pink-soft);
+            display: block;
+            font-size: clamp(1.2rem, 4vw, 0.5em);
+            margin-top: 0.5em;
+            letter-spacing: 0.1em;
+            font-weight: 400;
+        }
+
+        .hero-description {
+            max-width: 550px;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeUp 1.2s ease 0.8s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: clamp(1rem, 3vw, 1.5rem);
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 1.2s ease 1.1s forwards;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: clamp(1rem, 3vw, 1.3rem) clamp(1.8rem, 4vw, 2.5rem);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--chocolate);
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(212, 175, 122, 0.3);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--berry) 0%, var(--berry-deep) 100%);
+            transition: left var(--transition-base);
+            z-index: 0;
+        }
+
+        .btn-primary > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary:hover {
+            color: var(--cream);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 122, 0.4);
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary span {
+            transition: transform var(--transition-base);
+        }
+
+        .btn-primary:hover span {
+            transform: translateX(5px);
+        }
+
+        .btn-ghost {
+            color: white;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all var(--transition-base);
+        }
+
+        .btn-ghost:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+            letter-spacing: 0.25em;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            opacity: 0.6;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: opacity var(--transition-base);
+        }
+
+        .hero-scroll:hover {
+            opacity: 1;
+        }
+
+        .hero-scroll::after {
+            content: '';
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, white, transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { transform: scaleY(0.3); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero decorative elements */
+        .hero-decoration {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        .hero-decoration-1 {
+            top: 20%;
+            right: 10%;
+            width: 200px;
+            height: 200px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-decoration-2 {
+            bottom: 25%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            border: 1px solid var(--pink-soft);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* ============ PHILOSOPHY SECTION ============ */
+        .philosophy {
+            padding: clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 3rem);
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(212, 175, 122, 0.05));
+            pointer-events: none;
+        }
+
+        .philosophy-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 6vw, 6rem);
+            align-items: center;
+        }
+
+        .philosophy-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--berry);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .philosophy-label::before {
+            content: '—';
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .philosophy h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2.5rem;
+            color: var(--chocolate);
+        }
+
+        .philosophy h2 em {
+            font-style: italic;
+            color: var(--berry);
+            font-weight: 400;
+        }
+
+        .philosophy-text {
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
+            line-height: 1.9;
+            color: var(--chocolate-soft);
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-signature {
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .signature-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .signature-name {
+            font-family: 'Italiana', serif;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            color: var(--chocolate);
+            letter-spacing: 0.1em;
+        }
+
+        .philosophy-image {
+            position: relative;
+            aspect-ratio: 4/5;
+            max-height: 700px;
+        }
+
+        .philosophy-image-main {
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1578985420001-5e015b8a6d17?w=900&q=90') center/cover;
+            border-radius: 4px;
+            box-shadow: var(--shadow-xl);
+            transition: transform var(--transition-slower);
+        }
+
+        .philosophy-image:hover .philosophy-image-main {
+            transform: scale(1.02);
+        }
+
+        .philosophy-image-accent {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: clamp(120px, 20vw, 200px);
+            height: clamp(120px, 20vw, 200px);
+            background: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=90') center/cover;
+            border-radius: 50%;
+            border: 6px solid var(--cream);
+            box-shadow: var(--shadow-lg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .philosophy-image-tag {
+            position: absolute;
+            top: 30px;
+            right: -20px;
+            background: var(--berry);
+            color: var(--cream);
+            padding: 1.2rem 1.8rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            transform: rotate(3deg);
+            box-shadow: 0 15px 40px rgba(139, 38, 53, 0.4);
+            transition: transform var(--transition-base);
+        }
+
+        .philosophy-image-tag:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .philosophy-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(1rem, 3vw, 2rem);
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(26, 15, 10, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            color: var(--berry);
+            line-height: 1;
+            transition: color var(--transition-base);
+        }
+
+        .stat-item:hover .stat-number {
+            color: var(--gold);
+        }
+
+        .stat-item .stat-label {
+            margin-top: 0.5rem;
+            font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--chocolate-soft);
+        }
+
+        /* ============ SIGNATURE COLLECTION ============ */
+        .collection {
+            padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 3rem);
+            background: var(--chocolate);
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .collection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .collection::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 122, 0.3), transparent);
+        }
+
+        .collection-header {
+            max-width: 1400px;
+            margin: 0 auto clamp(3rem, 6vw, 5rem);
+            text-align: center;
+        }
+
+        .collection-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .collection-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 6vw, 5rem);
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .collection-header h2 em {
+            font-style: italic;
+            color: var(--pink-soft);
+            font-weight: 400;
+        }
+
+        .collection-subtitle {
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(245, 230, 211, 0.7);
+            font-size: clamp(0.9rem, 2vw, 1.05rem);
+            line-height: 1.7;
+        }
+
+        .collection-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: clamp(1rem, 2vw, 2rem);
+        }
+
+        .dessert-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--chocolate-soft);
+            transition: all var(--transition-slower);
+            border-radius: 4px;
+        }
+
+        .dessert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .dessert-card:nth-child(1) { grid-column: span 6; aspect-ratio: 16/14; }
+        .dessert-card:nth-child(2) { grid-column: span 6; aspect-ratio: 16/14; }
+        .dessert-card:nth-child(3) { grid-column: span 4; aspect-ratio: 1; }
+        .dessert-card:nth-child(4) { grid-column: span 4; aspect-ratio: 1; }
+        .dessert-card:nth-child(5) { grid-column: span 4; aspect-ratio: 1; }
+
+        .dessert-image {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dessert-card:hover .dessert-image {
+            transform: scale(1.1);
+        }
+
+        .dessert-card:nth-child(1) .dessert-image { background-image: url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=900&q=90'); }
+        .dessert-card:nth-child(2) .dessert-image { background-image: url('https://images.unsplash.com/photo-1586985289906-406988974504?w=900&q=90'); }
+        .dessert-card:nth-child(3) .dessert-image { background-image: url('https://images.unsplash.com/photo-1535141192574-5d7888081f73?w=700&q=90'); }
+        .dessert-card:nth-child(4) .dessert-image { background-image: url('https://images.unsplash.com/photo-1558326567-98ae2405596b?w=700&q=90'); }
+        .dessert-card:nth-child(5) .dessert-image { background-image: url('https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=700&q=90'); }
+
+        .dessert-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(26, 15, 10, 0.95) 100%);
+            transition: background var(--transition-base);
+        }
+
+        .dessert-card:hover .dessert-overlay {
+            background: linear-gradient(180deg, transparent 20%, rgba(26, 15, 10, 0.98) 100%);
+        }
+
+        .dessert-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            z-index: 2;
+            color: var(--cream);
+        }
+
+        .dessert-category {
+            font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .dessert-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .dessert-name em {
+            font-style: italic;
+            color: var(--pink-soft);
+        }
+
+        .dessert-desc {
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+            color: rgba(245, 230, 211, 0.75);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-slow), opacity var(--transition-slow);
+            opacity: 0;
+        }
+
+        .dessert-card:hover .dessert-desc {
+            max-height: 100px;
+            opacity: 1;
+        }
+
+        .dessert-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(212, 175, 122, 0.3);
+        }
+
+        .dessert-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .dessert-arrow {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            transition: all var(--transition-base);
+            font-size: 1.2rem;
+        }
+
+        .dessert-card:hover .dessert-arrow {
+            background: var(--gold);
+            color: var(--chocolate);
+            transform: rotate(45deg);
+        }
+
+        /* ============ PROCESS SECTION ============ */
+        .process {
+            padding: clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 3rem);
+            background: var(--vanilla);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 122, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .process-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .process-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 6rem);
+        }
+
+        .process-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--berry);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .process h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 300;
+            color: var(--chocolate);
+        }
+
+        .process h2 em {
+            font-style: italic;
+            color: var(--berry);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(1rem, 2vw, 2rem);
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--gold), transparent);
+            z-index: 0;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 1rem;
+        }
+
+        .step-number {
+            width: clamp(55px, 10vw, 70px);
+            height: clamp(55px, 10vw, 70px);
+            margin: 0 auto 2rem;
+            background: var(--cream);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            color: var(--berry);
+            font-style: italic;
+            transition: all var(--transition-base);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 1px solid rgba(212, 175, 122, 0.3);
+            border-radius: 50%;
+            transition: all var(--transition-base);
+        }
+
+        .process-step:hover .step-number {
+            background: var(--berry);
+            color: var(--cream);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(139, 38, 53, 0.3);
+        }
+
+        .process-step:hover .step-number::before {
+            inset: -12px;
+            border-color: var(--berry);
+        }
+
+        .process-step h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--chocolate);
+        }
+
+        .process-step p {
+            font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+            line-height: 1.7;
+            color: var(--chocolate-soft);
+        }
+
+        /* ============ MARQUEE ============ */
+        .marquee {
+            background: var(--berry);
+            color: var(--cream);
+            padding: clamp(1.5rem, 3vw, 2rem) 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee::before,
+        .marquee::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--berry), transparent);
+        }
+
+        .marquee::after {
+            right: 0;
+            background: linear-gradient(-90deg, var(--berry), transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 4rem;
+            animation: marqueeScroll 40s linear infinite;
+            white-space: nowrap;
+            will-change: transform;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-item {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-style: italic;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            color: var(--cream);
+            flex-shrink: 0;
+        }
+
+        .marquee-item span {
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        @keyframes marqueeScroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ============ TESTIMONIALS ============ */
+        .testimonials {
+            padding: clamp(4rem, 10vw, 10rem) clamp(1.5rem, 5vw, 3rem);
+            background: var(--cream);
+            position: relative;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 5rem);
+        }
+
+        .testimonials-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--berry);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .testimonials h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 300;
+        }
+
+        .testimonials h2 em {
+            font-style: italic;
+            color: var(--berry);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(1rem, 2vw, 2rem);
+        }
+
+        .testimonial {
+            background: white;
+            padding: clamp(1.5rem, 3vw, 3rem) clamp(1.2rem, 2.5vw, 2.5rem);
+            position: relative;
+            border: 1px solid rgba(26, 15, 10, 0.08);
+            transition: all var(--transition-slow);
+            border-radius: 4px;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--gold);
+        }
+
+        .testimonial-quote {
+            font-family: 'Italiana', serif;
+            font-size: clamp(3rem, 6vw, 4rem);
+            color: var(--gold);
+            line-height: 0.5;
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .testimonial-stars {
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            font-style: italic;
+            line-height: 1.7;
+            color: var(--chocolate-soft);
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(26, 15, 10, 0.1);
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--berry), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            flex-shrink: 0;
+        }
+
+        .author-name {
+            font-weight: 500;
+            color: var(--chocolate);
+            font-size: 0.95rem;
+        }
+
+        .author-role {
+            font-size: 0.75rem;
+            color: var(--chocolate-soft);
+            margin-top: 0.2rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ============ INSTAGRAM GALLERY ============ */
+        .gallery {
+            padding: clamp(4rem, 8vw, 8rem) 0 0;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .gallery-header {
+            max-width: 700px;
+            margin: 0 auto clamp(2rem, 4vw, 4rem);
+            padding: 0 clamp(1.5rem, 5vw, 3rem);
+        }
+
+        .gallery-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--berry);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .gallery h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .gallery h2 em {
+            font-style: italic;
+            color: var(--berry);
+        }
+
+        .gallery-handle {
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            color: var(--chocolate-soft);
+        }
+
+        .gallery-handle a {
+            color: var(--berry);
+            font-weight: 500;
+            border-bottom: 1px solid var(--berry);
+            transition: all var(--transition-base);
+            padding-bottom: 2px;
+        }
+
+        .gallery-handle a:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 4px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(139, 38, 53, 0.8), rgba(212, 175, 122, 0.8));
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-item::before {
+            content: '→';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            color: white;
+            font-size: 2rem;
+            z-index: 2;
+            transition: transform var(--transition-base);
+        }
+
+        .gallery-item:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* ============ CTA SECTION ============ */
+        .cta {
+            padding: clamp(5rem, 12vw, 10rem) clamp(1.5rem, 5vw, 3rem);
+            background: var(--chocolate);
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1587668178277-295251f900ce?w=1920&q=90') center/cover;
+            opacity: 0.12;
+            filter: grayscale(0.5) blur(2px);
+        }
+
+        .cta::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(26, 15, 10, 0.6) 100%);
+        }
+
+        .cta-container {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .cta h2 em {
+            font-style: italic;
+            color: var(--pink-soft);
+        }
+
+        .cta-text {
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            color: rgba(245, 230, 211, 0.85);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: clamp(0.8rem, 2vw, 1.5rem);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: clamp(1rem, 2.5vw, 1.3rem) clamp(1.8rem, 4vw, 3rem);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--chocolate);
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all var(--transition-base);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 122, 0.2);
+        }
+
+        .cta-btn:hover {
+            background: var(--cream);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid var(--gold);
+        }
+
+        .cta-btn.secondary:hover {
+            background: var(--gold);
+            color: var(--chocolate);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: #0f0806;
+            color: var(--cream);
+            padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 3rem) 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: clamp(2rem, 4vw, 4rem);
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1.5rem;
+            display: block;
+            font-size: 1.8rem;
+        }
+
+        .footer-brand p {
+            color: rgba(245, 230, 211, 0.6);
+            line-height: 1.7;
+            max-width: 350px;
+            font-size: 0.9rem;
+        }
+
+        .footer-column h4 {
+            font-family: 'Italiana', serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: rgba(245, 230, 211, 0.7);
+            font-size: 0.9rem;
+            transition: all var(--transition-base);
+            position: relative;
+            padding-left: 0;
+        }
+
+        .footer-column a::before {
+            content: '→';
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            transition: all var(--transition-base);
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+            padding-left: 20px;
+        }
+
+        .footer-column a:hover::before {
+            left: 0;
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(245, 230, 211, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: rgba(245, 230, 211, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(212, 175, 122, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            transition: all var(--transition-base);
+            font-size: 0.85rem;
+            text-transform: lowercase;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--chocolate);
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(212, 175, 122, 0.2);
+        }
+
+        /* ============ BACK TO TOP ============ */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--berry);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+            font-size: 1.2rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--gold);
+            color: var(--chocolate);
+            transform: translateY(-5px);
+        }
+
+        /* ============ REVEAL ANIMATIONS ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+        .reveal-delay-4 { transition-delay: 0.6s; }
+
+        /* ============ RESPONSIVE BREAKPOINTS ============ */
+
+        /* Large screens (1440px+) */
+        @media (min-width: 1440px) {
+            html { font-size: 17px; }
+            
+            .philosophy-container {
+                gap: 8rem;
+            }
+            
+            .philosophy-image {
+                max-height: 800px;
+            }
+        }
+
+        /* Desktop (1024px - 1439px) */
+        @media (max-width: 1439px) and (min-width: 1025px) {
+            .collection-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        /* Tablets (768px - 1024px) */
+        @media (max-width: 1024px) {
+            nav,
+            nav.scrolled {
+                padding: 1rem 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-cta {
+                display: none;
+            }
+            
+            .burger {
+                display: flex;
+            }
+            
+            .philosophy-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .philosophy-image {
+                max-width: 600px;
+                margin: 0 auto;
+                aspect-ratio: 4/5;
+            }
+            
+            .philosophy-image-accent {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dessert-card:nth-child(1),
+            .dessert-card:nth-child(2),
+            .dessert-card:nth-child(3),
+            .dessert-card:nth-child(4),
+            .dessert-card:nth-child(5) {
+                grid-column: span 1;
+                aspect-ratio: 4/5;
+            }
+            
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        /* Small tablets & large phones (576px - 768px) */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 550px;
+            }
+            
+            .hero-scroll {
+                display: none;
+            }
+            
+            .hero-decoration {
+                display: none;
+            }
+            
+            .philosophy-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .collection-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dessert-card:nth-child(1),
+            .dessert-card:nth-child(2),
+            .dessert-card:nth-child(3),
+            .dessert-card:nth-child(4),
+            .dessert-card:nth-child(5) {
+                grid-column: span 1;
+                aspect-ratio: 4/3;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .cta-btn {
+                justify-content: center;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-brand p {
+                max-width: 100%;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* Mobile (320px - 575px) */
+        @media (max-width: 575px) {
+            html { font-size: 15px; }
+            
+            nav,
+            nav.scrolled {
+                padding: 1rem 1.2rem;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .hero {
+                min-height: 500px;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+            
+            .btn-primary,
+            .btn-ghost {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .philosophy-stats {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .philosophy-image-accent {
+                width: 100px;
+                height: 100px;
+                bottom: -15px;
+                left: -10px;
+            }
+            
+            .philosophy-image-tag {
+                right: -10px;
+                top: 15px;
+                padding: 0.8rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2px;
+            }
+            
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .mobile-menu {
+                padding: 3rem 2rem;
+            }
+            
+            .mobile-menu-links a {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Very small screens (320px - 374px) */
+        @media (max-width: 374px) {
+            html { font-size: 14px; }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Landscape orientation on mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                min-height: 100vh;
+            }
+            
+            .hero-content {
+                padding-top: 6rem;
+            }
+            
+            .hero-scroll {
+                display: none;
+            }
+        }
+
+        /* High DPI screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .hero-image,
+            .dessert-image,
+            .philosophy-image-main,
+            .philosophy-image-accent {
+                image-rendering: -webkit-optimize-contrast;
+            }
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .marquee-track {
+                animation: none;
+            }
+            
+            .hero-image {
+                animation: none;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --cream: #1a1410;
+                --cream-dark: #2c2018;
+                --vanilla: #231a14;
+                --chocolate: #faf4ec;
+                --chocolate-soft: #e8dcc8;
+            }
+            
+            body {
+                color: var(--chocolate);
+            }
+            
+            .philosophy,
+            .process,
+            .testimonials,
+            .gallery {
+                background: var(--cream);
+            }
+            
+            .testimonial,
+            .footer-column a,
+            .footer-brand p {
+                color: rgba(245, 230, 211, 0.8);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            nav,
+            .scroll-progress,
+            .back-to-top,
+            .loader,
+            .mobile-menu,
+            .mobile-menu-overlay {
+                display: none !important;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding: 2rem;
+            }
+            
+            .hero-image,
+            .hero-overlay {
+                display: none;
+            }
+            
+            .hero-content {
+                color: black;
+            }
+            
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- LOADING SCREEN -->
+    <div class="loader" id="loader">
+        <div class="loader-logo">Magia Vkusa</div>
+        <div class="loader-bar"></div>
+    </div>
 
-<header class="hdr" id="hdr">
-  <div class="container hdr-in">
-    <a href="#hero" class="logo">
-      <span class="logo-b">🍫</span>
-      <span>Магия Вкуса<small>сладости • Лида</small></span>
-    </a>
-    <nav class="nav" id="nav">
-      <a href="#catalog">Каталог</a>
-      <a href="#about">О нас</a>
-      <a href="#steps">Как заказать</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#contacts">Контакты</a>
-      <a class="nc" href="tel:+375336895244">📞 +375 33 689 52 44</a>
-      <a class="nc" href="viber://chat?number=%2B375336895244">💬 Viber</a>
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <a href="#" class="logo">Magia <span>Vkusa</span></a>
+        <ul class="nav-links">
+            <li><a href="#philosophy" class="nav-link">Философия</a></li>
+            <li><a href="#collection" class="nav-link">Коллекция</a></li>
+            <li><a href="#process" class="nav-link">Процесс</a></li>
+            <li><a href="#testimonials" class="nav-link">Отзывы</a></li>
+            <li><a href="#gallery" class="nav-link">Галерея</a></li>
+        </ul>
+        <a href="#cta" class="nav-cta">Заказать</a>
+        <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
-    <a class="btn btn-p btn-s hdr-call" href="tel:+375336895244">📞 +375 33 689 52 44</a>
-    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
-  </div>
-</header>
 
-<section class="hero" id="hero">
-  <div class="container hero-in">
-    <div>
-      <span class="badge">📍 Магазин сладостей в Лиде</span>
-      <h1>Сладкие букеты,<br>которые <span class="tg">не вянут</span></h1>
-      <p>Шоколадные букеты, боксы из сухофруктов и сладости на любой вкус. Собираем уникальную композицию под каждого клиента.</p>
-      <div class="acts">
-        <a href="#catalog" class="btn btn-p">Выбрать букет 🍬</a>
-        <a href="viber://chat?number=%2B375336895244" class="btn btn-g">Написать в Viber</a>
-      </div>
-      <div class="stats">
-        <div class="stat"><b data-c="1300" data-s="+">0</b><span>довольных клиентов</span></div>
-        <div class="stat"><b data-c="349" data-s="+">0</b><span>работ в портфолио</span></div>
-        <div class="stat"><b data-c="100" data-s="%">0</b><span>ручная работа</span></div>
-      </div>
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-links">
+            <li><a href="#philosophy">Философия</a></li>
+            <li><a href="#collection">Коллекция</a></li>
+            <li><a href="#process">Процесс</a></li>
+            <li><a href="#testimonials">Отзывы</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#cta">Заказать</a></li>
+        </ul>
+        <div class="mobile-menu-social">
+            <a href="https://www.instagram.com/magiavkusalida" target="_blank">ig</a>
+            <a href="https://t.me/magiavkusalida" target="_blank">tg</a>
+            <a href="tel:+79991234567">tel</a>
+        </div>
     </div>
-    <div class="hvis">
-      <div class="blob"></div>
-      <div class="bq">
-        <div class="stk" style="--r:-54deg;--h:15em"><i>🌷</i></div>
-        <div class="stk" style="--r:-40deg;--h:17.5em"><i>🍫</i></div>
-        <div class="stk" style="--r:-26deg;--h:19.5em"><i>🌸</i></div>
-        <div class="stk" style="--r:-13deg;--h:21em"><i>🧁</i></div>
-        <div class="stk" style="--r:0deg;--h:22em"><i>🍭</i></div>
-        <div class="stk" style="--r:13deg;--h:21em"><i>🍫</i></div>
-        <div class="stk" style="--r:26deg;--h:19.5em"><i>🍬</i></div>
-        <div class="stk" style="--r:40deg;--h:17.5em"><i>🌻</i></div>
-        <div class="stk" style="--r:54deg;--h:15em"><i>🍓</i></div>
-        <div class="cone"></div><div class="bow">🎀</div><div class="bsh"></div>
-      </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-image"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-decoration hero-decoration-1"></div>
+        <div class="hero-decoration hero-decoration-2"></div>
+        <div class="hero-content">
+            <div class="hero-tag">Авторские десерты с 2020 года</div>
+            <h1>
+                Магия<br>
+                <span class="italic">Вкуса</span>
+                <span class="script">by Lida</span>
+            </h1>
+            <p class="hero-description">Каждый десерт — маленькая история, рассказанная языком вкуса. Бельгийский шоколад, сезонные ягоды, ваниль из Мадагаскара. И, конечно, щепотка магии.</p>
+            <div class="hero-actions">
+                <a href="#collection" class="btn-primary">
+                    <span>Открыть коллекцию</span>
+                    <span>→</span>
+                </a>
+                <a href="#philosophy" class="btn-ghost">Узнать больше</a>
+            </div>
+        </div>
+        <div class="hero-scroll">scroll</div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="philosophy" id="philosophy">
+        <div class="philosophy-container">
+            <div class="reveal-left">
+                <div class="philosophy-label">— Философия</div>
+                <h2>Искусство, в котором <em>каждый кусочек</em> рассказывает историю</h2>
+                <p class="philosophy-text">Я не просто пеку торты — я создаю моменты. Момент, когда вы откусываете первый кусочек, и время на мгновение останавливается. Когда закрываете глаза от удовольствия. Когда понимаете: это было создано именно для вас.</p>
+                <p class="philosophy-text">Только натуральные ингредиенты. Только ручная работа. Только ваш праздник — в каждом слое.</p>
+                
+                <div class="philosophy-signature">
+                    <div class="signature-line"></div>
+                    <div class="signature-name">Lida</div>
+                </div>
+
+                <div class="philosophy-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Созданных тортов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Лет опыта</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Натуральное</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="philosophy-image reveal-right">
+                <div class="philosophy-image-main"></div>
+                <div class="philosophy-image-accent"></div>
+                <div class="philosophy-image-tag">"С любовью,<br>Лида"</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLECTION -->
+    <section class="collection" id="collection">
+        <div class="collection-header">
+            <div class="collection-label reveal">Signature Collection</div>
+            <h2 class="reveal reveal-delay-1">Наши <em>самые любимые</em> десерты</h2>
+            <p class="collection-subtitle reveal reveal-delay-2">Авторские рецепты, которые стали визитной карточкой. Каждый из них — результат множества экспериментов и сотен счастливых отзывов.</p>
+        </div>
+
+        <div class="collection-grid">
+            <div class="dessert-card reveal-scale">
+                <div class="dessert-image"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Свадебная коллекция</div>
+                    <h3 class="dessert-name">Белый <em>Шёлк</em></h3>
+                    <p class="dessert-desc">Ванильный бисквит, мусс с белым шоколадом, малиновый конфи, хрустящий слой фисташки</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">от 3 500 ₽/кг</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dessert-card reveal-scale reveal-delay-1">
+                <div class="dessert-image"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Муссовые торты</div>
+                    <h3 class="dessert-name">Тёмный <em>Бархат</em></h3>
+                    <p class="dessert-desc">70% бельгийский шоколад, солёная карамель, хрустящий орех пралине, зеркальная глазурь</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">от 2 800 ₽/кг</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dessert-card reveal-scale">
+                <div class="dessert-image"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Ягодные</div>
+                    <h3 class="dessert-name">Лесная <em>Сказка</em></h3>
+                    <p class="dessert-desc">Микс лесных ягод, ванильный крем, нежный бисквит</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">от 2 500 ₽/кг</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dessert-card reveal-scale reveal-delay-1">
+                <div class="dessert-image"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Капкейки</div>
+                    <h3 class="dessert-name">Розовый <em>Закат</em></h3>
+                    <p class="dessert-desc">Ванильные капкейки с розовым кремом и ягодами</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">от 250 ₽/шт</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dessert-card reveal-scale reveal-delay-2">
+                <div class="dessert-image"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Макаронс</div>
+                    <h3 class="dessert-name">Парижский <em>Сад</em></h3>
+                    <p class="dessert-desc">Набор из 12 вкусов, ручная работа</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">от 1 800 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process" id="process">
+        <div class="process-container">
+            <div class="process-header">
+                <div class="process-label reveal">— Как мы работаем</div>
+                <h2 class="reveal reveal-delay-1">От идеи до <em>вашего стола</em></h2>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step reveal">
+                    <div class="step-number">I</div>
+                    <h3>Знакомство</h3>
+                    <p>Напишите мне в Instagram или Telegram. Расскажите о событии, дате и ваших мечтах.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-1">
+                    <div class="step-number">II</div>
+                    <h3>Концепция</h3>
+                    <p>Вместе подберём вкус, дизайн, размер. Создам для вас мудборд и эскиз.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-2">
+                    <div class="step-number">III</div>
+                    <h3>Магия</h3>
+                    <p>Готовлю с любовью, из лучших ингредиентов. Каждая деталь продумана.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-3">
+                    <div class="step-number">IV</div>
+                    <h3>Доставка</h3>
+                    <p>Привезу в идеальном состоянии точно к вашему празднику. Счастье гарантировано.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <div class="marquee-item">Шоколад <span>✦</span> Ваниль <span>✦</span> Ягоды <span>✦</span> Карамель <span>✦</span> Фисташка <span>✦</span> Маракуйя <span>✦</span> Манго <span>✦</span></div>
+            <div class="marquee-item">Шоколад <span>✦</span> Ваниль <span>✦</span> Ягоды <span>✦</span> Карамель <span>✦</span> Фисташка <span>✦</span> Маракуйя <span>✦</span> Манго <span>✦</span></div>
+        </div>
     </div>
-  </div>
-</section>
 
-<div class="mq" aria-hidden="true">
-  <div class="mq-t">
-    <span>Шоколадные букеты ✦</span><span>Боксы из сухофруктов ✦</span><span>Сладости на любой вкус ✦</span><span>Подарки деткам ✦</span><span>Букеты, которые не вянут ✦</span>
-    <span>Шоколадные букеты ✦</span><span>Боксы из сухофруктов ✦</span><span>Сладости на любой вкус ✦</span><span>Подарки деткам ✦</span><span>Букеты, которые не вянут ✦</span>
-  </div>
-</div>
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <div class="testimonials-header">
+                <div class="testimonials-label reveal">— Отзывы клиентов</div>
+                <h2 class="reveal reveal-delay-1">Слова, которые <em>греют сердце</em></h2>
+            </div>
 
-<section class="about" id="about">
-  <div class="container">
-    <div class="shead rv"><span class="ey">Магия Вкуса — это</span>
-      <h2>Каждый подарок — <span class="tg">с историей</span></h2>
-      <p>Небольшой магазин в Лиде на Южном городке. Не просто сладость, а подарок, который запомнится.</p>
-    </div>
-    <ul class="chk rv">
-      <li><i>✓</i> Букеты, которые не вянут</li>
-      <li><i>✓</i> Уникально для каждого клиента</li>
-      <li><i>✓</i> Боксы из сухофруктов и орехов</li>
-      <li><i>✓</i> Сладости на любой вкус и повод</li>
-    </ul>
-    <a href="#contacts" class="btn btn-p rv">Приходите в гости 🏠</a>
-  </div>
-</section>
+            <div class="testimonials-grid">
+                <div class="testimonial reveal">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+                    <p class="testimonial-text">Лида, спасибо за потрясающий свадебный торт! Гости были в восторге, а мы просто плакали от счастья. Никогда не пробовали ничего вкуснее.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">А</div>
+                        <div>
+                            <div class="author-name">Анна и Дмитрий</div>
+                            <div class="author-role">Свадьба · Июнь 2025</div>
+                        </div>
+                    </div>
+                </div>
 
-<section class="cat" id="catalog">
-  <div class="container">
-    <div class="shead rv"><span class="ey">наш ассортимент</span>
-      <h2>Выберите свою <span class="tg">сладость</span></h2>
-      <p>Каждая позиция собирается индивидуально — состав, размер и цена обсуждаются лично.</p>
-    </div>
-    <div class="grid g-prod">
-      <article class="prod rv">
-        <div class="pv p1"><span class="tag">Хит</span>🍫</div>
-        <div class="pb"><h3>Букет из шоколада</h3><p>Конфеты и шоколад в композиции с декором и лентами.</p>
-          <div class="pf"><span class="price">от 35 BYN<small>зависит от состава</small></span><a class="btn btn-p btn-s" href="viber://chat?number=%2B375336895244">Заказать</a></div></div>
-      </article>
-      <article class="prod rv">
-        <div class="pv p2"><span class="tag">Полезно</span>🍯</div>
-        <div class="pb"><h3>Бокс из сухофруктов</h3><p>Курага, финики, орехи и мёд в красивом оформлении.</p>
-          <div class="pf"><span class="price">от 25 BYN<small>зависит от состава</small></span><a class="btn btn-p btn-s" href="viber://chat?number=%2B375336895244">Заказать</a></div></div>
-      </article>
-      <article class="prod rv">
-        <div class="pv p3">🍬</div>
-        <div class="pb"><h3>Сладкий бокс</h3><p>Мармелад, зефир и любимые сладости на любой вкус.</p>
-          <div class="pf"><span class="price">от 20 BYN<small>зависит от состава</small></span><a class="btn btn-p btn-s" href="viber://chat?number=%2B375336895244">Заказать</a></div></div>
-      </article>
-      <article class="prod rv">
-        <div class="pv p4"><span class="tag">Деткам</span>🧸</div>
-        <div class="pb"><h3>Детский набор</h3><p>Яркий подарок для маленьких сластён — на ДР и без повода.</p>
-          <div class="pf"><span class="price">от 15 BYN<small>зависит от состава</small></span><a class="btn btn-p btn-s" href="viber://chat?number=%2B375336895244">Заказать</a></div></div>
-      </article>
-      <article class="prod rv">
-        <div class="pv p5">🎁</div>
-        <div class="pb"><h3>Подарочный бокс</h3><p>К 8 Марта, Новому году, юбилею, для коллег.</p>
-          <div class="pf"><span class="price">от 30 BYN<small>зависит от состава</small></span><a class="btn btn-p btn-s" href="viber://chat?number=%2B375336895244">Заказать</a></div></div>
-      </article>
-      <article class="prod rv">
-        <div class="pv p6">🌸</div>
-        <div class="pb"><h3>Букет-композиция</h3><p>Дизайнерская композиция: сладости, цветы и декор.</p>
-          <div class="pf"><span class="price">от 45 BYN<small>зависит от состава</small></span><a class="btn btn-p btn-s" href="viber://chat?number=%2B375336895244">Заказать</a></div></div>
-      </article>
-    </div>
-    <p class="pnote">* Цены ориентировочные — точную стоимость подскажем в Viber 💬</p>
-  </div>
-</section>
+                <div class="testimonial reveal reveal-delay-1">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+                    <p class="testimonial-text">Заказывала торт на пятилетие дочки. Ребёнок был счастлив! Красивый, вкусный, с фигурками единорога — всё как мы мечтали.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">М</div>
+                        <div>
+                            <div class="author-name">Мария К.</div>
+                            <div class="author-role">Детский праздник</div>
+                        </div>
+                    </div>
+                </div>
 
-<section id="steps">
-  <div class="container">
-    <div class="shead rv"><span class="ey">всё просто</span><h2>Как заказать <span class="tg">сладкое чудо</span></h2></div>
-    <div class="grid g-steps">
-      <div class="card rv"><div class="num">1</div><h3>📝 Заявка</h3><p>Пишете в Viber или Instagram, звоните или приходите.</p></div>
-      <div class="card rv"><div class="num">2</div><h3>💬 Обсуждаем</h3><p>Повод, вкусы и бюджет — подбираем идею вместе.</p></div>
-      <div class="card rv"><div class="num">3</div><h3>🎁 Собираем</h3><p>Создаём композицию вручную и с любовью.</p></div>
-      <div class="card rv"><div class="num">4</div><h3>🛍 Получаете</h3><p>Забираете в магазине на Южном городке, 21А.</p></div>
-    </div>
-  </div>
-</section>
+                <div class="testimonial reveal reveal-delay-2">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+                    <p class="testimonial-text">Муссовый торт с малиной — это что-то нереальное! Такой нежной текстуры я ещё не пробовала. Лида — настоящий волшебник вкуса.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Е</div>
+                        <div>
+                            <div class="author-name">Елена С.</div>
+                            <div class="author-role">Постоянный клиент</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="rev" id="reviews">
-  <div class="container">
-    <div class="shead rv"><span class="ey">ваши отзывы</span><h2>Нас <span class="tg">рекомендуют</span> 🤍</h2></div>
-    <div class="grid g-cards">
-      <div class="review rv"><span class="st">★★★★★</span><p>«Букет из шоколада на день рождения сестры — восторг! Выглядит шикарно, сладости вкусные.»</p>
-        <div class="ra"><div class="av a1">М</div><div><b>Марина</b><span>постоянный клиент</span></div></div></div>
-      <div class="review rv"><span class="st">★★★★★</span><p>«Бокс из сухофруктов — полезно и красиво. Учли все пожелания, спасибо за душевный подход!»</p>
-        <div class="ra"><div class="av a2">О</div><div><b>Ольга</b><span>полезный бокс</span></div></div></div>
-      <div class="review rv"><span class="st">★★★★★</span><p>«Заказывал наборы для коллег. Быстро, аккуратно, все довольны. Обращусь ещё!»</p>
-        <div class="ra"><div class="av a3">Д</div><div><b>Дмитрий</b><span>корпоративный заказ</span></div></div></div>
-      <div class="review rv"><span class="st">★★★★★</span><p>«Детский бокс — сказка! Дочка в восторге 🧸»</p>
-        <div class="ra"><div class="av a4">К</div><div><b>Ксения</b><span>набор деткам</span></div></div></div>
-    </div>
-  </div>
-</section>
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-header">
+            <div class="gallery-label reveal">— Больше в Instagram</div>
+            <h2 class="reveal reveal-delay-1">Сладкая <em>лента</em> моментов</h2>
+            <p class="gallery-handle reveal reveal-delay-2">Следите за новыми работами: <a href="https://www.instagram.com/magiavkusalida" target="_blank">@magiavkusalida</a></p>
+        </div>
 
-<section class="inst">
-  <div class="container">
-    <div class="shead rv"><span class="ey">больше сладких работ</span><h2>Мы в Instagram</h2></div>
-    <div class="grid g-inst rv">
-      <a class="tile t1" href="https://www.instagram.com/magiavkusalida" target="_blank" rel="noopener">💐</a>
-      <a class="tile t2" href="https://www.instagram.com/magiavkusalida" target="_blank" rel="noopener">🍫</a>
-      <a class="tile t3" href="https://www.instagram.com/magiavkusalida" target="_blank" rel="noopener">🍯</a>
-      <a class="tile t4" href="https://www.instagram.com/magiavkusalida" target="_blank" rel="noopener">🧸</a>
-      <a class="tile t5" href="https://www.instagram.com/magiavkusalida" target="_blank" rel="noopener">🍭</a>
-      <a class="tile t6" href="https://www.instagram.com/magiavkusalida" target="_blank" rel="noopener">🎁</a>
-    </div>
-    <a class="btn btn-p rv" href="https://www.instagram.com/magiavkusalida" target="_blank" rel="noopener">📷 @magiavkusalida</a>
-  </div>
-</section>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=500&q=85" alt="Торт" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1578985420001-5e015b8a6d17?w=500&q=85" alt="Десерт" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1558326567-98ae2405596b?w=500&q=85" alt="Макаронс" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1563729784474-d77dbbba0782?w=500&q=85" alt="Капкейки" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1535141192574-5d7888081f73?w=500&q=85" alt="Торт с ягодами" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500&q=85" alt="Десерт" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=500&q=85" alt="Выпечка" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=500&q=85" alt="Шоколадный торт" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1586985289906-406988974504?w=500&q=85" alt="Муссовый торт" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?w=500&q=85" alt="Десерт" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1557979265-4b8a3c34d20c?w=500&q=85" alt="Макаронс" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=500&q=85" alt="Капкейки" loading="lazy"></div>
+        </div>
+    </section>
 
-<section id="contacts">
-  <div class="container">
-    <div class="shead rv"><span class="ey">ждём вас в гостях</span><h2>Контакты <span class="tg">и заказ</span></h2></div>
-    <div class="ci2">
-      <div class="cc rv">
-        <div class="ci"><div class="ic">📍</div><div><b>Адрес</b><span>г. Лида, ул. Южный городок 21А</span></div></div>
-        <div class="ci"><div class="ic">📞</div><div><b>Телефон</b><a href="tel:+375336895244">+375 33 689 52 44</a></div></div>
-        <div class="ci"><div class="ic">💬</div><div><b>Viber</b><a href="viber://chat?number=%2B375336895244">Написать в Viber</a></div></div>
-        <div class="ci"><div class="ic">📷</div><div><b>Instagram</b><a href="https://www.instagram.com/magiavkusalida" target="_blank" rel="noopener">@magiavkusalida</a></div></div>
-        <div class="ci"><div class="ic">🕒</div><div><b>Часы работы</b><span>Ежедневно 10:00–19:00</span></div></div>
-      </div>
-      <div class="fc rv">
-        <h3>Оставьте заявку 💌</h3>
-        <p>Расскажите, какой подарок ищете — предложим идею.</p>
-        <form id="frm" novalidate>
-          <div class="fl"><label for="n">Ваше имя</label><input id="n" type="text" placeholder="Анна" autocomplete="name" required></div>
-          <div class="fl"><label for="p">Телефон</label><input id="p" type="tel" placeholder="+375 __ ___ __ __" autocomplete="tel" inputmode="tel" required></div>
-          <div class="fl"><label for="o">Повод</label>
-            <select id="o"><option>День рождения</option><option>8 Марта</option><option>Новый год</option><option>Для ребёнка</option><option>Просто порадовать</option><option>Другое</option></select></div>
-          <div class="fl"><label for="m">Комментарий</label><textarea id="m" placeholder="Например: букет для мамы, любит тёмный шоколад…"></textarea></div>
-          <button type="submit" class="btn btn-p">Отправить заявку 🍬</button>
-          <div class="ok" id="ok">Заявка получена — свяжемся с вами 💕</div>
-          <p style="margin-top:12px;font-size:12.5px;color:var(--ink2);text-align:center">Или сразу: <a href="viber://chat?number=%2B375336895244" style="color:var(--viber);font-weight:700">Viber</a> · <a href="https://www.instagram.com/magiavkusalida" target="_blank" rel="noopener" style="color:var(--berry);font-weight:700">Instagram</a></p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- CTA -->
+    <section class="cta" id="cta">
+        <div class="cta-container">
+            <div class="cta-label reveal">— Начнём создавать</div>
+            <h2 class="reveal reveal-delay-1">Торт вашей <em>мечты</em> уже ждёт</h2>
+            <p class="cta-text reveal reveal-delay-2">Расскажите о вашем событии — и я создам десерт, который сделает его незабываемым. Отвечаю в течение часа.</p>
+            <div class="cta-buttons reveal reveal-delay-3">
+                <a href="https://www.instagram.com/magiavkusalida" target="_blank" class="cta-btn">
+                    <span>Instagram</span>
+                    <span>→</span>
+                </a>
+                <a href="https://t.me/magiavkusalida" target="_blank" class="cta-btn secondary">
+                    <span>Telegram</span>
+                    <span>✈</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-<footer class="ftr">
-  <div class="container">
-    <div class="fi">
-      <a href="#hero" class="logo"><span class="logo-b">🍫</span><span>Магия Вкуса<small>букеты из шоколада • Лида</small></span></a>
-      <nav class="fn"><a href="#catalog">Каталог</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a></nav>
-    </div>
-    <div class="fb"><span>© 2025 «Магия Вкуса» — букеты, которые не вянут 🌷</span><span>г. Лида, Южный городок 21А · +375 33 689 52 44</span></div>
-  </div>
-</footer>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">Magia <span>Vkusa</span></a>
+                <p>Авторские десерты, созданные с любовью. Каждый торт — это маленькая история вкуса, рассказанная специально для вас.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="#philosophy">Философия</a></li>
+                    <li><a href="#collection">Коллекция</a></li>
+                    <li><a href="#process">Процесс</a></li>
+                    <li><a href="#testimonials">Отзывы</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Контакты</h4>
+                <ul>
+                    <li><a href="https://www.instagram.com/magiavkusalida" target="_blank">Instagram</a></li>
+                    <li><a href="https://t.me/magiavkusalida" target="_blank">Telegram</a></li>
+                    <li><a href="mailto:hello@magiavkusa.ru">Email</a></li>
+                    <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Услуги</h4>
+                <ul>
+                    <li><a href="#">Свадебные торты</a></li>
+                    <li><a href="#">Детские праздники</a></li>
+                    <li><a href="#">Корпоративные</a></li>
+                    <li><a href="#">Сладкие столы</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Магия Вкуса · by Lida. Создано с любовью.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/magiavkusalida" target="_blank" aria-label="Instagram">ig</a>
+                <a href="https://t.me/magiavkusalida" target="_blank" aria-label="Telegram">tg</a>
+                <a href="#" target="_blank" aria-label="VKontakte">vk</a>
+            </div>
+        </div>
+    </footer>
 
-<!-- Нижняя панель для телефона -->
-<div class="mbar">
-  <a class="btn btn-g" href="tel:+375336895244">📞 Позвонить</a>
-  <a class="btn btn-p" href="viber://chat?number=%2B375336895244">💬 Viber</a>
-</div>
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" aria-label="Наверх">↑</button>
 
-<script>
-var hdr=document.getElementById('hdr');
-addEventListener('scroll',function(){hdr.classList.toggle('on',scrollY>30)},{passive:true});
+    <script>
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 800);
+        });
 
-var burger=document.getElementById('burger'),nav=document.getElementById('nav');
-function closeMenu(){burger.classList.remove('x');nav.classList.remove('open');document.body.classList.remove('lock')}
-burger.addEventListener('click',function(){
-  var o=nav.classList.toggle('open');
-  burger.classList.toggle('x',o);document.body.classList.toggle('lock',o);
-});
-nav.addEventListener('click',function(e){if(e.target.tagName==='A')closeMenu()});
-addEventListener('resize',function(){if(innerWidth>767)closeMenu()});
+        // Scroll progress
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
 
-// появление блоков (если JS не сработает — сайт всё равно полностью виден)
-if('IntersectionObserver' in window){
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){
-    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
-  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
-}else{document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')})}
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-// счётчики
-var co=new IntersectionObserver(function(es){es.forEach(function(e){
-  if(!e.isIntersecting)return;co.unobserve(e.target);
-  var el=e.target,t=+el.dataset.c,s=el.dataset.s||'',st=performance.now();
-  (function tk(t2){var p=Math.min((t2-st)/1400,1);
-    el.textContent=Math.round(t*(1-Math.pow(1-p,3))).toLocaleString('ru-RU')+s;
-    if(p<1)requestAnimationFrame(tk)})(st);
-})},{threshold:.5});
-document.querySelectorAll('[data-c]').forEach(function(el){co.observe(el)});
+        // Mobile menu
+        const burger = document.getElementById('burger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
 
-// форма
-document.getElementById('frm').addEventListener('submit',function(e){
-  e.preventDefault();
-  if(!document.getElementById('n').value.trim()||!document.getElementById('p').value.trim()){
-    alert('Пожалуйста, укажите имя и телефон 🙂');return}
-  var ok=document.getElementById('ok');ok.classList.add('show');this.reset();
-  setTimeout(function(){ok.classList.remove('show')},6000);
-});
-</script>
+        function toggleMenu() {
+            burger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        burger.addEventListener('click', toggleMenu);
+        mobileOverlay.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = navbar.offsetHeight + 20;
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Parallax hero
+        const heroImage = document.querySelector('.hero-image');
+        if (heroImage) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                if (scrolled < window.innerHeight) {
+                    heroImage.style.transform = `scale(1.05) translateY(${scrolled * 0.4}px)`;
+                }
+            });
+        }
+
+        // Back to top
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Counter animation
+        const counters = document.querySelectorAll('.stat-number');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const text = target.textContent;
+                    const hasPlus = text.includes('+');
+                    const hasPercent = text.includes('%');
+                    const num = parseInt(text);
+                    
+                    if (!isNaN(num)) {
+                        let current = 0;
+                        const increment = num / 60;
+                        const suffix = hasPlus ? '+' : (hasPercent ? '%' : '');
+                        
+                        const updateCounter = () => {
+                            current += increment;
+                            if (current < num) {
+                                target.textContent = Math.ceil(current) + suffix;
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                target.textContent = num + suffix;
+                            }
+                        };
+                        
+                        updateCounter();
+                        counterObserver.unobserve(target);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // Touch swipe for mobile menu
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (diff > swipeThreshold && !mobileMenu.classList.contains('active')) {
+                // Swipe left - don't open menu
+            } else if (diff < -swipeThreshold && mobileMenu.classList.contains('active')) {
+                // Swipe right - close menu
+                toggleMenu();
+            }
+        }
+
+        // Lazy loading images
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.src;
+            });
+        } else {
+            // Fallback for browsers that don't support lazy loading
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+    </script>
 </body>
 </html>
