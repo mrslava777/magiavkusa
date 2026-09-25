@@ -424,7 +424,7 @@
             transform: translateY(-3px);
         }
 
-        /* ============ HERO — постер «Магия вкуса» ============ */
+        /* ============ HERO — фото «Магия вкуса» как ФОН ============ */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -432,50 +432,30 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            /* Тёмная подложка + золотое свечение: сочетается с фоном фото */
             background:
-                radial-gradient(ellipse 62% 55% at 50% 36%, rgba(212, 175, 122, 0.16) 0%, transparent 62%),
-                radial-gradient(ellipse 45% 40% at 50% 42%, rgba(139, 38, 53, 0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 50% at 50% 40%, rgba(212, 175, 122, 0.14) 0%, transparent 65%),
                 var(--chocolate);
         }
 
-        /* Постер: фото показывается ЦЕЛИКОМ, без обрезки */
-        .hero-poster {
-            position: relative;
-            z-index: 1;
-            flex: 1 1 auto;
-            min-height: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: clamp(5.5rem, 12vh, 8rem) clamp(1rem, 4vw, 3rem) 0;
-        }
-
-        .hero-image {
-            display: block;
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow:
-                0 0 0 1px rgba(212, 175, 122, 0.20),
-                0 30px 90px rgba(0, 0, 0, 0.55),
-                0 0 110px rgba(212, 175, 122, 0.12);
-        }
-
-        /* Виньетка: мягко соединяет края фото с фоном */
-        .hero-overlay {
+        /* Фоновое фото: заливает весь экран */
+        .hero-bg {
             position: absolute;
             inset: 0;
-            z-index: 1;
-            pointer-events: none;
-            background: radial-gradient(ellipse 130% 105% at 50% 45%,
-                transparent 52%,
-                rgba(12, 6, 3, 0.6) 100%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            animation: heroZoom 32s ease-in-out infinite alternate;
+            will-change: transform;
         }
 
-        /* Мерцающие золотые частицы вокруг фото */
+        @keyframes heroZoom {
+            from { transform: scale(1); }
+            to   { transform: scale(1.08); }
+        }
+
+        /* Мерцающие частицы поверх фото */
         .hero-sparkles {
             position: absolute;
             inset: 0;
@@ -501,15 +481,39 @@
             50%      { opacity: 0.9; transform: scale(1); filter: brightness(1.4); }
         }
 
-        /* Текст сайта — ВНИЗУ, под фото */
+        /*
+          Затемнение: сверху — для меню, снизу — плотное,
+          чтобы текст сайта читался поверх фото.
+          Центр остаётся прозрачным: надпись «МАГИЯ ВКУСА» видна ярко.
+        */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background:
+                linear-gradient(180deg,
+                    rgba(26, 15, 10, 0.55) 0%,
+                    rgba(26, 15, 10, 0.18) 24%,
+                    rgba(26, 15, 10, 0)    42%,
+                    rgba(26, 15, 10, 0.45) 68%,
+                    rgba(26, 15, 10, 0.92) 88%,
+                    rgba(26, 15, 10, 0.98) 100%),
+                radial-gradient(ellipse 120% 100% at 50% 42%,
+                    transparent 55%,
+                    rgba(12, 6, 3, 0.5) 100%);
+        }
+
+        /* Текст сайта — прижат к низу экрана */
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
+            margin-top: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: clamp(1.8rem, 4vh, 3rem) 1.5rem clamp(2.5rem, 6vh, 4rem);
+            padding: 0 1.5rem clamp(2.5rem, 7vh, 4.5rem);
         }
 
         .hero-tag {
@@ -522,6 +526,7 @@
             text-transform: uppercase;
             color: var(--gold);
             margin-bottom: 1.4rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
             opacity: 0;
             animation: fadeUp 1s ease 0.3s forwards;
         }
@@ -534,7 +539,7 @@
             background: var(--gold);
         }
 
-        /* «Стеклянная» панель — текст всегда читаем */
+        /* «Стеклянная» панель: описание всегда контрастное */
         .hero-description {
             max-width: 660px;
             margin-bottom: clamp(1.5rem, 3vh, 2.2rem);
@@ -544,10 +549,10 @@
             border-radius: 16px;
             backdrop-filter: blur(14px) saturate(140%);
             -webkit-backdrop-filter: blur(14px) saturate(140%);
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
             font-size: clamp(0.95rem, 2.4vw, 1.1rem);
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.96);
+            color: rgba(255, 255, 255, 0.97);
             opacity: 0;
             animation: fadeUp 1.2s ease 0.6s forwards;
         }
@@ -635,7 +640,7 @@
             position: absolute;
             right: clamp(1.2rem, 3vw, 2.6rem);
             bottom: 2.2rem;
-            z-index: 2;
+            z-index: 3;
             color: white;
             font-size: 0.7rem;
             letter-spacing: 0.3em;
@@ -1823,20 +1828,17 @@
             }
         }
 
-        /* Мобильный hero: фото сверху целиком, текст снизу */
+        /*
+          Мобильные и узкие экраны:
+          фон показываем ЦЕЛИКОМ (contain), иначе надпись
+          «МАГИЯ ВКУСА» обрезалась бы по бокам.
+          Тёмная подложка hero совпадает с фоном фото — швов не видно.
+        */
         @media (max-width: 768px) {
-            .hero-poster {
-                flex: 0 0 auto;
-                padding-top: 5rem;
-            }
-
-            .hero-image {
-                width: min(100%, 460px);
-                max-height: none;
-            }
-
-            .hero-content {
-                margin-top: auto;
+            .hero-bg {
+                object-fit: contain;
+                object-position: center 42%;
+                animation: none;
             }
         }
 
@@ -1881,6 +1883,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+            .hero-bg,
             .hero-scroll::after,
             .hero-sparkles i,
             .loader-logo,
@@ -1950,24 +1953,23 @@
     </div>
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
-    <!-- ============ HERO — фото «Магия вкуса» целиком ============ -->
+    <!-- ============ HERO — фото «Магия вкуса» как ФОН ============ -->
     <section class="hero" id="home">
-        <div class="hero-sparkles" aria-hidden="true">
-            <i style="--x:10%; --y:26%; --d:0s;   --s:5px"></i>
-            <i style="--x:18%; --y:64%; --d:1.3s; --s:4px"></i>
-            <i style="--x:26%; --y:14%; --d:.7s;  --s:3px"></i>
-            <i style="--x:74%; --y:20%; --d:1.8s; --s:4px"></i>
-            <i style="--x:84%; --y:48%; --d:.4s;  --s:5px"></i>
-            <i style="--x:90%; --y:74%; --d:2.2s; --s:3px"></i>
-            <i style="--x:70%; --y:86%; --d:1s;   --s:4px"></i>
-            <i style="--x:14%; --y:88%; --d:1.6s; --s:3px"></i>
-        </div>
+        <img class="hero-bg"
+             src="magiya-vkusa.jpg"
+             alt=""
+             aria-hidden="true"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=1920&q=90';">
 
-        <div class="hero-poster">
-            <img class="hero-image"
-                 src="magiya-vkusa.jpg"
-                 alt="Магия Вкуса — сладости, сухофрукты, чай и кофе, подарочные наборы, шоколад ручной работы"
-                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=1920&q=90';">
+        <div class="hero-sparkles" aria-hidden="true">
+            <i style="--x:8%;  --y:24%; --d:0s;   --s:5px"></i>
+            <i style="--x:16%; --y:62%; --d:1.3s; --s:4px"></i>
+            <i style="--x:24%; --y:12%; --d:.7s;  --s:3px"></i>
+            <i style="--x:76%; --y:18%; --d:1.8s; --s:4px"></i>
+            <i style="--x:86%; --y:46%; --d:.4s;  --s:5px"></i>
+            <i style="--x:92%; --y:72%; --d:2.2s; --s:3px"></i>
+            <i style="--x:68%; --y:84%; --d:1s;   --s:4px"></i>
+            <i style="--x:12%; --y:86%; --d:1.6s; --s:3px"></i>
         </div>
 
         <div class="hero-overlay" aria-hidden="true"></div>
