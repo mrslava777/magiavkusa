@@ -789,6 +789,92 @@
             line-height: 1.7;
         }
 
+        /* ============ CATALOG NAV — разделы и подразделы ============ */
+        .catalog-nav {
+            max-width: 1400px;
+            margin: 0 auto clamp(2rem, 4vw, 3rem);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .catalog-sections {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        .catalog-section {
+            padding: 0.7rem 1.6rem;
+            border: 1px solid rgba(212, 175, 122, 0.35);
+            background: transparent;
+            color: rgba(245, 230, 211, 0.8);
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            border-radius: 999px;
+            transition: all var(--transition-base);
+        }
+
+        .catalog-section:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .catalog-section.is-active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--chocolate);
+            font-weight: 500;
+        }
+
+        /* Подразделы: строка появляется только у раздела,
+           у которого есть подразделы */
+        .catalog-subsections {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .catalog-subsections.is-visible {
+            display: flex;
+            animation: catalogSubIn 0.4s ease both;
+        }
+
+        @keyframes catalogSubIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .catalog-subsection {
+            padding: 0.45rem 1.15rem;
+            border: 1px dashed rgba(212, 175, 122, 0.35);
+            background: transparent;
+            color: rgba(245, 230, 211, 0.65);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            border-radius: 999px;
+            transition: all var(--transition-base);
+        }
+
+        .catalog-subsection:hover {
+            border-color: var(--pink-soft);
+            color: var(--pink-soft);
+        }
+
+        .catalog-subsection.is-active {
+            border-style: solid;
+            border-color: var(--pink-soft);
+            background: rgba(232, 180, 188, 0.14);
+            color: var(--pink-soft);
+        }
+
         .collection-grid {
             max-width: 1400px;
             margin: 0 auto;
@@ -811,17 +897,23 @@
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
 
-        .dessert-card:nth-child(1) { grid-column: span 6; aspect-ratio: 16/14; }
-        .dessert-card:nth-child(2) { grid-column: span 6; aspect-ratio: 16/14; }
-        .dessert-card:nth-child(3) { grid-column: span 4; aspect-ratio: 1; }
-        .dessert-card:nth-child(4) { grid-column: span 4; aspect-ratio: 1; }
-        .dessert-card:nth-child(5) { grid-column: span 4; aspect-ratio: 1; }
+        /* Ровная сетка 3 в ряд: раскладка не ломается при фильтрации
+           по разделам и подразделам */
+        .dessert-card {
+            grid-column: span 4;
+            aspect-ratio: 4/5;
+        }
+
+        .dessert-card.is-hidden {
+            display: none;
+        }
 
         .dessert-image {
             position: absolute;
             inset: 0;
             background-size: cover;
             background-position: center;
+            background-image: var(--card-img, linear-gradient(135deg, var(--chocolate-light), var(--berry-deep)));
             transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -829,11 +921,8 @@
             transform: scale(1.1);
         }
 
-        .dessert-card:nth-child(1) .dessert-image { background-image: url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=900&q=90'); }
-        .dessert-card:nth-child(2) .dessert-image { background-image: url('https://images.unsplash.com/photo-1586985289906-406988974504?w=900&q=90'); }
-        .dessert-card:nth-child(3) .dessert-image { background-image: url('https://images.unsplash.com/photo-1535141192574-5d7888081f73?w=700&q=90'); }
-        .dessert-card:nth-child(4) .dessert-image { background-image: url('https://images.unsplash.com/photo-1558326567-98ae2405596b?w=700&q=90'); }
-        .dessert-card:nth-child(5) .dessert-image { background-image: url('https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=700&q=90'); }
+        /* Фото задаётся индивидуально через inline-переменную --card-img:
+           карточки можно свободно добавлять и фильтровать */
 
         .dessert-overlay {
             position: absolute;
@@ -1687,9 +1776,14 @@
                 display: flex;
             }
 
-            .dessert-card:nth-child(1),
-            .dessert-card:nth-child(2) {
-                grid-column: span 12;
+            .dessert-card {
+                grid-column: span 6;
+            }
+
+            .catalog-section {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.72rem;
+                letter-spacing: 0.13em;
             }
 
             .gallery-grid {
@@ -1708,9 +1802,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .dessert-card:nth-child(3),
-            .dessert-card:nth-child(4),
-            .dessert-card:nth-child(5) {
+            .dessert-card {
                 grid-column: span 12;
                 aspect-ratio: 4/3;
             }
@@ -1727,6 +1819,18 @@
         @media (max-width: 560px) {
             .process-steps {
                 grid-template-columns: 1fr;
+            }
+
+            .catalog-section {
+                padding: 0.55rem 1rem;
+                font-size: 0.68rem;
+                letter-spacing: 0.1em;
+            }
+
+            .catalog-subsection {
+                padding: 0.4rem 0.85rem;
+                font-size: 0.66rem;
+                letter-spacing: 0.1em;
             }
 
             .footer-container {
@@ -1792,7 +1896,7 @@
         <ul class="nav-links">
             <li><a href="#home" class="active" data-section="home">Главная</a></li>
             <li><a href="#philosophy" data-section="philosophy">Философия</a></li>
-            <li><a href="#collection" data-section="collection">Коллекция</a></li>
+            <li><a href="#collection" data-section="collection">Каталог</a></li>
             <li><a href="#process" data-section="process">Процесс</a></li>
             <li><a href="#testimonials" data-section="testimonials">Отзывы</a></li>
         </ul>
@@ -1809,7 +1913,7 @@
         <ul class="mobile-menu-links">
             <li><a href="#home">Главная</a></li>
             <li><a href="#philosophy">Философия</a></li>
-            <li><a href="#collection">Коллекция</a></li>
+            <li><a href="#collection">Каталог</a></li>
             <li><a href="#process">Процесс</a></li>
             <li><a href="#testimonials">Отзывы</a></li>
             <li><a href="#contacts">Контакты</a></li>
@@ -1904,10 +2008,10 @@
         </div>
     </section>
 
-    <!-- ============ COLLECTION ============ -->
+    <!-- ============ COLLECTION / CATALOG — разделы и подразделы ============ -->
     <section class="collection" id="collection">
         <div class="collection-header reveal">
-            <div class="collection-label">Коллекция</div>
+            <div class="collection-label">Каталог</div>
             <h2>Фирменные <em>десерты</em></h2>
             <p class="collection-subtitle">
                 Авторские сладости из натуральных ингредиентов —
@@ -1915,12 +2019,212 @@
             </p>
         </div>
 
-        <div class="collection-grid">
-            <article class="dessert-card reveal">
-                <div class="dessert-image"></div>
+        <!-- Разделы и подразделы каталога -->
+        <div class="catalog-nav reveal">
+            <div class="catalog-sections" role="tablist" aria-label="Разделы каталога">
+                <button type="button" class="catalog-section is-active" data-catalog-section="all" role="tab" aria-selected="true">Все</button>
+                <button type="button" class="catalog-section" data-catalog-section="candy" role="tab" aria-selected="false">Конфеты</button>
+                <button type="button" class="catalog-section" data-catalog-section="chocolate" role="tab" aria-selected="false">Шоколад</button>
+                <button type="button" class="catalog-section" data-catalog-section="cakes" role="tab" aria-selected="false">Торты</button>
+                <button type="button" class="catalog-section" data-catalog-section="cookies" role="tab" aria-selected="false">Печенье</button>
+                <button type="button" class="catalog-section" data-catalog-section="gifts" role="tab" aria-selected="false">Подарочные наборы</button>
+            </div>
+
+            <!-- Подразделы раздела «Конфеты» -->
+            <div class="catalog-subsections" data-catalog-row="candy" role="tablist" aria-label="Подразделы раздела Конфеты">
+                <button type="button" class="catalog-subsection is-active" data-catalog-subsection="all">Все</button>
+                <button type="button" class="catalog-subsection" data-catalog-subsection="candy-chocolate">Шоколадные</button>
+                <button type="button" class="catalog-subsection" data-catalog-subsection="candy-caramel">Карамельные</button>
+            </div>
+
+            <!-- Подразделы раздела «Шоколад» -->
+            <div class="catalog-subsections" data-catalog-row="chocolate" role="tablist" aria-label="Подразделы раздела Шоколад">
+                <button type="button" class="catalog-subsection is-active" data-catalog-subsection="all">Все</button>
+                <button type="button" class="catalog-subsection" data-catalog-subsection="chocolate-dark">Тёмный горький</button>
+                <button type="button" class="catalog-subsection" data-catalog-subsection="chocolate-milk">Молочный</button>
+                <button type="button" class="catalog-subsection" data-catalog-subsection="chocolate-filled">С начинкой</button>
+            </div>
+        </div>
+
+        <div class="collection-grid" id="catalogGrid">
+            <!-- ===== Раздел: Конфеты · Подраздел: Шоколадные ===== -->
+            <article class="dessert-card reveal" data-section="candy" data-subsection="candy-chocolate">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1548907040-4baa42d10919?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
-                    <div class="dessert-category">Шоколад</div>
+                    <div class="dessert-category">Конфеты · Шоколадные</div>
+                    <h3 class="dessert-name">Пралине <em>ассорти</em></h3>
+                    <p class="dessert-desc">Плотные конфеты с ореховой начинкой в тёмном шоколаде ручной отливки.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">1 100 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="candy" data-subsection="candy-chocolate">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1586985289906-406988974504?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Конфеты · Шоколадные</div>
+                    <h3 class="dessert-name">Вишня в <em>шоколаде</em></h3>
+                    <p class="dessert-desc">Сочная вишня в горьком шоколаде с тонкой хрустящей корочкой.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">950 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="candy" data-subsection="candy-chocolate">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1511381939415-e44015466834?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Конфеты · Шоколадные</div>
+                    <h3 class="dessert-name">Фундук в <em>шоколаде</em></h3>
+                    <p class="dessert-desc">Целый обжаренный фундук в молочном шоколаде — простой и честный вкус.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">980 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ===== Раздел: Конфеты · Подраздел: Карамельные ===== -->
+            <article class="dessert-card reveal" data-section="candy" data-subsection="candy-caramel">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1535141192574-5d7888081f73?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Конфеты · Карамельные</div>
+                    <h3 class="dessert-name">Солёная <em>карамель</em></h3>
+                    <p class="dessert-desc">Батончики из тягучей карамели с морской солью в молочном шоколаде.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">850 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="candy" data-subsection="candy-caramel">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1551024506-0bccd828d307?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Конфеты · Карамельные</div>
+                    <h3 class="dessert-name">Карамельное <em>ассорти</em></h3>
+                    <p class="dessert-desc">Карамель с ванилью, мёдом и сливками в одной коробке.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">720 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="candy" data-subsection="candy-caramel">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Конфеты · Карамельные</div>
+                    <h3 class="dessert-name">Ирис <em>сливочный</em></h3>
+                    <p class="dessert-desc">Мягкая тянущаяся ирисная карамель на сливках и сливочном масле.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">690 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ===== Раздел: Шоколад · Подраздел: Тёмный горький ===== -->
+            <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-dark">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Шоколад · Тёмный горький</div>
+                    <h3 class="dessert-name">Горький <em>70%</em></h3>
+                    <p class="dessert-desc">Плитка тёмного шоколада с насыщенным вкусом какао без лишней сладости.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">890 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-dark">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Шоколад · Тёмный горький</div>
+                    <h3 class="dessert-name">Тёмный с <em>чили</em></h3>
+                    <p class="dessert-desc">Плитка 70% какао с тёплой пряной ноткой чили в послевкусии.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">940 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-dark">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Шоколад · Тёмный горький</div>
+                    <h3 class="dessert-name">Горький с <em>солью</em></h3>
+                    <p class="dessert-desc">Тёмный шоколад с хлопьями морской соли — контраст сладкого и солёного.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">890 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ===== Раздел: Шоколад · Подраздел: Молочный ===== -->
+            <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-milk">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1558326567-98ae2405596b?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Шоколад · Молочный</div>
+                    <h3 class="dessert-name">Молочный <em>классический</em></h3>
+                    <p class="dessert-desc">Нежный молочный шоколад со сливочным вкусом и мягкой текстурой.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">790 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-milk">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1548907040-4baa42d10919?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Шоколад · Молочный</div>
+                    <h3 class="dessert-name">Молочный с <em>миндалём</em></h3>
+                    <p class="dessert-desc">Молочный шоколад с обжаренным миндалём и хрустящей текстурой.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">850 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-milk">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1535141192574-5d7888081f73?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Шоколад · Молочный</div>
+                    <h3 class="dessert-name">Молочный с <em>карамелью</em></h3>
+                    <p class="dessert-desc">Плитка молочного шоколада с хрустящей карамельной крошкой.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">830 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ===== Раздел: Шоколад · Подраздел: С начинкой ===== -->
+            <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-filled">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Шоколад · С начинкой</div>
                     <h3 class="dessert-name">Трюфельное <em>ассорти</em></h3>
                     <p class="dessert-desc">Нежные трюфели с ореховой пастой, ягодными нотами и какао высшего сорта.</p>
                     <div class="dessert-meta">
@@ -1930,8 +2234,37 @@
                 </div>
             </article>
 
-            <article class="dessert-card reveal">
-                <div class="dessert-image"></div>
+            <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-filled">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1511381939415-e44015466834?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Шоколад · С начинкой</div>
+                    <h3 class="dessert-name">Пралине с <em>фундуком</em></h3>
+                    <p class="dessert-desc">Тёмный шоколад с пралине из отборного фундука внутри.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">1 050 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-filled">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1586985289906-406988974504?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Шоколад · С начинкой</div>
+                    <h3 class="dessert-name">С вишнёвым <em>ганашем</em></h3>
+                    <p class="dessert-desc">Молочный шоколад с вишнёвым ганашем и лёгкой кислинкой.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">990 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ===== Раздел: Торты ===== -->
+            <article class="dessert-card reveal" data-section="cakes" data-subsection="">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1586985289906-406988974504?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Торты</div>
@@ -1944,22 +2277,37 @@
                 </div>
             </article>
 
-            <article class="dessert-card reveal">
-                <div class="dessert-image"></div>
+            <article class="dessert-card reveal" data-section="cakes" data-subsection="">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
-                    <div class="dessert-category">Карамель</div>
-                    <h3 class="dessert-name">Солёная <em>карамель</em></h3>
-                    <p class="dessert-desc">Батончики из тягучей карамели с морской солью в молочном шоколаде.</p>
+                    <div class="dessert-category">Торты</div>
+                    <h3 class="dessert-name">Три <em>шоколада</em></h3>
+                    <p class="dessert-desc">Три слоя — тёмный, молочный и белый шоколад — в одном торте.</p>
                     <div class="dessert-meta">
-                        <div class="dessert-price">850 ₽</div>
+                        <div class="dessert-price">2 800 ₽</div>
                         <div class="dessert-arrow">→</div>
                     </div>
                 </div>
             </article>
 
-            <article class="dessert-card reveal">
-                <div class="dessert-image"></div>
+            <article class="dessert-card reveal" data-section="cakes" data-subsection="">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Торты</div>
+                    <h3 class="dessert-name">Медовик <em>классический</em></h3>
+                    <p class="dessert-desc">Тонкие медовые коржи и нежный сметанный крем.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">2 200 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ===== Раздел: Печенье ===== -->
+            <article class="dessert-card reveal" data-section="cookies" data-subsection="">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1558326567-98ae2405596b?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Печенье</div>
@@ -1972,15 +2320,72 @@
                 </div>
             </article>
 
-            <article class="dessert-card reveal">
-                <div class="dessert-image"></div>
+            <article class="dessert-card reveal" data-section="cookies" data-subsection="">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
-                    <div class="dessert-category">Подарки</div>
+                    <div class="dessert-category">Печенье</div>
+                    <h3 class="dessert-name">Песочное с <em>орехом</em></h3>
+                    <p class="dessert-desc">Рассыпчатое песочное печенье с грецким орехом.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">640 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="cookies" data-subsection="">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Печенье</div>
+                    <h3 class="dessert-name">Имбирные <em>пряники</em></h3>
+                    <p class="dessert-desc">Пряники с имбирём и корицей ручной росписи.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">580 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ===== Раздел: Подарочные наборы ===== -->
+            <article class="dessert-card reveal" data-section="gifts" data-subsection="">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Подарочные наборы</div>
                     <h3 class="dessert-name">Подарочный <em>набор</em></h3>
                     <p class="dessert-desc">Ассорти из конфет, сухофруктов в шоколаде и орехов в элегантной упаковке.</p>
                     <div class="dessert-meta">
                         <div class="dessert-price">1 800 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="gifts" data-subsection="">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Подарочные наборы</div>
+                    <h3 class="dessert-name">Набор с <em>чаем</em></h3>
+                    <p class="dessert-desc">Шоколад, сухофрукты в шоколаде и листовой чай в подарочной коробке.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">2 100 ₽</div>
+                        <div class="dessert-arrow">→</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dessert-card reveal" data-section="gifts" data-subsection="">
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1511381939415-e44015466834?w=900&q=90')"></div>
+                <div class="dessert-overlay"></div>
+                <div class="dessert-content">
+                    <div class="dessert-category">Подарочные наборы</div>
+                    <h3 class="dessert-name">Набор для <em>двоих</em></h3>
+                    <p class="dessert-desc">Две плитки шоколада, трюфели и открытка в крафтовой упаковке.</p>
+                    <div class="dessert-meta">
+                        <div class="dessert-price">1 600 ₽</div>
                         <div class="dessert-arrow">→</div>
                     </div>
                 </div>
@@ -2169,7 +2574,7 @@
                 <ul>
                     <li><a href="#home">Главная</a></li>
                     <li><a href="#philosophy">Философия</a></li>
-                    <li><a href="#collection">Коллекция</a></li>
+                    <li><a href="#collection">Каталог</a></li>
                     <li><a href="#process">Процесс</a></li>
                     <li><a href="#testimonials">Отзывы</a></li>
                 </ul>
@@ -2178,10 +2583,11 @@
             <div class="footer-column">
                 <h4>Каталог</h4>
                 <ul>
-                    <li><a href="#collection">Шоколад</a></li>
-                    <li><a href="#collection">Торты</a></li>
-                    <li><a href="#collection">Подарочные наборы</a></li>
-                    <li><a href="#collection">Сухофрукты и орехи</a></li>
+                    <li><a href="#collection" data-catalog-section="candy">Конфеты</a></li>
+                    <li><a href="#collection" data-catalog-section="chocolate">Шоколад</a></li>
+                    <li><a href="#collection" data-catalog-section="cakes">Торты</a></li>
+                    <li><a href="#collection" data-catalog-section="cookies">Печенье</a></li>
+                    <li><a href="#collection" data-catalog-section="gifts">Подарочные наборы</a></li>
                 </ul>
             </div>
 
@@ -2331,6 +2737,68 @@
                 el.textContent = el.getAttribute('data-count') + '+';
             });
         }
+
+        /* ---------- Каталог: разделы и подразделы ---------- */
+        var catalogGrid = document.getElementById('catalogGrid');
+        var sectionBtns = document.querySelectorAll('.catalog-section[data-catalog-section]');
+        var subRows = document.querySelectorAll('.catalog-subsections[data-catalog-row]');
+        var subBtns = document.querySelectorAll('.catalog-subsection[data-catalog-subsection]');
+        var catalogCards = catalogGrid ? catalogGrid.querySelectorAll('.dessert-card') : [];
+        /* Внешние ссылки на раздел (футер) — с прокруткой к каталогу */
+        var jumpLinks = document.querySelectorAll('[data-catalog-section]:not(.catalog-section)');
+        var activeSection = 'all';
+        var activeSub = 'all';
+
+        function paintCatalog() {
+            [].forEach.call(catalogCards, function (card) {
+                var sec = card.getAttribute('data-section') || '';
+                var sub = card.getAttribute('data-subsection') || '';
+                var show = (activeSection === 'all' || sec === activeSection) &&
+                           (activeSub === 'all' || sub === activeSub);
+                card.classList.toggle('is-hidden', !show);
+            });
+
+            [].forEach.call(sectionBtns, function (btn) {
+                var on = btn.getAttribute('data-catalog-section') === activeSection;
+                btn.classList.toggle('is-active', on);
+                btn.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+
+            [].forEach.call(subRows, function (row) {
+                row.classList.toggle('is-visible', row.getAttribute('data-catalog-row') === activeSection);
+            });
+
+            [].forEach.call(subBtns, function (btn) {
+                btn.classList.toggle('is-active', btn.getAttribute('data-catalog-subsection') === activeSub);
+            });
+        }
+
+        function setSection(id) {
+            activeSection = id;
+            activeSub = 'all';
+            paintCatalog();
+        }
+
+        [].forEach.call(sectionBtns, function (btn) {
+            btn.addEventListener('click', function () {
+                setSection(btn.getAttribute('data-catalog-section'));
+            });
+        });
+
+        [].forEach.call(subBtns, function (btn) {
+            btn.addEventListener('click', function () {
+                activeSub = btn.getAttribute('data-catalog-subsection');
+                paintCatalog();
+            });
+        });
+
+        [].forEach.call(jumpLinks, function (link) {
+            link.addEventListener('click', function () {
+                setSection(link.getAttribute('data-catalog-section'));
+            });
+        });
+
+        if (catalogCards.length) paintCatalog();
     })();
     </script>
 </body>
