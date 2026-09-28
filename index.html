@@ -924,15 +924,29 @@
         /* Фото задаётся индивидуально через inline-переменную --card-img:
            карточки можно свободно добавлять и фильтровать */
 
+        /* Затемнение под текстом: градиент плотнее и начинается выше,
+           иначе светлые фото «съедают» подписи карточек */
         .dessert-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 30%, rgba(26, 15, 10, 0.95) 100%);
+            background: linear-gradient(180deg,
+                rgba(26, 15, 10, 0) 0%,
+                rgba(26, 15, 10, 0.1) 26%,
+                rgba(26, 15, 10, 0.36) 46%,
+                rgba(26, 15, 10, 0.72) 64%,
+                rgba(26, 15, 10, 0.91) 80%,
+                rgba(26, 15, 10, 0.98) 100%);
             transition: background var(--transition-base);
         }
 
         .dessert-card:hover .dessert-overlay {
-            background: linear-gradient(180deg, transparent 20%, rgba(26, 15, 10, 0.98) 100%);
+            background: linear-gradient(180deg,
+                rgba(26, 15, 10, 0.08) 0%,
+                rgba(26, 15, 10, 0.22) 26%,
+                rgba(26, 15, 10, 0.5) 46%,
+                rgba(26, 15, 10, 0.8) 64%,
+                rgba(26, 15, 10, 0.95) 80%,
+                rgba(26, 15, 10, 1) 100%);
         }
 
         .dessert-content {
@@ -943,6 +957,15 @@
             padding: clamp(1.5rem, 3vw, 2.5rem);
             z-index: 2;
             color: var(--cream);
+        }
+
+        /* Тень под текстом — страховка на светлых участках фото */
+        .dessert-category,
+        .dessert-name,
+        .dessert-desc,
+        .dessert-price {
+            text-shadow: 0 1px 3px rgba(26, 15, 10, 0.9),
+                         0 3px 16px rgba(26, 15, 10, 0.75);
         }
 
         .dessert-category {
@@ -969,7 +992,7 @@
 
         .dessert-desc {
             font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-            color: rgba(245, 230, 211, 0.75);
+            color: rgba(245, 230, 211, 0.92);
             margin-bottom: 1.5rem;
             line-height: 1.6;
             max-height: 0;
