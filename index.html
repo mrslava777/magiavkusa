@@ -1776,6 +1776,302 @@
             transform: translateY(-5px);
         }
 
+        /* ============ CATALOG TOOLBAR — фильтр, сортировка, вид ============ */
+        .catalog-toolbar {
+            max-width: 1400px;
+            margin: 0 auto 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .catalog-toolbar-left,
+        .catalog-toolbar-right {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .catalog-tool {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.1rem;
+            border: 1px solid rgba(212, 175, 122, 0.4);
+            border-radius: 999px;
+            background: transparent;
+            color: rgba(245, 230, 211, 0.85);
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: all var(--transition-base);
+        }
+
+        .catalog-tool:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .catalog-tool.is-active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--chocolate);
+        }
+
+        .catalog-tool-count {
+            min-width: 18px;
+            height: 18px;
+            padding: 0 5px;
+            border-radius: 999px;
+            background: var(--gold);
+            color: var(--chocolate);
+            font-size: 0.66rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .catalog-tool.is-active .catalog-tool-count {
+            background: var(--chocolate);
+            color: var(--gold);
+        }
+
+        /* атрибут hidden должен побеждать display: inline-flex выше */
+        .catalog-tool-count[hidden] {
+            display: none;
+        }
+
+        .catalog-select-wrap {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .catalog-select-wrap::after {
+            content: '▾';
+            position: absolute;
+            right: 1rem;
+            font-size: 0.7rem;
+            color: var(--gold);
+            pointer-events: none;
+        }
+
+        .catalog-select {
+            appearance: none;
+            -webkit-appearance: none;
+            padding: 0.6rem 2.5rem 0.6rem 1.1rem;
+            border: 1px solid rgba(212, 175, 122, 0.4);
+            border-radius: 999px;
+            background: transparent;
+            color: rgba(245, 230, 211, 0.85);
+            font-family: inherit;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            color-scheme: dark;
+        }
+
+        .catalog-select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .catalog-select option {
+            background: var(--chocolate);
+            color: var(--cream);
+        }
+
+        .catalog-views {
+            display: inline-flex;
+            border: 1px solid rgba(212, 175, 122, 0.4);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .catalog-view {
+            padding: 0.62rem 0.95rem;
+            color: rgba(245, 230, 211, 0.7);
+            font-size: 0.95rem;
+            line-height: 1;
+            transition: all var(--transition-base);
+        }
+
+        .catalog-view:hover {
+            color: var(--gold);
+        }
+
+        .catalog-view.is-active {
+            background: var(--gold);
+            color: var(--chocolate);
+        }
+
+        /* ============ CATALOG FILTERS ============ */
+        .catalog-filters {
+            max-width: 1400px;
+            margin: 0 auto 1.4rem;
+            display: none;
+            padding: 1.2rem clamp(1rem, 3vw, 1.6rem);
+            background: rgba(250, 244, 236, 0.05);
+            border: 1px solid rgba(212, 175, 122, 0.25);
+            border-radius: 4px;
+        }
+
+        .catalog-filters.is-open {
+            display: block;
+        }
+
+        .catalog-filters-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem;
+        }
+
+        .catalog-filter-group {
+            min-width: 210px;
+        }
+
+        .catalog-filter-title {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(212, 175, 122, 0.9);
+            margin-bottom: 0.6rem;
+        }
+
+        .catalog-price {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .catalog-price input {
+            width: 108px;
+            padding: 0.55rem 0.8rem;
+            border: 1px solid rgba(212, 175, 122, 0.3);
+            border-radius: 2px;
+            background: rgba(250, 244, 236, 0.06);
+            color: var(--cream);
+            font-family: inherit;
+            font-size: 0.84rem;
+            color-scheme: dark;
+        }
+
+        .catalog-price input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .catalog-price span {
+            color: rgba(245, 230, 211, 0.5);
+            font-size: 0.8rem;
+        }
+
+        .catalog-filter-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.1rem;
+        }
+
+        .catalog-btn {
+            padding: 0.65rem 1.4rem;
+            border-radius: 2px;
+            background: var(--gold);
+            color: var(--chocolate);
+            font-size: 0.73rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            transition: all var(--transition-base);
+        }
+
+        .catalog-btn:hover {
+            background: var(--gold-light);
+        }
+
+        .catalog-btn.ghost {
+            background: transparent;
+            border: 1px solid rgba(212, 175, 122, 0.45);
+            color: var(--cream);
+            font-weight: 500;
+        }
+
+        .catalog-btn.ghost:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .catalog-nothing {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3.5rem 1rem;
+            color: rgba(245, 230, 211, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .catalog-more {
+            max-width: 1400px;
+            margin: 2.2rem auto 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .catalog-more[hidden] {
+            display: none;
+        }
+
+        /* ============ CATALOG: вид списком ============ */
+        .collection-grid.is-list {
+            gap: 1rem;
+        }
+
+        .collection-grid.is-list .dessert-card {
+            grid-column: span 12;
+            aspect-ratio: auto;
+            min-height: 150px;
+            display: grid;
+            grid-template-columns: clamp(130px, 18vw, 200px) 1fr;
+        }
+
+        .collection-grid.is-list .dessert-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .collection-grid.is-list .dessert-image {
+            position: static;
+            width: 100%;
+            height: 100%;
+            min-height: 150px;
+        }
+
+        .collection-grid.is-list .dessert-card:hover .dessert-image {
+            transform: none;
+        }
+
+        .collection-grid.is-list .dessert-overlay {
+            display: none;
+        }
+
+        .collection-grid.is-list .dessert-content {
+            position: static;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1.2rem 1.5rem;
+        }
+
+        .collection-grid.is-list .dessert-desc {
+            max-height: none;
+            opacity: 1;
+            margin-bottom: 1.1rem;
+        }
+
         /* ============ CART: кнопка в шапке ============ */
         .nav-cart {
             position: relative;
@@ -2812,6 +3108,48 @@
             <div class="catalog-tiles" id="catalogTiles"></div>
         </div>
 
+        <!-- Панель каталога: фильтр, сортировка, вид -->
+        <div class="catalog-toolbar reveal">
+            <div class="catalog-toolbar-left">
+                <button type="button" class="catalog-tool" id="filterToggle" aria-expanded="false" aria-controls="catalogFilters">
+                    Фильтр <span class="catalog-tool-count" id="filterCount" hidden>0</span>
+                </button>
+                <div class="catalog-select-wrap">
+                    <select class="catalog-select" id="sortSelect" aria-label="Сортировка">
+                        <option value="default">По порядку</option>
+                        <option value="price-asc">Сначала дешёвые</option>
+                        <option value="price-desc">Сначала дорогие</option>
+                        <option value="name-asc">По названию А–Я</option>
+                        <option value="name-desc">По названию Я–А</option>
+                    </select>
+                </div>
+            </div>
+            <div class="catalog-toolbar-right">
+                <div class="catalog-views" role="group" aria-label="Вид каталога">
+                    <button type="button" class="catalog-view is-active" data-view="grid" aria-label="Показать плиткой" aria-pressed="true">▦</button>
+                    <button type="button" class="catalog-view" data-view="list" aria-label="Показать списком" aria-pressed="false">☰</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Фильтры -->
+        <div class="catalog-filters" id="catalogFilters">
+            <div class="catalog-filters-row">
+                <div class="catalog-filter-group">
+                    <span class="catalog-filter-title">Цена, ₽</span>
+                    <div class="catalog-price">
+                        <input type="number" id="priceMin" min="0" step="10" placeholder="от" inputmode="numeric" aria-label="Цена от">
+                        <span>—</span>
+                        <input type="number" id="priceMax" min="0" step="10" placeholder="до" inputmode="numeric" aria-label="Цена до">
+                    </div>
+                </div>
+            </div>
+            <div class="catalog-filter-actions">
+                <button type="button" class="catalog-btn" id="filterApply">Показать</button>
+                <button type="button" class="catalog-btn ghost" id="filterReset">Очистить фильтр</button>
+            </div>
+        </div>
+
         <div class="collection-grid" id="catalogGrid">
             <!-- ===== Раздел: Конфеты · Подраздел: Шоколадные ===== -->
             <article class="dessert-card reveal" data-section="candy" data-subsection="candy-chocolate">
@@ -3156,6 +3494,12 @@
                     </div>
                 </div>
             </article>
+
+            <p class="catalog-nothing" id="catalogNothing" hidden>По вашему запросу ничего не нашлось. Попробуйте изменить фильтр.</p>
+        </div>
+
+        <div class="catalog-more" id="catalogMore" hidden>
+            <button type="button" class="catalog-btn ghost" id="catalogMoreBtn">Показать ещё</button>
         </div>
     </section>
 
@@ -3628,17 +3972,36 @@
             });
         }
 
-        /* ---------- Каталог: разделы и подразделы (плитки) ---------- */
+        /* ---------- Каталог: разделы, подразделы, фильтр, сортировка ---------- */
         var catalogGrid = document.getElementById('catalogGrid');
-        var catalogCards = catalogGrid ? catalogGrid.querySelectorAll('.dessert-card') : [];
+        var catalogCards = catalogGrid ? [].slice.call(catalogGrid.querySelectorAll('.dessert-card')) : [];
+        var nothingEl = document.getElementById('catalogNothing');
+        var moreEl = document.getElementById('catalogMore');
+        var moreBtn = document.getElementById('catalogMoreBtn');
         var tilesBox = document.getElementById('catalogTiles');
         var crumbsBox = document.getElementById('catalogCrumbs');
         var hintEl = document.getElementById('catalogHint');
         var boardEl = document.getElementById('catalogBoard');
+        var filterToggle = document.getElementById('filterToggle');
+        var filterPanel = document.getElementById('catalogFilters');
+        var filterCount = document.getElementById('filterCount');
+        var priceMinEl = document.getElementById('priceMin');
+        var priceMaxEl = document.getElementById('priceMax');
+        var sortSelect = document.getElementById('sortSelect');
         /* Внешние ссылки на раздел (футер) */
         var jumpLinks = document.querySelectorAll('[data-catalog-section]');
-        var activeSection = 'all';
-        var activeSub = 'all';
+
+        var PAGE_SIZE = 9;
+
+        var state = {
+            section: 'all',
+            sub: 'all',
+            sort: 'default',
+            view: 'grid',
+            min: null,
+            max: null,
+            limit: PAGE_SIZE
+        };
 
         function escHtml(s) {
             return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -3664,6 +4027,16 @@
             var style = imgEl ? (imgEl.getAttribute('style') || '') : '';
             var m = style.match(/url\(['"]?([^'")]+)['"]?\)/);
             return m ? m[1] : '';
+        }
+
+        function cardPrice(card) {
+            var el = card ? card.querySelector('.dessert-price') : null;
+            return el ? (parseInt(el.textContent.replace(/[^\d]/g, ''), 10) || 0) : 0;
+        }
+
+        function cardName(card) {
+            var el = card ? card.querySelector('.dessert-name') : null;
+            return el ? el.textContent.replace(/\s+/g, ' ').trim() : '';
         }
 
         /* Дерево «раздел → подразделы» собираем прямо из карточек:
@@ -3711,16 +4084,33 @@
             return null;
         }
 
-        function tileHtml(id, name, img, count, isActive, kind) {
-            return '<button type="button" class="catalog-tile' + (isActive ? ' is-active' : '') + '"' +
-                ' data-tile-kind="' + kind + '" data-tile-id="' + escHtml(id) + '">' +
-                '<span class="catalog-tile-img" style="background-image:url(\'' + escHtml(img) + '\')"></span>' +
-                '<span class="catalog-tile-name">' + escHtml(name) + '</span>' +
-                '<span class="catalog-tile-count">' + countLabel(count) + '</span>' +
-                '</button>';
+        /* ---------- отбор и порядок товаров ---------- */
+        function matchesState(card) {
+            var sec = card.getAttribute('data-section') || '';
+            var sub = card.getAttribute('data-subsection') || '';
+            if (state.section !== 'all' && sec !== state.section) return false;
+            if (state.sub !== 'all' && sub !== state.sub) return false;
+            var price = cardPrice(card);
+            if (state.min !== null && price < state.min) return false;
+            if (state.max !== null && price > state.max) return false;
+            return true;
         }
 
-        /* Все фото каталога — для плитки «Все товары» */
+        function sortedCards(list) {
+            if (state.sort === 'default') return list;
+            var arr = list.slice();
+            arr.sort(function (a, b) {
+                if (state.sort === 'price-asc') return cardPrice(a) - cardPrice(b);
+                if (state.sort === 'price-desc') return cardPrice(b) - cardPrice(a);
+                var an = cardName(a).toLowerCase();
+                var bn = cardName(b).toLowerCase();
+                if (state.sort === 'name-asc') return an < bn ? -1 : (an > bn ? 1 : 0);
+                return bn < an ? -1 : (bn > an ? 1 : 0);
+            });
+            return arr;
+        }
+
+        /* ---------- плитки разделов и подразделов ---------- */
         var allImages = (function () {
             var list = [];
             [].forEach.call(catalogCards, function (card) {
@@ -3730,12 +4120,21 @@
             return list;
         })();
 
-        function renderTiles() {
+        function tileHtml(id, name, img, count, isActive, kind) {
+            return '<button type="button" class="catalog-tile' + (isActive ? ' is-active' : '') + '"' +
+                ' data-tile-kind="' + kind + '" data-tile-id="' + escHtml(id) + '">' +
+                '<span class="catalog-tile-img" style="background-image:url(\'' + escHtml(img) + '\')"></span>' +
+                '<span class="catalog-tile-name">' + escHtml(name) + '</span>' +
+                '<span class="catalog-tile-count">' + countLabel(count) + '</span>' +
+                '</button>';
+        }
+
+        function renderTiles(found) {
             if (!tilesBox) return;
 
             var html = '';
             var cols = 0;
-            var section = activeSection === 'all' ? null : findSection(activeSection);
+            var section = state.section === 'all' ? null : findSection(state.section);
 
             /* В одном ряду плитки не должны повторять фото: берём первое свободное */
             var used = {};
@@ -3751,9 +4150,9 @@
                 /* Второй уровень: подразделы выбранного раздела.
                    Первая плитка — сам раздел целиком (все его товары) */
                 html += tileHtml(section.id, section.name, pick(section.imgs),
-                    section.count, activeSub === 'all', 'sub-all');
+                    section.count, state.sub === 'all', 'sub-all');
                 [].forEach.call(section.subs, function (sub) {
-                    html += tileHtml(sub.id, sub.name, pick(sub.imgs), sub.count, activeSub === sub.id, 'sub');
+                    html += tileHtml(sub.id, sub.name, pick(sub.imgs), sub.count, state.sub === sub.id, 'sub');
                 });
                 cols = section.subs.length + 1;
             } else {
@@ -3768,16 +4167,16 @@
 
             tilesBox.innerHTML = html;
             tilesBox.style.setProperty('--cols', Math.max(1, Math.min(cols, 6)));
-            renderCrumbs(section);
+            renderCrumbs(section, found);
         }
 
-        function renderCrumbs(section) {
+        function renderCrumbs(section, found) {
             if (!crumbsBox) return;
 
             var parts = [];
             var currentSub = null;
             if (section) {
-                [].forEach.call(section.subs, function (s) { if (s.id === activeSub) currentSub = s; });
+                [].forEach.call(section.subs, function (s) { if (s.id === state.sub) currentSub = s; });
             }
 
             if (!section) {
@@ -3795,24 +4194,30 @@
             }
             crumbsBox.innerHTML = parts.join('');
 
-            if (hintEl) {
-                var shown = 0;
-                [].forEach.call(catalogCards, function (card) {
-                    if (!card.classList.contains('is-hidden')) shown++;
-                });
-                hintEl.textContent = countLabel(shown);
-            }
+            if (hintEl) hintEl.textContent = countLabel(found);
         }
 
         function paintCatalog() {
-            [].forEach.call(catalogCards, function (card) {
-                var sec = card.getAttribute('data-section') || '';
-                var sub = card.getAttribute('data-subsection') || '';
-                var show = (activeSection === 'all' || sec === activeSection) &&
-                           (activeSub === 'all' || sub === activeSub);
-                card.classList.toggle('is-hidden', !show);
+            var matched = catalogCards.filter(matchesState);
+            var ordered = sortedCards(matched);
+            var rest = catalogCards.filter(function (card) { return matched.indexOf(card) < 0; });
+
+            /* порядок в сетке: отобранные (в нужном порядке), затем остальные */
+            ordered.concat(rest).forEach(function (card) { catalogGrid.appendChild(card); });
+            if (nothingEl) catalogGrid.appendChild(nothingEl);
+
+            /* «Показать ещё»: прячем всё, что дальше лимита */
+            ordered.forEach(function (card, i) {
+                card.classList.toggle('is-hidden', i >= state.limit);
             });
-            renderTiles();
+            rest.forEach(function (card) { card.classList.add('is-hidden'); });
+
+            catalogGrid.classList.toggle('is-list', state.view === 'list');
+
+            if (nothingEl) nothingEl.hidden = matched.length > 0;
+            if (moreEl) moreEl.hidden = matched.length <= state.limit;
+
+            renderTiles(matched.length);
         }
 
         function animateTiles() {
@@ -3822,19 +4227,57 @@
             boardEl.classList.add('is-switching');
         }
 
+        /* Адрес раздела — чтобы ссылку на него можно было отправить */
+        function syncHash() {
+            var hash = '#catalog';
+            if (state.section !== 'all') {
+                hash += '/' + state.section;
+                if (state.sub !== 'all') hash += '/' + state.sub;
+            }
+            try {
+                window.history.replaceState(null, '', window.location.pathname + window.location.search + hash);
+            } catch (e) {}
+        }
+
+        function readHash() {
+            var m = String(window.location.hash || '').match(/^#catalog\/([^/]+)(?:\/([^/]+))?/);
+            if (!m) return;
+            var section = findSection(decodeURIComponent(m[1]));
+            if (!section) return;
+            state.section = section.id;
+            if (!m[2]) return;
+            var sub = decodeURIComponent(m[2]);
+            [].forEach.call(section.subs, function (s) { if (s.id === sub) state.sub = sub; });
+        }
+
         function setSection(id) {
-            activeSection = id || 'all';
-            activeSub = 'all';
+            state.section = id || 'all';
+            state.sub = 'all';
+            state.limit = PAGE_SIZE;
             paintCatalog();
             animateTiles();
+            syncHash();
         }
 
         function setSub(id) {
-            activeSub = id || 'all';
+            state.sub = id || 'all';
+            state.limit = PAGE_SIZE;
             paintCatalog();
             animateTiles();
+            syncHash();
         }
 
+        function refreshFilterBadge() {
+            var n = 0;
+            if (state.min !== null) n++;
+            if (state.max !== null) n++;
+            if (filterCount) {
+                filterCount.textContent = n;
+                filterCount.hidden = n === 0;
+            }
+        }
+
+        /* ---------- Слушатели каталога ---------- */
         if (tilesBox) {
             tilesBox.addEventListener('click', function (e) {
                 var t = e.target;
@@ -3862,13 +4305,84 @@
             });
         }
 
-        [].forEach.call(jumpLinks, function (link) {
-            link.addEventListener('click', function () {
-                setSection(link.getAttribute('data-catalog-section'));
+        if (filterToggle && filterPanel) {
+            filterToggle.addEventListener('click', function () {
+                var open = filterPanel.classList.toggle('is-open');
+                filterToggle.classList.toggle('is-active', open);
+                filterToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+        }
+
+        if (document.getElementById('filterApply')) {
+            document.getElementById('filterApply').addEventListener('click', function () {
+                var mn = priceMinEl && priceMinEl.value !== '' ? Math.max(0, parseInt(priceMinEl.value, 10) || 0) : null;
+                var mx = priceMaxEl && priceMaxEl.value !== '' ? Math.max(0, parseInt(priceMaxEl.value, 10) || 0) : null;
+                if (mn !== null && mx !== null && mn > mx) {
+                    var swap = mn;
+                    mn = mx;
+                    mx = swap;
+                }
+                state.min = mn;
+                state.max = mx;
+                state.limit = PAGE_SIZE;
+                paintCatalog();
+                refreshFilterBadge();
+            });
+        }
+
+        if (document.getElementById('filterReset')) {
+            document.getElementById('filterReset').addEventListener('click', function () {
+                if (priceMinEl) priceMinEl.value = '';
+                if (priceMaxEl) priceMaxEl.value = '';
+                state.min = null;
+                state.max = null;
+                state.limit = PAGE_SIZE;
+                paintCatalog();
+                refreshFilterBadge();
+            });
+        }
+
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function () {
+                state.sort = sortSelect.value;
+                state.limit = PAGE_SIZE;
+                paintCatalog();
+            });
+        }
+
+        [].forEach.call(document.querySelectorAll('.catalog-view'), function (btn) {
+            btn.addEventListener('click', function () {
+                state.view = btn.getAttribute('data-view');
+                [].forEach.call(document.querySelectorAll('.catalog-view'), function (b) {
+                    var on = b === btn;
+                    b.classList.toggle('is-active', on);
+                    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+                });
+                paintCatalog();
             });
         });
 
-        if (catalogCards.length) paintCatalog();
+        if (moreBtn) {
+            moreBtn.addEventListener('click', function () {
+                state.limit += PAGE_SIZE;
+                paintCatalog();
+            });
+        }
+
+        [].forEach.call(jumpLinks, function (link) {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                setSection(link.getAttribute('data-catalog-section'));
+                var target = document.getElementById('collection');
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        if (catalogCards.length) {
+            readHash();
+            paintCatalog();
+            refreshFilterBadge();
+        }
     })();
     </script>
 
