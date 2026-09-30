@@ -641,7 +641,7 @@
         .philosophy-image-main {
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1578985420001-5e015b8a6d17?w=900&q=90') center/cover;
+            background: url('https://images.unsplash.com/photo-1587668178277-295251f900ce?w=900&q=90') center/cover;
             border-radius: 4px;
             box-shadow: var(--shadow-xl);
             transition: transform var(--transition-slower);
@@ -789,90 +789,137 @@
             line-height: 1.7;
         }
 
-        /* ============ CATALOG NAV — разделы и подразделы ============ */
-        .catalog-nav {
+        /* ============ CATALOG BOARD — разделы и подразделы ============ */
+        .catalog-board {
             max-width: 1400px;
-            margin: 0 auto clamp(2rem, 4vw, 3rem);
+            margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+            background: var(--cream);
+            border: 1px solid rgba(212, 175, 122, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .catalog-board-head {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 1rem;
-        }
-
-        .catalog-sections {
-            display: flex;
+            justify-content: space-between;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.6rem;
+            gap: 0.8rem;
+            padding: 1rem clamp(1rem, 3vw, 1.7rem);
+            background: var(--cream-dark);
+            border-bottom: 1px solid rgba(212, 175, 122, 0.3);
         }
 
-        .catalog-section {
-            padding: 0.7rem 1.6rem;
-            border: 1px solid rgba(212, 175, 122, 0.35);
-            background: transparent;
-            color: rgba(245, 230, 211, 0.8);
-            font-size: 0.78rem;
-            font-weight: 400;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            border-radius: 999px;
-            transition: all var(--transition-base);
+        .catalog-crumbs {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            font-size: 0.82rem;
         }
 
-        .catalog-section:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-2px);
+        .catalog-crumbs button {
+            font-size: 0.82rem;
+            color: var(--caramel-dark);
+            transition: color var(--transition-base);
         }
 
-        .catalog-section.is-active {
-            background: var(--gold);
-            border-color: var(--gold);
+        .catalog-crumbs button:hover {
+            color: var(--berry);
+        }
+
+        .catalog-crumbs .crumb-sep {
+            color: rgba(26, 15, 10, 0.25);
+        }
+
+        .catalog-crumbs .crumb-current {
             color: var(--chocolate);
             font-weight: 500;
         }
 
-        /* Подразделы: строка появляется только у раздела,
-           у которого есть подразделы */
-        .catalog-subsections {
-            display: none;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
+        .catalog-board-hint {
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(26, 15, 10, 0.38);
         }
 
-        .catalog-subsections.is-visible {
+        /* Тонкие линии рисуем бортиками самих плиток: если ряд неполный,
+           пустое место остаётся фоном панели, а не тёмной заливкой.
+           Отрицательные отступы прячут внешние линии под рамку панели */
+        .catalog-tiles {
+            display: grid;
+            grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr));
+            background: var(--cream);
+            margin: 0 -1px -1px 0;
+        }
+
+        .catalog-tile {
             display: flex;
-            animation: catalogSubIn 0.4s ease both;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            padding: clamp(1.1rem, 2.4vw, 1.8rem) 0.7rem clamp(0.9rem, 2vw, 1.3rem);
+            background: var(--cream);
+            border-right: 1px solid rgba(212, 175, 122, 0.32);
+            border-bottom: 1px solid rgba(212, 175, 122, 0.32);
+            text-align: center;
+            transition: background var(--transition-base);
         }
 
-        @keyframes catalogSubIn {
+        .catalog-tile:hover {
+            background: var(--white);
+        }
+
+        .catalog-tile-img {
+            width: clamp(76px, 9vw, 112px);
+            aspect-ratio: 1;
+            border-radius: 8px;
+            background-color: var(--cream-dark);
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 6px 18px rgba(26, 15, 10, 0.14);
+            transition: transform var(--transition-base);
+        }
+
+        .catalog-tile:hover .catalog-tile-img {
+            transform: translateY(-3px);
+        }
+
+        .catalog-tile-name {
+            font-size: clamp(0.86rem, 1.25vw, 1rem);
+            font-weight: 500;
+            line-height: 1.25;
+            color: var(--chocolate-soft);
+            transition: color var(--transition-base);
+        }
+
+        .catalog-tile-count {
+            font-size: 0.76rem;
+            color: rgba(26, 15, 10, 0.45);
+        }
+
+        .catalog-tile.is-active {
+            background: var(--white);
+            box-shadow: inset 0 -3px 0 0 var(--gold);
+        }
+
+        .catalog-tile.is-active .catalog-tile-name {
+            color: var(--berry);
+        }
+
+        .catalog-tile.is-active .catalog-tile-img {
+            box-shadow: 0 6px 18px rgba(26, 15, 10, 0.22), 0 0 0 2px var(--gold);
+        }
+
+        .catalog-board.is-switching .catalog-tiles {
+            animation: tilesIn 0.35s ease both;
+        }
+
+        @keyframes tilesIn {
             from { opacity: 0; transform: translateY(-6px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        .catalog-subsection {
-            padding: 0.45rem 1.15rem;
-            border: 1px dashed rgba(212, 175, 122, 0.35);
-            background: transparent;
-            color: rgba(245, 230, 211, 0.65);
-            font-size: 0.72rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            border-radius: 999px;
-            transition: all var(--transition-base);
-        }
-
-        .catalog-subsection:hover {
-            border-color: var(--pink-soft);
-            color: var(--pink-soft);
-        }
-
-        .catalog-subsection.is-active {
-            border-style: solid;
-            border-color: var(--pink-soft);
-            background: rgba(232, 180, 188, 0.14);
-            color: var(--pink-soft);
         }
 
         .collection-grid {
@@ -2480,10 +2527,13 @@
                 grid-column: span 6;
             }
 
-            .catalog-section {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.72rem;
-                letter-spacing: 0.13em;
+            /* Плитки каталога: две колонки, как в мобильном каталоге */
+            .catalog-tiles {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .catalog-board-head {
+                padding: 0.9rem 1rem;
             }
 
             .gallery-grid {
@@ -2521,16 +2571,18 @@
                 grid-template-columns: 1fr;
             }
 
-            .catalog-section {
-                padding: 0.55rem 1rem;
-                font-size: 0.68rem;
-                letter-spacing: 0.1em;
+            .catalog-tile {
+                padding: 1rem 0.5rem 0.9rem;
+                gap: 0.5rem;
             }
 
-            .catalog-subsection {
-                padding: 0.4rem 0.85rem;
-                font-size: 0.66rem;
-                letter-spacing: 0.1em;
+            .catalog-tile-img {
+                width: 84px;
+            }
+
+            .catalog-crumbs,
+            .catalog-crumbs button {
+                font-size: 0.76rem;
             }
 
             .footer-container {
@@ -2664,14 +2716,14 @@
              src="magiya-vkusa.jpg"
              alt=""
              aria-hidden="true"
-             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=1920&q=90';">
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=1920&q=90';">
 
         <!-- Чёткое фото: целиком, по центру -->
         <img class="hero-bg"
              src="magiya-vkusa.jpg"
              alt=""
              aria-hidden="true"
-             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1565958011703-44f848d24f3e?w=1920&q=90';">
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=1920&q=90';">
 
         <!-- Невидимый заголовок для Google и скринридеров.
              Если не нужен — просто удалите эту строку -->
@@ -2750,31 +2802,14 @@
             </p>
         </div>
 
-        <!-- Разделы и подразделы каталога -->
-        <div class="catalog-nav reveal">
-            <div class="catalog-sections" role="tablist" aria-label="Разделы каталога">
-                <button type="button" class="catalog-section is-active" data-catalog-section="all" role="tab" aria-selected="true">Все</button>
-                <button type="button" class="catalog-section" data-catalog-section="candy" role="tab" aria-selected="false">Конфеты</button>
-                <button type="button" class="catalog-section" data-catalog-section="chocolate" role="tab" aria-selected="false">Шоколад</button>
-                <button type="button" class="catalog-section" data-catalog-section="cakes" role="tab" aria-selected="false">Торты</button>
-                <button type="button" class="catalog-section" data-catalog-section="cookies" role="tab" aria-selected="false">Печенье</button>
-                <button type="button" class="catalog-section" data-catalog-section="gifts" role="tab" aria-selected="false">Подарочные наборы</button>
+        <!-- Разделы и подразделы каталога: плитки со фото и количеством товаров -->
+        <div class="catalog-board reveal" id="catalogBoard">
+            <div class="catalog-board-head">
+                <!-- именно div: тег nav в этом шаблоне зарезервирован под шапку сайта -->
+                <div class="catalog-crumbs" id="catalogCrumbs" role="navigation" aria-label="Навигация по каталогу"></div>
+                <span class="catalog-board-hint" id="catalogHint"></span>
             </div>
-
-            <!-- Подразделы раздела «Конфеты» -->
-            <div class="catalog-subsections" data-catalog-row="candy" role="tablist" aria-label="Подразделы раздела Конфеты">
-                <button type="button" class="catalog-subsection is-active" data-catalog-subsection="all">Все</button>
-                <button type="button" class="catalog-subsection" data-catalog-subsection="candy-chocolate">Шоколадные</button>
-                <button type="button" class="catalog-subsection" data-catalog-subsection="candy-caramel">Карамельные</button>
-            </div>
-
-            <!-- Подразделы раздела «Шоколад» -->
-            <div class="catalog-subsections" data-catalog-row="chocolate" role="tablist" aria-label="Подразделы раздела Шоколад">
-                <button type="button" class="catalog-subsection is-active" data-catalog-subsection="all">Все</button>
-                <button type="button" class="catalog-subsection" data-catalog-subsection="chocolate-dark">Тёмный горький</button>
-                <button type="button" class="catalog-subsection" data-catalog-subsection="chocolate-milk">Молочный</button>
-                <button type="button" class="catalog-subsection" data-catalog-subsection="chocolate-filled">С начинкой</button>
-            </div>
+            <div class="catalog-tiles" id="catalogTiles"></div>
         </div>
 
         <div class="collection-grid" id="catalogGrid">
@@ -2794,7 +2829,7 @@
             </article>
 
             <article class="dessert-card reveal" data-section="candy" data-subsection="candy-chocolate">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1586985289906-406988974504?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Конфеты · Шоколадные</div>
@@ -2851,7 +2886,7 @@
             </article>
 
             <article class="dessert-card reveal" data-section="candy" data-subsection="candy-caramel">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Конфеты · Карамельные</div>
@@ -2866,7 +2901,7 @@
 
             <!-- ===== Раздел: Шоколад · Подраздел: Тёмный горький ===== -->
             <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-dark">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1511381939415-e44015466834?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Шоколад · Тёмный горький</div>
@@ -2894,7 +2929,7 @@
             </article>
 
             <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-dark">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1586985289906-406988974504?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Шоколад · Тёмный горький</div>
@@ -2909,7 +2944,7 @@
 
             <!-- ===== Раздел: Шоколад · Подраздел: Молочный ===== -->
             <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-milk">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1558326567-98ae2405596b?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Шоколад · Молочный</div>
@@ -2952,7 +2987,7 @@
 
             <!-- ===== Раздел: Шоколад · Подраздел: С начинкой ===== -->
             <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-filled">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Шоколад · С начинкой</div>
@@ -2966,7 +3001,7 @@
             </article>
 
             <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-filled">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1511381939415-e44015466834?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1548907040-4baa42d10919?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Шоколад · С начинкой</div>
@@ -2980,7 +3015,7 @@
             </article>
 
             <article class="dessert-card reveal" data-section="chocolate" data-subsection="chocolate-filled">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1586985289906-406988974504?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Шоколад · С начинкой</div>
@@ -2995,7 +3030,7 @@
 
             <!-- ===== Раздел: Торты ===== -->
             <article class="dessert-card reveal" data-section="cakes" data-subsection="">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1586985289906-406988974504?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Торты</div>
@@ -3009,7 +3044,7 @@
             </article>
 
             <article class="dessert-card reveal" data-section="cakes" data-subsection="">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1586985289906-406988974504?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Торты</div>
@@ -3023,7 +3058,7 @@
             </article>
 
             <article class="dessert-card reveal" data-section="cakes" data-subsection="">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Торты</div>
@@ -3066,7 +3101,7 @@
             </article>
 
             <article class="dessert-card reveal" data-section="cookies" data-subsection="">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1587668178277-295251f900ce?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Печенье</div>
@@ -3081,7 +3116,7 @@
 
             <!-- ===== Раздел: Подарочные наборы ===== -->
             <article class="dessert-card reveal" data-section="gifts" data-subsection="">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1548907040-4baa42d10919?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Подарочные наборы</div>
@@ -3095,7 +3130,7 @@
             </article>
 
             <article class="dessert-card reveal" data-section="gifts" data-subsection="">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Подарочные наборы</div>
@@ -3109,7 +3144,7 @@
             </article>
 
             <article class="dessert-card reveal" data-section="gifts" data-subsection="">
-                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1511381939415-e44015466834?w=900&q=90')"></div>
+                <div class="dessert-image" style="--card-img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=900&q=90')"></div>
                 <div class="dessert-overlay"></div>
                 <div class="dessert-content">
                     <div class="dessert-category">Подарочные наборы</div>
@@ -3593,16 +3628,181 @@
             });
         }
 
-        /* ---------- Каталог: разделы и подразделы ---------- */
+        /* ---------- Каталог: разделы и подразделы (плитки) ---------- */
         var catalogGrid = document.getElementById('catalogGrid');
-        var sectionBtns = document.querySelectorAll('.catalog-section[data-catalog-section]');
-        var subRows = document.querySelectorAll('.catalog-subsections[data-catalog-row]');
-        var subBtns = document.querySelectorAll('.catalog-subsection[data-catalog-subsection]');
         var catalogCards = catalogGrid ? catalogGrid.querySelectorAll('.dessert-card') : [];
-        /* Внешние ссылки на раздел (футер) — с прокруткой к каталогу */
-        var jumpLinks = document.querySelectorAll('[data-catalog-section]:not(.catalog-section)');
+        var tilesBox = document.getElementById('catalogTiles');
+        var crumbsBox = document.getElementById('catalogCrumbs');
+        var hintEl = document.getElementById('catalogHint');
+        var boardEl = document.getElementById('catalogBoard');
+        /* Внешние ссылки на раздел (футер) */
+        var jumpLinks = document.querySelectorAll('[data-catalog-section]');
         var activeSection = 'all';
         var activeSub = 'all';
+
+        function escHtml(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
+
+        function pluralWord(n, one, few, many) {
+            var a = Math.abs(n) % 100;
+            var b = a % 10;
+            if (a > 10 && a < 20) return many;
+            if (b > 1 && b < 5) return few;
+            if (b === 1) return one;
+            return many;
+        }
+
+        function countLabel(n) {
+            return n + ' ' + pluralWord(n, 'товар', 'товара', 'товаров');
+        }
+
+        function cardImage(card) {
+            var imgEl = card ? card.querySelector('.dessert-image') : null;
+            var style = imgEl ? (imgEl.getAttribute('style') || '') : '';
+            var m = style.match(/url\(['"]?([^'")]+)['"]?\)/);
+            return m ? m[1] : '';
+        }
+
+        /* Дерево «раздел → подразделы» собираем прямо из карточек:
+           названия и счётчики всегда совпадают с содержимым каталога */
+        var catalogTree = (function () {
+            var order = [], byId = {};
+
+            [].forEach.call(catalogCards, function (card) {
+                var secId = card.getAttribute('data-section') || '';
+                var subId = card.getAttribute('data-subsection') || '';
+                var catEl = card.querySelector('.dessert-category');
+                var cat = catEl ? catEl.textContent.replace(/\s+/g, ' ').trim() : '';
+                var sep = cat.indexOf('·');
+                var secName = sep >= 0 ? cat.slice(0, sep).trim() : cat;
+                var subName = sep >= 0 ? cat.slice(sep + 1).trim() : '';
+                var img = cardImage(card);
+
+                if (!byId[secId]) {
+                    byId[secId] = { id: secId, name: secName, imgs: [], count: 0, subs: [], subById: {} };
+                    order.push(byId[secId]);
+                }
+
+                var sec = byId[secId];
+                sec.count++;
+                if (img && sec.imgs.indexOf(img) < 0) sec.imgs.push(img);
+                if (!subId) return;
+
+                if (!sec.subById[subId]) {
+                    sec.subById[subId] = { id: subId, name: subName, imgs: [], count: 0 };
+                    sec.subs.push(sec.subById[subId]);
+                }
+
+                var sub = sec.subById[subId];
+                sub.count++;
+                if (img && sub.imgs.indexOf(img) < 0) sub.imgs.push(img);
+            });
+
+            return order;
+        })();
+
+        function findSection(id) {
+            for (var i = 0; i < catalogTree.length; i++) {
+                if (catalogTree[i].id === id) return catalogTree[i];
+            }
+            return null;
+        }
+
+        function tileHtml(id, name, img, count, isActive, kind) {
+            return '<button type="button" class="catalog-tile' + (isActive ? ' is-active' : '') + '"' +
+                ' data-tile-kind="' + kind + '" data-tile-id="' + escHtml(id) + '">' +
+                '<span class="catalog-tile-img" style="background-image:url(\'' + escHtml(img) + '\')"></span>' +
+                '<span class="catalog-tile-name">' + escHtml(name) + '</span>' +
+                '<span class="catalog-tile-count">' + countLabel(count) + '</span>' +
+                '</button>';
+        }
+
+        /* Все фото каталога — для плитки «Все товары» */
+        var allImages = (function () {
+            var list = [];
+            [].forEach.call(catalogCards, function (card) {
+                var img = cardImage(card);
+                if (img && list.indexOf(img) < 0) list.push(img);
+            });
+            return list;
+        })();
+
+        function renderTiles() {
+            if (!tilesBox) return;
+
+            var html = '';
+            var cols = 0;
+            var section = activeSection === 'all' ? null : findSection(activeSection);
+
+            /* В одном ряду плитки не должны повторять фото: берём первое свободное */
+            var used = {};
+            function pick(list) {
+                list = list || [];
+                for (var i = 0; i < list.length; i++) {
+                    if (!used[list[i]]) { used[list[i]] = true; return list[i]; }
+                }
+                return list[0] || '';
+            }
+
+            if (section && section.subs.length) {
+                /* Второй уровень: подразделы выбранного раздела.
+                   Первая плитка — сам раздел целиком (все его товары) */
+                html += tileHtml(section.id, section.name, pick(section.imgs),
+                    section.count, activeSub === 'all', 'sub-all');
+                [].forEach.call(section.subs, function (sub) {
+                    html += tileHtml(sub.id, sub.name, pick(sub.imgs), sub.count, activeSub === sub.id, 'sub');
+                });
+                cols = section.subs.length + 1;
+            } else {
+                /* Первый уровень: все разделы */
+                html += tileHtml('all', 'Все товары', pick(allImages),
+                    catalogCards.length, !section, 'all');
+                [].forEach.call(catalogTree, function (s) {
+                    html += tileHtml(s.id, s.name, pick(s.imgs), s.count, !!section && s.id === section.id, 'section');
+                });
+                cols = catalogTree.length + 1;
+            }
+
+            tilesBox.innerHTML = html;
+            tilesBox.style.setProperty('--cols', Math.max(1, Math.min(cols, 6)));
+            renderCrumbs(section);
+        }
+
+        function renderCrumbs(section) {
+            if (!crumbsBox) return;
+
+            var parts = [];
+            var currentSub = null;
+            if (section) {
+                [].forEach.call(section.subs, function (s) { if (s.id === activeSub) currentSub = s; });
+            }
+
+            if (!section) {
+                parts.push('<span class="crumb-current">Каталог</span>');
+            } else {
+                parts.push('<button type="button" data-crumb="all">Каталог</button>');
+                parts.push('<span class="crumb-sep">—</span>');
+                if (currentSub) {
+                    parts.push('<button type="button" data-crumb="section">' + escHtml(section.name) + '</button>');
+                    parts.push('<span class="crumb-sep">—</span>');
+                    parts.push('<span class="crumb-current">' + escHtml(currentSub.name) + '</span>');
+                } else {
+                    parts.push('<span class="crumb-current">' + escHtml(section.name) + '</span>');
+                }
+            }
+            crumbsBox.innerHTML = parts.join('');
+
+            if (hintEl) {
+                var shown = 0;
+                [].forEach.call(catalogCards, function (card) {
+                    if (!card.classList.contains('is-hidden')) shown++;
+                });
+                hintEl.textContent = countLabel(shown);
+            }
+        }
 
         function paintCatalog() {
             [].forEach.call(catalogCards, function (card) {
@@ -3612,40 +3812,55 @@
                            (activeSub === 'all' || sub === activeSub);
                 card.classList.toggle('is-hidden', !show);
             });
+            renderTiles();
+        }
 
-            [].forEach.call(sectionBtns, function (btn) {
-                var on = btn.getAttribute('data-catalog-section') === activeSection;
-                btn.classList.toggle('is-active', on);
-                btn.setAttribute('aria-selected', on ? 'true' : 'false');
-            });
-
-            [].forEach.call(subRows, function (row) {
-                row.classList.toggle('is-visible', row.getAttribute('data-catalog-row') === activeSection);
-            });
-
-            [].forEach.call(subBtns, function (btn) {
-                btn.classList.toggle('is-active', btn.getAttribute('data-catalog-subsection') === activeSub);
-            });
+        function animateTiles() {
+            if (!boardEl) return;
+            boardEl.classList.remove('is-switching');
+            void boardEl.offsetWidth;
+            boardEl.classList.add('is-switching');
         }
 
         function setSection(id) {
-            activeSection = id;
+            activeSection = id || 'all';
             activeSub = 'all';
             paintCatalog();
+            animateTiles();
         }
 
-        [].forEach.call(sectionBtns, function (btn) {
-            btn.addEventListener('click', function () {
-                setSection(btn.getAttribute('data-catalog-section'));
-            });
-        });
+        function setSub(id) {
+            activeSub = id || 'all';
+            paintCatalog();
+            animateTiles();
+        }
 
-        [].forEach.call(subBtns, function (btn) {
-            btn.addEventListener('click', function () {
-                activeSub = btn.getAttribute('data-catalog-subsection');
-                paintCatalog();
+        if (tilesBox) {
+            tilesBox.addEventListener('click', function (e) {
+                var t = e.target;
+                if (!t || !t.closest) return;
+                var tile = t.closest('.catalog-tile');
+                if (!tile) return;
+
+                var kind = tile.getAttribute('data-tile-kind');
+                var id = tile.getAttribute('data-tile-id');
+
+                if (kind === 'sub') setSub(id);
+                else if (kind === 'sub-all') setSub('all');
+                else setSection(id);
             });
-        });
+        }
+
+        if (crumbsBox) {
+            crumbsBox.addEventListener('click', function (e) {
+                var t = e.target;
+                if (!t || !t.closest) return;
+                var btn = t.closest('[data-crumb]');
+                if (!btn) return;
+                if (btn.getAttribute('data-crumb') === 'all') setSection('all');
+                else setSub('all');
+            });
+        }
 
         [].forEach.call(jumpLinks, function (link) {
             link.addEventListener('click', function () {
