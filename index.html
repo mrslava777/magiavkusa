@@ -934,151 +934,113 @@
             gap: clamp(1rem, 2vw, 2rem);
         }
 
+        /* Карточка товара: фото сверху, описание и цена — под фото */
         .dessert-card {
             position: relative;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
-            cursor: pointer;
-            background: var(--chocolate-soft);
-            transition: all var(--transition-slower);
-            border-radius: 4px;
+            grid-column: span 4;
+            background: var(--white);
+            border: 1px solid rgba(26, 15, 10, 0.08);
+            border-radius: 6px;
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
         }
 
         .dessert-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Ровная сетка 3 в ряд: раскладка не ломается при фильтрации
-           по разделам и подразделам */
-        .dessert-card {
-            grid-column: span 4;
-            aspect-ratio: 4/5;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(26, 15, 10, 0.16);
         }
 
         .dessert-card.is-hidden {
             display: none;
         }
 
+        /* Фото задаётся inline-переменной --card-img */
         .dessert-image {
-            position: absolute;
-            inset: 0;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            flex-shrink: 0;
+            background-color: var(--cream-dark);
             background-size: cover;
             background-position: center;
             background-image: var(--card-img, linear-gradient(135deg, var(--chocolate-light), var(--berry-deep)));
-            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .dessert-card:hover .dessert-image {
-            transform: scale(1.1);
+            transform: scale(1.04);
         }
 
-        /* Фото задаётся индивидуально через inline-переменную --card-img:
-           карточки можно свободно добавлять и фильтровать */
-
-        /* Затемнение под текстом: градиент плотнее и начинается выше,
-           иначе светлые фото «съедают» подписи карточек */
+        /* Раньше текст лежал поверх фото — теперь он под ним */
         .dessert-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg,
-                rgba(26, 15, 10, 0) 0%,
-                rgba(26, 15, 10, 0.1) 26%,
-                rgba(26, 15, 10, 0.36) 46%,
-                rgba(26, 15, 10, 0.72) 64%,
-                rgba(26, 15, 10, 0.91) 80%,
-                rgba(26, 15, 10, 0.98) 100%);
-            transition: background var(--transition-base);
-        }
-
-        .dessert-card:hover .dessert-overlay {
-            background: linear-gradient(180deg,
-                rgba(26, 15, 10, 0.08) 0%,
-                rgba(26, 15, 10, 0.22) 26%,
-                rgba(26, 15, 10, 0.5) 46%,
-                rgba(26, 15, 10, 0.8) 64%,
-                rgba(26, 15, 10, 0.95) 80%,
-                rgba(26, 15, 10, 1) 100%);
+            display: none;
         }
 
         .dessert-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: clamp(1.5rem, 3vw, 2.5rem);
-            z-index: 2;
-            color: var(--cream);
-        }
-
-        /* Тень под текстом — страховка на светлых участках фото */
-        .dessert-category,
-        .dessert-name,
-        .dessert-desc,
-        .dessert-price {
-            text-shadow: 0 1px 3px rgba(26, 15, 10, 0.9),
-                         0 3px 16px rgba(26, 15, 10, 0.75);
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 1.3rem 1.3rem 1.4rem;
+            color: var(--chocolate);
         }
 
         .dessert-category {
-            font-size: clamp(0.6rem, 1.5vw, 0.75rem);
-            letter-spacing: 0.25em;
+            font-size: 0.62rem;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 0.8rem;
+            color: var(--caramel-dark);
+            margin-bottom: 0.55rem;
             font-weight: 500;
         }
 
         .dessert-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.3rem, 3vw, 2rem);
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-            line-height: 1.1;
+            font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            line-height: 1.15;
+            color: var(--chocolate);
         }
 
         .dessert-name em {
             font-style: italic;
-            color: var(--pink-soft);
+            color: var(--berry);
         }
 
+        /* Описание видно всегда: оно под фото, а не по наведению */
         .dessert-desc {
-            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-            color: rgba(245, 230, 211, 0.92);
-            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
             line-height: 1.6;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height var(--transition-slow), opacity var(--transition-slow);
-            opacity: 0;
-        }
-
-        .dessert-card:hover .dessert-desc {
-            max-height: 100px;
-            opacity: 1;
+            color: rgba(26, 15, 10, 0.62);
+            margin-bottom: 1.2rem;
         }
 
         .dessert-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(212, 175, 122, 0.3);
+            gap: 1rem;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(26, 15, 10, 0.1);
         }
 
         .dessert-price {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            color: var(--gold);
-            font-weight: 500;
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--chocolate);
+            font-weight: 600;
         }
 
         .dessert-arrow {
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
             padding: 0;
-            border: 1px solid var(--gold);
+            border: 1px solid var(--chocolate);
             border-radius: 50%;
-            background: rgba(26, 15, 10, 0.35);
+            background: var(--chocolate);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1088,19 +1050,20 @@
         }
 
         .dessert-arrow svg {
-            width: 19px;
-            height: 19px;
+            width: 18px;
+            height: 18px;
             display: block;
         }
 
         .dessert-card:hover .dessert-arrow {
             background: var(--gold);
+            border-color: var(--gold);
             color: var(--chocolate);
-            transform: scale(1.08);
         }
 
         .dessert-arrow.is-added {
             background: var(--gold);
+            border-color: var(--gold);
             color: var(--chocolate);
         }
 
@@ -2030,50 +1993,28 @@
             display: none;
         }
 
-        /* ============ CATALOG: вид списком ============ */
+        /* ============ ВИД СПИСКОМ ============ */
         .collection-grid.is-list {
             gap: 1rem;
         }
 
         .collection-grid.is-list .dessert-card {
             grid-column: span 12;
-            aspect-ratio: auto;
-            min-height: 150px;
-            display: grid;
-            grid-template-columns: clamp(130px, 18vw, 200px) 1fr;
-        }
-
-        .collection-grid.is-list .dessert-card:hover {
-            transform: translateY(-4px);
+            flex-direction: row;
+            align-items: stretch;
         }
 
         .collection-grid.is-list .dessert-image {
-            position: static;
-            width: 100%;
-            height: 100%;
-            min-height: 150px;
+            width: clamp(150px, 22vw, 240px);
+            aspect-ratio: 1;
         }
 
         .collection-grid.is-list .dessert-card:hover .dessert-image {
             transform: none;
         }
 
-        .collection-grid.is-list .dessert-overlay {
-            display: none;
-        }
-
         .collection-grid.is-list .dessert-content {
-            position: static;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             padding: 1.2rem 1.5rem;
-        }
-
-        .collection-grid.is-list .dessert-desc {
-            max-height: none;
-            opacity: 1;
-            margin-bottom: 1.1rem;
         }
 
         /* ============ CART: кнопка в шапке ============ */
@@ -2854,7 +2795,6 @@
 
             .dessert-card {
                 grid-column: span 12;
-                aspect-ratio: 4/3;
             }
 
             .hero-scroll-cue {
@@ -2957,7 +2897,11 @@
         }
     
 
-        /* ============ CATALOG PAGE ============ */
+        /* ============ СТРАНИЦА КАТАЛОГА — светлая, как в референсе ============ */
+        .collection-page {
+            background: var(--cream);
+        }
+
         .catalog-page-head {
             max-width: 1400px;
             margin: 0 auto clamp(1.6rem, 3vw, 2.4rem);
@@ -2968,43 +2912,133 @@
             margin-bottom: 0.4rem;
         }
 
-        .catalog-page-head .catalog-crumbs a,
-        .catalog-page-head .catalog-crumbs button {
-            font-size: 0.85rem;
-            color: rgba(212, 175, 122, 0.95);
-            text-decoration: none;
-        }
-
-        .catalog-page-head .catalog-crumbs a:hover,
-        .catalog-page-head .catalog-crumbs button:hover {
-            color: var(--gold);
-        }
-
-        .catalog-page-head .catalog-crumbs .crumb-sep {
-            color: rgba(245, 230, 211, 0.3);
-        }
-
-        .catalog-page-head .catalog-crumbs .crumb-current {
-            color: var(--cream);
-        }
-
         .catalog-page-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(2.4rem, 6vw, 4rem);
-            font-weight: 400;
+            font-weight: 500;
             line-height: 1.05;
-            color: var(--cream);
+            color: var(--chocolate);
             margin: 0.5rem 0 0.4rem;
         }
 
         .catalog-page-count {
             font-size: 0.85rem;
-            color: rgba(245, 230, 211, 0.55);
+            color: rgba(26, 15, 10, 0.5);
+        }
+
+        .catalog-crumbs a {
+            font-size: 0.85rem;
+            color: var(--caramel-dark);
+            text-decoration: none;
+            transition: color var(--transition-base);
+        }
+
+        .catalog-crumbs a:hover {
+            color: var(--berry);
         }
 
         a.catalog-tile {
             text-decoration: none;
             color: inherit;
+        }
+
+        /* панель, фильтры, кнопки — на светлом фоне */
+        .collection-page .catalog-board {
+            background: var(--white);
+            border-color: rgba(26, 15, 10, 0.1);
+            box-shadow: 0 12px 32px rgba(26, 15, 10, 0.06);
+        }
+
+        .collection-page .catalog-tiles {
+            background: var(--white);
+        }
+
+        .collection-page .catalog-tile {
+            background: var(--white);
+            border-color: rgba(26, 15, 10, 0.1);
+        }
+
+        .collection-page .catalog-tile:hover,
+        .collection-page .catalog-tile.is-active {
+            background: var(--cream);
+        }
+
+        .collection-page .catalog-tool {
+            border-color: rgba(26, 15, 10, 0.18);
+            color: rgba(26, 15, 10, 0.75);
+        }
+
+        .collection-page .catalog-tool:hover {
+            border-color: var(--gold);
+            color: var(--caramel-dark);
+        }
+
+        .collection-page .catalog-tool.is-active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--chocolate);
+        }
+
+        .collection-page .catalog-select {
+            border-color: rgba(26, 15, 10, 0.18);
+            color: rgba(26, 15, 10, 0.75);
+            color-scheme: light;
+        }
+
+        .collection-page .catalog-select:focus {
+            border-color: var(--gold);
+        }
+
+        .collection-page .catalog-select option {
+            background: var(--white);
+            color: var(--chocolate);
+        }
+
+        .collection-page .catalog-views {
+            border-color: rgba(26, 15, 10, 0.18);
+        }
+
+        .collection-page .catalog-view {
+            color: rgba(26, 15, 10, 0.6);
+        }
+
+        .collection-page .catalog-view.is-active {
+            background: var(--gold);
+            color: var(--chocolate);
+        }
+
+        .collection-page .catalog-filters {
+            background: var(--white);
+            border-color: rgba(26, 15, 10, 0.1);
+        }
+
+        .collection-page .catalog-filter-title {
+            color: var(--caramel-dark);
+        }
+
+        .collection-page .catalog-price input {
+            background: var(--white);
+            border-color: rgba(26, 15, 10, 0.18);
+            color: var(--chocolate);
+            color-scheme: light;
+        }
+
+        .collection-page .catalog-price span {
+            color: rgba(26, 15, 10, 0.4);
+        }
+
+        .collection-page .catalog-btn.ghost {
+            border-color: rgba(26, 15, 10, 0.2);
+            color: var(--chocolate-soft);
+        }
+
+        .collection-page .catalog-btn.ghost:hover {
+            border-color: var(--gold);
+            color: var(--caramel-dark);
+        }
+
+        .collection-page .catalog-nothing {
+            color: rgba(26, 15, 10, 0.5);
         }
 
         .collection-page .catalog-more {
@@ -4590,6 +4624,9 @@
             paintCatalog();
             animateTiles();
             syncHash();
+            /* Раздел открывается как отдельная страница — поднимаемся к его началу */
+            var top = document.getElementById('collection');
+            if (top) top.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function setSub(id) {
